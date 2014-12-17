@@ -52,7 +52,8 @@ var showStr =lowercaseName+" # "+firstLetter+" # "+middleOfName;
 
 
 
-console.log('----Reference Types');
+
+console.log('-------Reference Types');
 var object1 = new Object();
 var object2 = object1;
 object1.myCustomProperty = "Awesome!";
@@ -79,10 +80,29 @@ var bookA = new Object();
 
 console.log('%c 2 way to create object is equivalent','color:pink');
 console.dir(book);
-
 console.dir(bookA);
+var colors = [ "red", "blue", "green" ];
+        console.log(colors[0]);     // "red"
+var colorsA = new Array("red", "blue", "green")
+        console.log(colorsA[0]);     // "red"
 
+function reflect(value) {
+            return value * 10;
+}
 
+        // is the same as
+var reflectA = new Function("value", "return value * 10;");
+console.log(reflect(10));
+console.log(reflectA(10));
+
+var numbers = /\d+/g;
+        // is the same as
+var numbersA = new RegExp("\\d+", "g");
+
+console.log(numbers.exec("100t"));
+console.log(numbersA.exec("100t"));
+console.log("The value of lastIndex is " + numbers.lastIndex);
+console.log("The value of lastIndex is " + numbersA.lastIndex);
 
 
 
