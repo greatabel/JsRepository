@@ -27,3 +27,27 @@ console.log("5" === 5);
 console.log(undefined == null); 
 console.log(undefined === null);
 
+//-----------
+console.log('Primitive Methods');
+var name = "Nicholas";
+var lowercaseName = name.toLowerCase();
+var firstLetter = name.charAt(0);
+var middleOfName = name.substring(2, 5);
+
+var count = 10;
+var fixedCount = count.toFixed(2);
+var hexCount = count.toString(16);
+var flag = true;
+var stringFlag = flag.toString();
+
+function show(){
+    var showStr =lowercaseName+" # "+firstLetter+" # "+middleOfName;
+    showStr +=" @ " +fixedCount+" @ "+hexCount + " @ "+stringFlag;
+	document.getElementById("content").innerHTML = showStr;
+}
+
+
+
+
+
+
