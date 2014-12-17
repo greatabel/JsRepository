@@ -108,6 +108,26 @@ console.log("The value of lastIndex is " + numbersA.lastIndex);
 
 
 
+console.log('-------Property Access');
+var array = [];
+array.push(123);
+console.log(array);
+
+var arrayA = [];
+arrayA["push"](123);
+console.log(arrayA);
+
+//better
+var arrayB =[];
+var method = "push";
+arrayB[method](123);
+console.log(arrayB);
+
+
+
+
+
+
 
 
 
