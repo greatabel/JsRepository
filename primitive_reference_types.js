@@ -123,7 +123,23 @@ var method = "push";
 arrayB[method](123);
 console.log(arrayB);
 
+console.log('-------identifying reference Types');
+function reflect(value) {
+            return value;
+        }
+console.log(typeof reflect); 
 
+var items = [];
+var object = {};
+function reflect(value) {
+    return value;
+}
+console.log(items instanceof Array);
+console.log(object instanceof Object);
+console.log(reflect instanceof Function);
+
+var items = [];
+console.log(Array.isArray(items));      // true
 
 
 
