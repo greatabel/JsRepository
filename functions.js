@@ -21,4 +21,11 @@ showStr_functions+=(' add(1,20)='+add(1,20))
 //             return num1 + num2;
 // };
 
+function sayHi() { 
+	console.log("Hi!");
+}
+sayHi(); // outputs "Hi!" 
+var sayHi2 = sayHi;
+sayHi2();       // outp
+
 
