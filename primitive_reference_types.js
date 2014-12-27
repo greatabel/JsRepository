@@ -1,6 +1,7 @@
 function show(){
     //修改div的显示内容
-	document.getElementById("content").innerHTML = showStr;
+	document.getElementById("Div_primitiveAndReferenceType").innerHTML = showStr;
+    document.getElementById("Div_Functions").innerHTML = showStr_functions;
 }
 
 
@@ -143,10 +144,33 @@ console.log(Array.isArray(items));      // true
 
 
 
+console.log('Primitive wrapper Types-----');
+var name = "Test";
+var firstChar = name.charAt(0);
+console.log(firstChar);
 
+console.log('Primitive wrapper Types: Property disappear:')
+var name = "Nicholas";
+name.last = "Zakas";
+console.log(name.last);  
 
+console.log('temporary object is created only when a value is read:');
+var name = "Nicholas";
+var count = 10;
+var found = false;
+console.log(name instanceof String);    // false
+console.log(count instanceof Number);   // false
+console.log(found instanceof Boolean);  // false
 
+console.log(typeof name);    // false
+console.log(typeof count);   // false
+console.log(typeof found);
 
-
+var nameA = new String("Nicholas");
+var count = new Number(10);
+var found = new Boolean(false);
+console.log(typeof nameA);
+console.log(typeof count);
+console.log(typeof found);
 
 
