@@ -45,7 +45,18 @@ console.log(numbers);
 console.log('way is 10 after 1,see http://stackoverflow.com/questions/10198257/comparing-2-strings-alphabetically-for-sorting-purposes');
 
 console.log('Parameters:');
+function reflect(value) {
+    return value;
+}
+console.log(reflect("Hi!"));
+console.log(reflect("Hi!", 25));
+console.log(reflect.length);
+reflect = function() {
+    return arguments[0];
+};
+console.log(reflect("Hi!"));
+console.log(reflect("Hi!", 25));
+console.log(reflect.length);
 
 
-
-console.log('%c ch2 is end ---','color:red');
+console.log('%c -----ch2 is end ------','color:red');
