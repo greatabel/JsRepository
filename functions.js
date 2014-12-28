@@ -74,6 +74,16 @@ function sum(){
 console.log(sum(1,2,3,4));
 console.log(sum());
 
+console.log('overloading');
+function sayMessage(message) {
+            console.log(message);
+}
+function sayMessage() {
+    console.log("Default message");
+}
+sayMessage("Hello!");  
+
+console.log('the one that appears last in your code wins')
 
 
 console.log('%c -----ch2 is end ------','color:red');
