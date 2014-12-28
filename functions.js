@@ -58,5 +58,22 @@ console.log(reflect("Hi!"));
 console.log(reflect("Hi!", 25));
 console.log(reflect.length);
 
+console.log('function 的length只反映函数定义时候参数个数，arguments有时候挺有用');
+
+function sum(){
+	var result =0;
+	i=0,
+	len = arguments.length;
+
+	while(i < len){
+		result += arguments[i];
+		i++;
+	}
+	return result;
+}
+console.log(sum(1,2,3,4));
+console.log(sum());
+
+
 
 console.log('%c -----ch2 is end ------','color:red');
