@@ -99,6 +99,8 @@ function sayMessageB(message){
 }
 sayMessageB("Hello B");
 
+
+//----------@@  method  @@--------------
 var person = {
  name: "abel",
  sayName: function(){
@@ -107,5 +109,34 @@ var person = {
 
 };
 person.sayName();
+
+//等价方式：
+var personA = {
+	nameA :"great",
+	sayNameA: function(){
+		console.log(this.nameA);
+	}
+
+}
+personA.sayNameA();
+
+//更复杂点的调用方式:
+function sayNameForAll(){
+	console.log(this.name);
+}
+var person1 = {
+	name : "Abel1",
+	sayName: sayNameForAll
+};
+var person2 = {
+	name : "Abel2",
+	sayName: sayNameForAll
+};
+
+var name= "Abel3_outer";
+
+person1.sayName();
+person2.sayName();
+sayNameForAll();
 
 console.log('%c -----ch2 is end ------','color:red');
