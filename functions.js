@@ -6,7 +6,6 @@ var result = add(5, 5);
 function add(num1, num2) {
             return num1 + num2;
 }
-
 showStr_functions+=('result='+result);
 
  var add = function(num1, num2) {
@@ -90,9 +89,7 @@ console.log("看看真正发生的是这样的：")
 var sayMessageA = new Function("message","console.log(message);");
 
 sayMessageA = new Function("console.log(\"Default 2\");");
-
 sayMessageA("Hello 2");
-
 console.log('但是可以这样用：')
 function sayMessageB(message){
 	if(arguments.length === 0){
@@ -101,5 +98,14 @@ function sayMessageB(message){
 	console.log(message);
 }
 sayMessageB("Hello B");
+
+var person = {
+ name: "abel",
+ sayName: function(){
+ 	console.log(person.name+" in sayName function");
+ }
+
+};
+person.sayName();
 
 console.log('%c -----ch2 is end ------','color:red');

@@ -1,8 +1,3 @@
-function show(){
-    //修改div的显示内容
-	document.getElementById("Div_primitiveAndReferenceType").innerHTML = showStr;
-    document.getElementById("Div_Functions").innerHTML = showStr_functions;
-}
 
 
 var color1 = "red";
@@ -47,7 +42,7 @@ var hexCount = count.toString(16);
 var flag = true;
 var stringFlag = flag.toString();
 
-var showStr =lowercaseName+" # "+firstLetter+" # "+middleOfName;
+var showStr ='ch1: '+lowercaseName+" # "+firstLetter+" # "+middleOfName;
     showStr +=" @ " +fixedCount+" @ "+hexCount + " @ "+stringFlag;
 
 
@@ -172,5 +167,5 @@ var found = new Boolean(false);
 console.log(typeof nameA);
 console.log(typeof count);
 console.log(typeof found);
-
+console.log('%c -----ch1 is end ------','color:red');
 
