@@ -83,7 +83,7 @@ function sayMessage() {
 }
 sayMessage("Hello!");  
 
-console.log('the one that appears last in your code wins')
+console.log('the one that appears last in your code wins');
 
 
 console.log('%c -----ch2 is end ------','color:red');
