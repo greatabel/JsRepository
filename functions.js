@@ -153,9 +153,9 @@ var personC2 = {
 
 var name = "test_c_couter";
 
-sayNameForAll_call.call(this,"global");
-sayNameForAll_call.call(personC1,"personC1");
-sayNameForAll_call.call(personC2,"personC2");
+sayNameForAll_call.call(this,"global haha");
+sayNameForAll_call.call(personC1,"personC1 haha");
+sayNameForAll_call.call(personC2,"personC2 haha");
 
 
 console.log('%c -----ch2 is end ------','color:red');
