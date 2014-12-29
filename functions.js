@@ -93,4 +93,13 @@ sayMessageA = new Function("console.log(\"Default 2\");");
 
 sayMessageA("Hello 2");
 
+console.log('但是可以这样用：')
+function sayMessageB(message){
+	if(arguments.length === 0){
+		message = "Default B";
+	}
+	console.log(message);
+}
+sayMessageB("Hello B");
+
 console.log('%c -----ch2 is end ------','color:red');
