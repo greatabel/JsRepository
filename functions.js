@@ -158,4 +158,10 @@ sayNameForAll_call.call(personC1,"personC1 haha");
 sayNameForAll_call.call(personC2,"personC2 haha");
 
 
+sayNameForAll_call.apply(this,["test_apply global"]);
+
+sayNameForAll_call.apply(personC1,["test_apply personC1"]);
+
+sayNameForAll_call.apply(personC2,["test_apply personC2"]);
+
 console.log('%c -----ch2 is end ------','color:red');
