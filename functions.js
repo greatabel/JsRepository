@@ -139,4 +139,23 @@ person1.sayName();
 person2.sayName();
 sayNameForAll();
 
+//----------@@  method  @@--------------
+function sayNameForAll_call(label){
+	console.log(label+" label:"+this.name);
+}
+
+var personC1 = {
+	name: "test_c1"
+};
+var personC2 = {
+	name: "test_c2"
+};
+
+var name = "test_c_couter";
+
+sayNameForAll_call.call(this,"global");
+sayNameForAll_call.call(personC1,"personC1");
+sayNameForAll_call.call(personC2,"personC2");
+
+
 console.log('%c -----ch2 is end ------','color:red');
