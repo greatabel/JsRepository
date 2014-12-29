@@ -42,7 +42,8 @@ numbers.sort(function(first, second) {
 console.log(numbers); // "[1, 2, 4, 5, 6, 7, 8, 10]" 
 numbers.sort();
 console.log(numbers);       
-console.log('way is 10 after 1,see http://stackoverflow.com/questions/10198257/comparing-2-strings-alphabetically-for-sorting-purposes');
+console.log('way is 10 after 1,see http://stackoverflow.com/'+
+	'questions/10198257/comparing-2-strings-alphabetically-for-sorting-purposes');
 
 console.log('Parameters:');
 function reflect(value) {
@@ -85,5 +86,11 @@ sayMessage("Hello!");
 
 console.log('the one that appears last in your code wins');
 
+console.log("看看真正发生的是这样的：")
+var sayMessageA = new Function("message","console.log(message);");
+
+sayMessageA = new Function("console.log(\"Default 2\");");
+
+sayMessageA("Hello 2");
 
 console.log('%c -----ch2 is end ------','color:red');
