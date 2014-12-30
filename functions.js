@@ -164,4 +164,11 @@ sayNameForAll_call.apply(personC1,["test_apply personC1"]);
 
 sayNameForAll_call.apply(personC2,["test_apply personC2"]);
 
+//bind
+var sayNameForPerson1 = sayNameForAll_call.bind(person1);
+sayNameForPerson1("p1_bind");
+var sayNameForPerson2 = sayNameForAll_call.bind(person2);
+sayNameForPerson2("p2_bind");
+
+
 console.log('%c -----ch2 is end ------','color:red');
