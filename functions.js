@@ -171,5 +171,8 @@ sayNameForPerson1("p1_bind");
 var sayNameForPerson2 = sayNameForAll_call.bind(person2);
 sayNameForPerson2("p2_bind");
 
+//attaching a method to an object doesn't change 'this'
+person2.sayName = sayNameForPerson1;
+person2.sayName("person2_dont_change_this");
 
 console.log('%c -----ch2 is end ------','color:red');
