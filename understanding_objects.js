@@ -28,7 +28,7 @@ console.log(person1.hasOwnProperty("name"));
 console.log(person1.hasOwnProperty("sayName"));
 console.log("toString" in person1);
 console.log(person1.hasOwnProperty("toString"));
-// true
-// true
-// true
-// false
+
+delete person1.name;
+console.log('after delete:'+("name" in person1));
+console.log(person1.name);
