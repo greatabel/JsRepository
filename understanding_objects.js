@@ -99,6 +99,15 @@ var person1 = {};
         });
 
 
+Object.defineProperty(person1, "name", {
+    value: "Nicholas"
+});
+console.log("name" in person1);
+console.log(person1.propertyIsEnumerable("name"));
+delete person1.name;
+console.log("name" in person1);
+person1.name = "Greg";
+console.log(person1.name);
 
 
 
