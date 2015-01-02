@@ -120,6 +120,30 @@ console.log("name" in person1);
 person1.name = "Greg";
 console.log(person1.name);
 
+var person1 = {
+            name: "Nicholas"
+};
+
+// which is equal to following:
+ var person1 = {};
+ Object.defineProperty(person1, "name", {
+            value: "Nicholas",
+            enumerable: true,
+            configurable: true,
+            writable: true
+ });
+ console.log('the following code creates a name property that is nonenumerable, nonconfigurable, and nonwritable');
+var person1 = {};
+Object.defineProperty(person1, "name", {
+    value: "Nicholas"
+});
+console.log("name" in person1);
+console.log(person1.propertyIsEnumerable("name"));
+delete person1.name;
+console.log("name" in person1);
+person1.name = "Greg";
+console.log(person1.name);
+
 
 
 
