@@ -172,6 +172,8 @@ name: {
 console.log(person1.name);
 
 //Retrieving Property Attributes
+
+console.log('--- preventing Extensions');
  var person1 = {
        name: "Nicholas"
    };
@@ -181,7 +183,7 @@ console.log(descriptor.configurable);
 console.log(descriptor.writable);
 console.log(descriptor.value);
 
-console.log('Preventing object modification');
+
 var person1 = {
        name: "Nicholas"
 };
@@ -195,6 +197,60 @@ person1.sayName = function() {
 console.log("sayName" in person1);
 
 
+console.log('--- sealing objects');
+var person2 ={
+	name : "testname"
+};
 
+console.log(Object.isExtensible(person2));
+
+console.log(Object.isSealed(person2));
+
+Object.seal(person2);
+console.log(Object.isExtensible(person2));
+console.log(Object.isSealed(person2));
+
+person2.sayName = function() { 
+	console.log(this.name);
+};
+console.log("sayName" in person2);
+
+person2.name = "Greg";
+
+console.log(person2.name);
+
+delete person2.name;
+console.log("name" in person2);
+console.log(person2.name);
+
+var descriptor = Object.getOwnPropertyDescriptor(person2,"name");
+console.log(descriptor.configurable);
+
+console.log('----freezing objects');
+var person1 = {
+       name: "Nicholas"
+};
+console.log(Object.isExtensible(person1));
+console.log(Object.isSealed(person1));
+console.log(Object.isFrozen(person1));
+Object.freeze(person1); 
+console.log('after freezing');
+console.log(Object.isExtensible(person1));  
+console.log(Object.isSealed(person1));
+console.log(Object.isFrozen(person1));
+
+person1.sayName = function() {
+    console.log(this.name);
+};
+
+console.log("sayName" in person1);
+person1.name = "Greg"; 
+console.log(person1.name);
+delete person1.name;
+console.log("name" in person1);
+console.log(person1.name);
+var descriptor = Object.getOwnPropertyDescriptor(person1, "name");
+console.log(descriptor.configurable);           // false
+console.log(descriptor.writable);               // false
 
 
