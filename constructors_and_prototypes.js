@@ -67,3 +67,11 @@ console.log("hasOwnProperty" in book);
 console.log(book.hasOwnProperty("hasOwnProperty"));
 console.log(Object.prototype.hasOwnProperty("hasOwnProperty"));
 
+console.log('check hasPrototypeProperty:');
+function hasPrototypeProperty(Object,name){
+	return name in Object && ! Object.hasOwnProperty(name);
+}
+
+console.log(hasPrototypeProperty(book,"title"));
+console.log(hasPrototypeProperty(book,"hasOwnProperty"));
+
