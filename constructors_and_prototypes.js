@@ -133,6 +133,44 @@ var person33 = new PersonP("tesla");
 person33.sayHello();
 console.log(person33.toString());
 
+console.log(person33 instanceof PersonP);
+console.log(person33.constructor === PersonP);
+console.log(person33.constructor === Object);
+
+console.log('-------')
+function PersonT(name){
+	this.name = name;
+}
+
+PersonT.prototype = {
+ constructor: PersonT,
+ sayName: function(){
+ 	console.log(this.name);
+ },
+ toString: function(){
+ 	return "[Person"+this.name+"]";
+ }
+};
+
+
+var personT1 = new PersonT("bill");
+var personT2 = new PersonT("steven");
+
+console.log(personT1 instanceof PersonT);
+console.log(personT1.constructor === PersonT);
+console.log(personT1.constructor === Object);
+console.log(personT2 instanceof PersonT);
+console.log(personT2.constructor === PersonT);
+console.log(personT2.constructor === Object);
+
+console.log('changing prototype');
+
+
+
+
+
+
+
 
 
 
