@@ -192,6 +192,8 @@ var numbers = [1,2,3];
 var result = numbers.sum();
 console.log('result='+result);
 
+
+
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 //about reduce()
 //other example:
@@ -212,11 +214,16 @@ var elements = ["abc", "def", 123, 456];
 // Call the reduce method, which calls the callback function
 // for each array element.
 var result = elements.reduce(appendCurrent);
-showStr_constructors_and_prototypes = result;
+showStr_constructors_and_prototypes = '<br/>ch4:'+result;
 
 
 
+String.prototype.capitalize = function(){
+	return this.charAt(0).toUpperCase() + this.substring(1);
+};
 
+var message = "hello world!";
+showStr_constructors_and_prototypes+="| "+message.capitalize();
 
 
 
