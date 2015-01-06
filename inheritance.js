@@ -1,4 +1,4 @@
-console.log('%c ####ch5 inheritance is starting','color:blue');
+console.log('%c #######ch5 inheritance is starting','color:blue');
 
 var book = {
     title: "The Principles of Object-Oriented JavaScript"
@@ -158,3 +158,4 @@ console.log(rect instanceof Object);
 console.log(square instanceof Square);
 console.log(square instanceof Rectangle);
 console.log(square instanceof Object);
+
