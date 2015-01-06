@@ -164,6 +164,23 @@ console.log(personT2.constructor === PersonT);
 console.log(personT2.constructor === Object);
 
 console.log('changing prototype');
+PersonT.prototype.sayHi = function(){
+	console.log('say hi');
+}
+personT1.sayHi();
+personT2.sayHi();
+
+console.log('freeze 只影响OwnProperty')
+Object.freeze(personT1);
+
+PersonT.prototype.sayHiA = function(){
+	console.log('sayHiA in test');
+}
+personT1.sayHiA();
+personT2.sayHiA();
+
+console.log('build-in object prototypes');
+
 
 
 
