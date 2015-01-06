@@ -181,6 +181,39 @@ personT2.sayHiA();
 
 console.log('build-in object prototypes');
 
+Array.prototype.sum = function(){
+	return this.reduce(
+		function(previous,current){
+			return previous + current;
+		});
+};
+
+var numbers = [1,2,3];
+var result = numbers.sum();
+console.log('result='+result);
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+//about reduce()
+//other example:
+var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {
+  return a.concat(b);
+});
+console.log('flattened='+flattened);
+
+
+
+// Define the callback function.
+function appendCurrent (previousValue, currentValue) {
+    return previousValue + "::" + currentValue;
+    }
+
+// Create an array.
+var elements = ["abc", "def", 123, 456];
+// Call the reduce method, which calls the callback function
+// for each array element.
+var result = elements.reduce(appendCurrent);
+showStr_constructors_and_prototypes = result;
+
 
 
 
