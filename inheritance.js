@@ -159,3 +159,37 @@ console.log(square instanceof Square);
 console.log(square instanceof Rectangle);
 console.log(square instanceof Object);
 
+console.log('** constructor stealing **');
+
+function Square(size)
+{
+	Rectangle.call(this,size,size);
+}
+
+Square.prototype = Object.create(
+	Rectangle.prototype,{
+		constructor:{
+			configurable: true,
+			enumerable: true,
+			value: Square,
+			writable: true
+		}
+	}
+	);
+Square.prototype.toString = function(){
+	return "[Square " + this.length + "x" + this.width + "]";
+}
+
+var square = new Square(6);
+console.log(square.length);
+console.log(square.width);
+console.log(square.getArea());
+console.log(square.toString());
+
+//call the supertype method
+Square.prototype.toString = function(){
+	var text = Rectangle.prototype.toString.call(this);
+	return text.replace("Rectangle","Square # ");
+};
+
+console.log(square.toString());
