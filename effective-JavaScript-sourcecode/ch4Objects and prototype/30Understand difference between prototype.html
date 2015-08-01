@@ -1,0 +1,38 @@
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+<script type="text/javascript" src="30Understand difference between prototype.js"></script>
+<script type="text/javascript" src="31Prefer Object.getPrototypeOf to __proto__.js"></script>
+<script type="text/javascript" src="33make_yourConstructor_newAgnostic.js"></script>
+<script type="text/javascript" src="34Store Methods on Prototypes.js"></script>
+
+
+
+
+<title>30Understand difference between prototype</title>
+</head>
+
+<body>
+<p>
+C.prototype determines the prototype of objects created by new C()
+<br/>
+Object.getPrototypeOf(obj) is the standard ES5 function for retrieving the prototype of an object.
+<br/>
+obj.__proto__ is a nonstandard mechanism for retrieving the prototype of an object
+<br/>
+ A class is a design pattern consisting of a constructor function and 
+an associated prototype
+<hr/>
+✦ Storing methods on instance objects creates multiple copies of the 
+functions, one per instance object.
+<br/>
+✦ Prefer storing methods on prototypes over storing them on instance 
+objects.
+</p>
+</body>
+
+</html>

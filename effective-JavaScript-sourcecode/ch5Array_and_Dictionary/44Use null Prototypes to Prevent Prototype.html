@@ -1,0 +1,31 @@
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+
+<script type="text/javascript" src="44Use null Prototypes to Prevent Prototype.js"></script>
+
+
+
+<title>41Use null Prototypes to Prevent Prototype.js</title>
+</head>
+
+<body>
+<p>
+In ES5, use Object.create(null) to create prototype-free empty 
+objects that are less susceptible to pollution.
+<hr/>
+✦ In older environments, consider using { __proto__: null }.
+<hr/>
+✦ But beware that __proto__ is neither standard nor entirely portable 
+and may be removed in future JavaScript environments.
+<hr/>
+✦ Never use the name "__proto__" as a dictionary key since some 
+environments treat this property specially. 
+</p>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="07string_as_un.js">
+</script>
+
+<title>07string_as_un</title>
+</head>
+
+<body>
+<p>Because each code point in a UTF-16 encoding may require either one or two 16-byte code units, UTF-16 is a <font style="font-size:24px; color:red">variable-length </font> encoding: The size in memory of a string of length n varies based on the particular code points in the string. Moreover, finding the nth code point of a string is no longer a constant-time operation: It generally requires searching from the beginning of the string</p>
+<img src="" alt="Mountain View" style="width:604px;height:428px">
+<p>JavaScript strings consist of 16-bit code units, not Unicode code points.
+Unicode code points 216 and above are represented in JavaScript by two code units, known as a surrogate pair.
+Surrogate pairs throw off string element counts, affecting length, charAt, charCodeAt, and regular expression patterns such as “.”.
+Use third-party libraries for writing code point-aware string manipulation.
+Whenever you are using a library that works with strings, consult the documentation to see how it handles the full range of code points.。</p>
+</body>
+
+</html>

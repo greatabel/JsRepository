@@ -1,0 +1,34 @@
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<script type="text/javascript" src="24Use a Variable to Save a Reference to.js"></script>
+<script type="text/javascript" src="25Use bind to Extract Methods with a Fixed.js"></script>
+
+
+
+
+<title>24Use a Variable to Save a Reference to</title>
+</head>
+
+<body>
+<p>
+ Be aware of the function nesting level when referring to arguments.<br/>
+✦ Bind an explicitly scoped reference to arguments in order to refer to 
+it from nested functions.
+<hr/>
+But the receiver of buffer.add is not buffer. A function’s receiver is 
+determined by how it is called, and we are not calling it here. Instead, 
+we pass it to forEach, whose implementation calls it somewhere that 
+we can’t see. As it turns out, the implementation of forEach uses the 
+global object as the default receiver. Since the global object has no 
+entries property, this code throws an error. Luckily, forEach also 
+allows callers to provide an optional argument to use as the receiver 
+of its callback, so we can fix this example easily enough:
+
+</p>
+</body>
+
+</html>

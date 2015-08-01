@@ -1,0 +1,36 @@
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+
+<script type="text/javascript" src="49Prefer for Loops to for...in Loops for Array.js"></script>
+
+
+
+<title>49Prefer for Loops to for...in Loops for Array</title>
+</head>
+
+<body>
+<!-- <img src="48.jpg" alt="Smiley face"> -->
+<p>
+Always use a for loop rather than a for...in loop for iterating over 
+the indexed properties of an array
+
+<br/> 
+Consider storing the length property of an array in a local variable 
+before a loop to avoid recomputing the property lookup
+<br/>
+This approach ensures that you have integer indices when you need 
+them and array element values when you need them, and that you 
+never confuse the two or trigger unexpected coercions to strings. 
+Moreover, it ensures that the iteration occurs in the proper order 
+and does not accidentally include noninteger properties stored on the 
+array object or in its prototype chain.
+
+</p>
+</body>
+
+</html>
