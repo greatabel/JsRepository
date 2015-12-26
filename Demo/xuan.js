@@ -16,7 +16,6 @@ var Cards = (function () {
 var RadomCards = [];//随机牌存储数组
 var MyCards = [];//存储摸过来的牌
 
-
 //花色0-黑桃 1-梅花 2-方块  3-红桃 4-大鬼  5-小鬼
 //数值0-13代表 鬼,1,2,3,4,5,6,7,8,9,10,J,Q,K;
 function CreatCompeleteCard() {
