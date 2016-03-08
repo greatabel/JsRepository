@@ -1,4 +1,4 @@
-console.log('Hello, this is my first awesome Node.js module!  ---Abel');
+console.log('Hello, this is my 2rd awesome Node.js module!  ---Abel');
 
 // npm adduser
 // Username: greatabel
