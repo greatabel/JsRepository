@@ -1,6 +1,3 @@
-console.log('Hello, this is my 2rd awesome Node.js module!  ---Abel');
+#!/usr/bin/env node
 
-// npm adduser
-// Username: greatabel
-// Password: 
-// Email: (this IS public) greatabel1@126.com
+console.log('Hello, this is my 2rd awesome Node.js module! from abel');
