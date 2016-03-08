@@ -1,5 +1,5 @@
 {
 	"name": "abel-awesome-nodejs-module",
-	"version": "0.0.3",
+	"version": "0.0.5",
 	"bin": "index.js"
 }
