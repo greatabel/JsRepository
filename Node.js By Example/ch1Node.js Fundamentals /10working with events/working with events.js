@@ -1,9 +1,9 @@
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
-var somethingHappen = function() {
+var somethingHappenFunc = function() {
     console.log('somethingHappen!!');
 }
 eventEmitter
-    .on('something-happen', somethingHappen)
+    .on('something-happen', somethingHappenFunc)
     .emit('something-happen');
