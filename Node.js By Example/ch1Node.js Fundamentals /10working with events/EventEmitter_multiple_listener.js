@@ -1,3 +1,9 @@
+/* 
+
+http://www.runoob.com/nodejs/nodejs-event.html
+
+*/
+
 //  引入 events 模块
 var events = require('events');
 
