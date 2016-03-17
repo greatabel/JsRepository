@@ -1,5 +1,11 @@
-// http://www.runoob.com/nodejs/nodejs-util.html
+/* 
+
+http://www.runoob.com/nodejs/nodejs-util.html
+
+*/
+
 var util = require('util');
+
 function Base() {
     this.name = 'base';
     this.base = 1991;
