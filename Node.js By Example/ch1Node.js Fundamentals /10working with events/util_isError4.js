@@ -5,3 +5,4 @@ console.log(util.isError(new Error()))
 console.log(util.isError(new TypeError()))
   // true
 console.log(util.isError({ name: 'Error', message: 'an error occurred' }))
+
