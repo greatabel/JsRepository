@@ -1,5 +1,5 @@
 var spawn = require('child_process').spawn;
-var command = spawn('git', ['push', 'origin','master']);
+var command = spawn('git', ['push', 'origin']);
 command.stdout.on('data', function(data){
     console.log('stdout:' + data);
 });
