@@ -1,3 +1,7 @@
+// curl -X POST -d books="test"  http://localhost:1337
+// curl -X PUT -d books="test"  http://localhost:1337
+// curl http://localhost:1337
+
 var http = require('http');
 var url = require('url');
 var qs = require('querystring');
