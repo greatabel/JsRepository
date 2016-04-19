@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>test</title>
+     
+</head>
+
+<script><!--
+/* Script Double Select Dropdown List, from: coursesweb.net/javascript/ */
+var SList = new Object();             // JS object that stores data for options
+
+// HERE replace the value with the text you want to be displayed near Select
+var txtsl2 = '选择课程:';
+
+/*
+ Property with options for the Seccond select list
+ The key in this object must be the same with the values of the options added in the first select
+ The values in the array associated to each key represent options of the seccond select
+*/
+SList.slist2 = {
+ "dayi": ['ajax', 'games', 'anime'],
+ "daer": ['php-mysql', 'javascript', '其他']
+};
+
+/*
+ Property with text-content associated with the options of the 2nd select list
+ The key in this object must be the same with the values (options) added in each Array in "slist2" above
+ The values of each key represent the content displayed after the user selects an option in 2nd dropdown list
+*/
+SList.scontent = {
+ "ajax": 'www.marplo.net/ajax/',
+ "games": 'www.marplo.net/jocuri/',
+ "anime": 'www.marplo.net/anime/',
+ "php-mysql": 'coursesweb.net/php-mysql/',
+ "javascript": 'coursesweb.net/javascript/',
+ "其他": '其他'
+};
+
+    /* From here no need to modify */
+
+// function to get the dropdown list, or content
+SList.getSelect = function(slist, option) {
+  document.getElementById('scontent').innerHTML = '';           // empty option-content
+
+  if(SList[slist][option]) {
+    // if option from the last Select, add text-content, else, set dropdown list
+    if(slist == 'scontent') {
+      document.getElementById('scontent').innerHTML = SList[slist][option];
+      if ( SList[slist][option] == '其他') {
+        console.log('in here');   
+        document.getElementById('ifYes').style.display = 'block'; 
+      }     
+      else  {
+        console.log('not ')
+        console.log(SList[slist][option])
+        document.getElementById('ifYes').style.display = 'none';
+      }
+      
+    }
+    else if(slist == 'slist2') {
+      var addata = '<option>- - -</option>';
+      for(var i=0; i<SList[slist][option].length; i++) {
+        addata += '<option value="'+SList[slist][option][i]+'">'+SList[slist][option][i]+'</option>';
+      }
+
+      document.getElementById('slist2').innerHTML = txtsl2+' <select name="slist2" onchange="SList.getSelect(\'scontent\', this.value);">'+addata+'</select>';
+    }
+  }
+  else if(slist == 'slist2') {
+    // empty the tag for 2nd select list
+    document.getElementById('slist2').innerHTML = '';
+  }
+}
+--></script>
+
+
+<body>
+
+<!-- The first select list -->
+选择年级: <select name="slist1" onchange="SList.getSelect('slist2', this.value);">
+ <option>- - -</option>
+ <option value="dayi">大一</option>
+ <option value="daer">大二</option>
+</select>
+
+<!-- Tags for the seccond dropdown list, and for text-content -->
+<span id="slist2"></span>
+ <span></span><hr/>
+ <span id="scontent"></span>
+
+ <div id="ifYes" style="display:none">
+      请输入学号: <input type='text' id='yes' name='yes'><br>
+        
+    </div>
+</body>
