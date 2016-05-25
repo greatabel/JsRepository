@@ -7,39 +7,43 @@
 <script src="modernizr.js"></script>
 <script type="text/javascript">
 
-
 window.addEventListener('load', eventWindowLoaded, false);  
 
 function eventWindowLoaded() {
-    console.log('in eventWindowLoaded');
 
+    canvasApp();
+    
 }
 
-function canvasSupport() {
-    return modernizr.canvas;
+function canvasSupport () {
+    return Modernizr.canvas;
 }
 
-function canvasApp() {
+
+function canvasApp(){
+    
+
     if (!canvasSupport()) {
-        return;
-    } else {
+             return;
+    }else{
         var theCanvas = document.getElementById('canvas');
         var context = theCanvas.getContext('2d');
     }
-
-    drawScreen();
-
+    
+    var spaceShip=new Image();
+    spaceShip.src="ship1.png";
+    spaceShip.addEventListener('load', eventShipLoaded , false);
+    
+    function eventShipLoaded() {
+        drawScreen();
+    }
+    
 
     function drawScreen() {
-        // context.fillStyle = '#aaaaac';
-        context.fillStyle = "rgba(0, 0, 200, 0.2)";
-        context.fillRect(0, 0, 200, 200);
-        // context.fillStyle    = '#000000';
-        context.fillStyle = "rgba(0, 0, 200, 0.2)";
-        context.font         = '20px sans-serif';
-        context.textBaseline = 'top';
-        context.fillText  ("Canvas!", 0, 0);
-        console.log('in drawScreen()');
+        
+         context.drawImage(spaceShip, 0, 0);
+         context.drawImage(spaceShip, 50, 50);
+
     }
 
 }
