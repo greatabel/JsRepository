@@ -39,18 +39,15 @@ function canvasApp(){
     }    
 
     function drawScreen() {
-         context.drawImage(spaceShip, 0, 0);
-         context.drawImage(spaceShip, 50, 50);
-
-         // context.drawImage(spaceShip, 0, 0); 
-         // context.drawImage(spaceShip, 0, 34,32,32); 
-         // context.drawImage(spaceShip, 0, 68,64,64); 
-         // context.drawImage(spaceShip, 0, 140,16,16); 
-         // context.drawImage(spaceShip, 0, 170,128,128);
+            
+        context.fillStyle = "#2a3aab";
+        context.fillRect(0,0,500,500);
+        context.drawImage(spaceShip, 0, 0);
+        context.drawImage(spaceShip, 0, 34,32,32);
+        context.drawImage(spaceShip, 0, 68,64,64);
+        context.drawImage(spaceShip, 0, 140,16,16);
 
     }
-
-    
 
 }
 
