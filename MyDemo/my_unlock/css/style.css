@@ -5,7 +5,7 @@
 */
 
 * { margin: 0; padding: 0; }
-html { background: black; }
+/*html { background: black; }*/
 body { 
 	font: 14px Georgia, serif; 
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3b3b3b),color-stop(1, #000000));
@@ -62,9 +62,9 @@ h6 {
 
 @-webkit-keyframes slidetounlock {
 	0% {
-		background-position: -720px 0;
+		background-position: -420px 0;
 	}
 	100%{
-		background-position: 720px 0;
+		background-position: 420px 0;
 	}
 }
