@@ -12,7 +12,17 @@ class ToDoClass {
          {task: 'Renew Library Account', isComplete: false},
     ];
     this.loadTasks();
+    this.addEventListeners();
   }
+
+  addEventListeners() {
+  document.getElementById('addTask').addEventListener('keypress', event => {
+     if(event.keyCode === 13) {
+       this.addTask(event.target.value);
+       event.target.value = '';
+     }
+   });
+ }
 
   loadTasks() {
     let tasksHtml = this.tasks.reduce((html, task, index) => html += this.generateTaskHtml(task, index), '');
