@@ -1,4 +1,10 @@
 {
   "name": "",
-  "version": ""
+  "version": "",
+  "scripts": {
+    "webpack": "webpack src/js/memes.js --output-filename dist/memes.js"
+  },
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
 }
