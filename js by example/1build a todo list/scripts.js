@@ -46,12 +46,37 @@ class ToDoClass {
       this.tasks[index].isComplete = !this.tasks[index].isComplete;
        this.loadTasks();
      }
-     
+
      deleteTask(event, taskIndex) {
        event.preventDefault();
        this.tasks.splice(taskIndex, 1);
        this.loadTasks();
      }
+
+     
+
+    addTaskClick() {
+
+      let target = document.getElementById('addTask');
+      this.addTask(target.value);
+      target.value = ""
+    }
+
+    addTask(task) {
+      let newTask = {
+       task,
+       isComplete: false,
+      };
+      let parentDiv = document.getElementById('addTask').parentElement;
+      if(task === '') {
+       parentDiv.classList.add('has-error');
+      } else {
+       parentDiv.classList.remove('has-error');
+       this.tasks.push(newTask);
+       this.loadTasks();
+      }
+    }
+
 }
 
 let toDo;
