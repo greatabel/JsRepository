@@ -6,11 +6,14 @@
 class ToDoClass {
 
   constructor() {
+    this.tasks = JSON.parse(localStorage.getItem('TASKS'))
+    if(!this.tasks){
     this.tasks = [
         {task: 'Go to Dentist', isComplete: false},
          {task: 'Do Gardening', isComplete: true},
          {task: 'Renew Library Account', isComplete: false},
-    ];
+        ];
+    }
     this.loadTasks();
     this.addEventListeners();
   }
@@ -27,6 +30,7 @@ class ToDoClass {
   loadTasks() {
     let tasksHtml = this.tasks.reduce((html, task, index) => html += this.generateTaskHtml(task, index), '');
   document.getElementById('taskList').innerHTML = tasksHtml;
+   localStorage.setItem("TASKS", JSON.stringify(this.tasks))
 
   }
 
