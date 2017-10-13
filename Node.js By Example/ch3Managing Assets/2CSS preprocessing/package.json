@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-by-example",
+  "version": "0.0.1",
+  "description": "Node.js by example AbelDemo",
+
+  "scripts": {
+    "start": "node server.js"
+  },
+
+  "dependencies": {
+    "gulp": "3.9.1",
+    "gulp-less": "3.3.2",
+    "gulp-rename": "~1.2.2",
+    "gulp-minify-css": "~1.2.4 "
+  }
+
+}
