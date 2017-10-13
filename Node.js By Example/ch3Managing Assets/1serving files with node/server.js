@@ -34,6 +34,26 @@ var  assets = function(req, res) {
         res.end(file.content);
     }
 
+      var readFile = function(filePath) {
+        if(files[filePath]) {
+            serve(files[filePath]);
+        } else {
+          fs.readFile(filePath, function(err, data) {
+            if(err) {
+              sendError('Error reading ' + filePath + '.');
+              return;
+            }
+            files[filePath] = {
+              ext: filePath.split(".").pop(),
+              content: data
+            };
+            serve(files[filePath]);
+          });
+        }
+      }
+
+      readFile(path.normalize(__dirname + req.url));
+
 };
 
 
