@@ -26,6 +26,13 @@ var ItemsComponent = Vue.extend({
 
 });
 
+var ChangeTitleComponent = Vue.extend({
+    data: function() {
+        return data;
+    },
+    template: '<input v-model="title"/>'
+});
+
 var AddItemComponent = Vue.extend({
     data: function() {
         return data;
@@ -55,7 +62,7 @@ var AddItemComponent = Vue.extend({
 });
 
 Vue.component('items-component', ItemsComponent);
-
+Vue.component('change-title-component', ChangeTitleComponent);
 Vue.component('add-item-component', AddItemComponent);
 
 new Vue({
