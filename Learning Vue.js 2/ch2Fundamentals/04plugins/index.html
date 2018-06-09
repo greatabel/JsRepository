@@ -2,45 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shopping List</title>
+  <title>Vue.js - Custom Plugin</title>
   <!-- Latest compiled and minified CSS -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <style>
-    .container {
-      width: 40%;
-      margin: 20px auto 0px auto;
+    #app {
+      width: 60%;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
-    .removed label {
-      text-decoration: line-through;
-    }
-
-    ul li {
-      list-style-type: none;
-    }
-
-    ul li span {
-      margin-left: 5px;
-    }
-
-    .footer {
-      font-size: 0.7em;
-      margin-top: 20vh;
+    input {
+      width: 100%;
     }
   </style>
 </head>
 <body>
-
-<div id="app">
-
-<input v-model="item" type="text">
-<div v-square="item"></div>
-
-</div>
-
-<!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-<script src="../vue2.0.3.js"></script>
-<script src="script.js"></script>
+  <div id="app">
+    <input v-model="item"/>
+    <hr>
+    <div><strong>Square:</strong> <span v-square="item"></span></div>
+    <div><strong>Root:</strong> <span v-sqrt="item"></span></div>
+  </div>
+  <script src="main.js"></script>
 </body>
 </html>
