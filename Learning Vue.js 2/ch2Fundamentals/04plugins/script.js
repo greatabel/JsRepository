@@ -1,4 +1,4 @@
-import Vue from '../vue2.0.3.js';
+import Vue from 'vue/dist/vue.js';
 import VueMathPlugin from './VueMathPlugin.js';
 
 Vue.use(VueMathPlugin);
