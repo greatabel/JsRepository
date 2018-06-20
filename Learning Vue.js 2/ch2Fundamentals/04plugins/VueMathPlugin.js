@@ -6,5 +6,8 @@ export default {
     Vue.directive('sqrt', function (el, binding) {
       el.innerHTML = Math.sqrt(binding.value);
     });
+    Vue.directive('sin', function (el, binding) {
+      el.innerHTML = Math.sin(binding.value);
+    });
     }
 };
