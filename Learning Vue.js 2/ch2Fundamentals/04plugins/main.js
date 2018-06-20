@@ -15,6 +15,12 @@ exports.default = {
     Vue.directive('sin', function (el, binding) {
       el.innerHTML = Math.sin(binding.value);
     });
+    Vue.directive('cos', function (el, binding) {
+      el.innerHTML = Math.cos(binding.value);
+    });
+    Vue.directive('tan', function (el, binding) {
+      el.innerHTML = Math.tan(binding.value);
+    });
   }
 };
 
