@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex Demo</title>
+  <!-- Latest compiled and minified CSS -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+  <style>
+    .flex-container {
+      display: flex;
+    }
+
+    .flex-item {
+      margin: 5px;
+    }
+
+    .todo-text {
+      flex-grow: 2;
+    }
+
+    .search-bar {
+      flex-grow: 2;
+    }
+
+    .main-card {
+      margin-top: 7px;
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="container-fluid">
+  <div id="app">
+    <div class="card main-card">
+      <div class="card-block">
+        <div class="flex-container">
+          <input v-model="newTodoText" class="text form-control flex-item" />
+          <button v-on:click="addTodo" class="btn btn-primary flex-item">Add Todo</button>
+        </div>
+
+        <input v-model="doneFilter" type="checkbox"> Show only done</input>
+      
+      </div>
+    
+      <ul class="list-group list-group-flush">
+        <li v-for="todo in todos" class="list-group-item flex-container">
+          <p class="flex-item todo-text">{{todo.text}}</p>
+          
+          <button v-on:click="toggleDone(todo)" class="btn btn-default flex-item">{{todo.done ? "Done" : "Not Done"}}</button>
+          <button v-on:click="removeTodo(todo)" class="btn btn-danger flex-item">Remove</button>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+<script src="../vue2.0.3.js"></script>
+<script src="../vuex3.0.1.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
