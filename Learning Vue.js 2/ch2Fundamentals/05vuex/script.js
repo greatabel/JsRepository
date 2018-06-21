@@ -1,6 +1,7 @@
 // import Vue from 'vue'; 
 // import Vuex from 'vuex'; 
 
+// https://codepen.io/royportas/pen/ENEELJ
 
 Vue.use(Vuex); 
 
