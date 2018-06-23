@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello Component</title>
+
+  <style>
+  .hellotemplate {
+    border:1px solid red;
+    }
+  .formtemplate {
+    border:1px solid green;
+    }
+  </style>
 </head>
 <body>
 
 <!--template for the form-->
-<template id="form">
-  <div>
+<template id="form" >
+  <div class="formtemplate">
     <label for="name">What's your name?</label>
     <input v-bind:value="value" type="text" id="name" v-on:input="onInput">
   </div>
@@ -16,8 +25,10 @@
 
 
 <!--template for saying hello-->
-<template id="hello">
+<template id="hello" >
+  <div class="hellotemplate">
   <h1>{{msg}} {{user}}</h1>
+  </div>
 </template>
 
 
@@ -60,11 +71,11 @@
     template: '#greetings',
     data: function () {
       return {
-        user: 'hero'
+        user: 'abel'
       }
     }
   });
-  
+
   new Vue({
     el: '#app'
   });
