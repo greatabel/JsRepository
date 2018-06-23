@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2 style="color:green">拼古诗游戏</h2>
+    <h1 style="color:blue">{{ msg }}</h1>
+    <!-- <h2 style="color:green">拼古诗游戏</h2> -->
      <drag class="drag" :transfer-data="{ draggable }">{{ draggable }}</drag>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <drop class="drop" >白</drop>
-     <drop class="drop" @drop="handleDrop">{{poem_targe}}</drop>
+     <drop class="drop" @drop="handleDrop">{{poem_target}}</drop>
      <drop class="drop" >依</drop>
      <drop class="drop" >山</drop>
      <drop class="drop" >尽</drop>
@@ -25,14 +25,18 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: '欢迎来到',
-      poem_targe: '?',
+      msg: '欢迎来到拼古诗游戏',
+      poem_target: '?',
       draggable: '日'
     }
   },
   methods:{
     handleDrop(data, event) {
-      alert(`你移动啦模块: ${JSON.stringify(data)}`);
+      // alert(`你移动啦模块: ${JSON.stringify(data)}`);
+      
+      this.poem_target = '日'
+      // alert(`恭喜你拼正确啦古诗`);
+
     },
   }
 
