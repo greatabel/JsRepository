@@ -2,15 +2,15 @@
   <div class="hello">
     <h1 style="color:blue">{{ msg }}</h1>
     <!-- <h2 style="color:green">拼古诗游戏</h2> -->
-     <drag class="drag" :transfer-data="{ draggable }">{{ draggable }}</drag>
+     <drag v-bind:class="start_class" :transfer-data="{ draggable }">{{ draggable }}</drag>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <drop class="drop" >白</drop>
-     <drop class="drop" @drop="handleDrop">{{poem_target}}</drop>
-     <drop class="drop" >依</drop>
-     <drop class="drop" >山</drop>
-     <drop class="drop" >尽</drop>
+     <drop v-bind:class="target_class" >白</drop>
+     <drop v-bind:class="target_class" @drop="handleDrop">{{poem_target}}</drop>
+     <drop v-bind:class="target_class" >依</drop>
+     <drop v-bind:class="target_class" >山</drop>
+     <drop v-bind:class="target_class" >尽</drop>
   </div>
 
 
@@ -27,6 +27,8 @@ export default {
     return {
       msg: '欢迎来到拼古诗游戏',
       poem_target: '?',
+      start_class: 'drag',
+      target_class: 'drop',
       draggable: '日'
     }
   },
@@ -34,7 +36,9 @@ export default {
     handleDrop(data, event) {
       // alert(`你移动啦模块: ${JSON.stringify(data)}`);
       
-      this.poem_target = '日'
+      this.poem_target = '日';
+      this.target_class = 'drop_finish';
+      this.start_class = 'drag drag_finish';
       // alert(`恭喜你拼正确啦古诗`);
 
     },
@@ -56,6 +60,20 @@ export default {
       padding: 30px;
       text-align: center;
       vertical-align: top;
+    }
+
+    .drop_finish {
+      font-family: sans-serif;
+      display: inline-block;
+      border-radius: 10px;
+      background: pink;
+      position: relative;
+      padding: 30px;
+      text-align: center;
+      vertical-align: top;
+    }
+    .drag_finish {
+      opacity: 0.01;
     }
 
     .drag {
