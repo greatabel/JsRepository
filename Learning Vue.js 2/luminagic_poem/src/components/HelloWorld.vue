@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>拼古诗游戏</h2>
+    <h2 style="color:green">拼古诗游戏</h2>
      <drag class="drag" :transfer-data="{ draggable }">{{ draggable }}</drag>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -25,7 +25,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: '欢迎来到',
       poem_targe: '?',
       draggable: '日'
     }
