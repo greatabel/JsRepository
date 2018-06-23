@@ -7,7 +7,7 @@
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <drop class="drop" >白</drop>
-     <drop class="drop" @drop="handleDrop">&nbsp;&nbsp;</drop>
+     <drop class="drop" @drop="handleDrop">{{poem_targe}}</drop>
      <drop class="drop" >依</drop>
      <drop class="drop" >山</drop>
      <drop class="drop" >尽</drop>
@@ -26,6 +26,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
+      poem_targe: '?',
       draggable: '日'
     }
   },
@@ -38,6 +39,7 @@ export default {
 }
 </script>
 
+<!-- https://stackoverflow.com/questions/45572731/i-am-attempting-to-add-a-background-image-to-my-vue-js-project -->
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     .drag,
