@@ -72,6 +72,7 @@ export default {
       text-align: center;
       vertical-align: top;
     }
+    
     .drag_finish {
       opacity: 0.01;
     }
