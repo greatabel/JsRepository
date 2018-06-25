@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
     <h2>{{ title }}</h2>
-    <add-item-component></add-item-component>
+    <add-item-component @add="add"></add-item-component>
     <items-component :items="items"></items-component>
     <div class="footer">
       <hr/>
@@ -25,9 +25,17 @@ export default {
   data() {
     return {
       items: [{ text: 'Bananas', checked: true }, { text: 'Apples', checked: false }],
-      'title': 'shopping-list'
+      title: 'shopping-list',
+
+    }
+  },
+  methods: {
+    add (newItem) {
+      alert('add ' + newItem)
     }
   }
+
+
 }
 </script>
 
