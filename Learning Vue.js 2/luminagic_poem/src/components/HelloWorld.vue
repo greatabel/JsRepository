@@ -19,6 +19,7 @@
 
 <script>
 import { Drag, Drop } from 'vue-drag-drop';
+import 'csshake';
 
 export default {
   components: { Drag, Drop },
@@ -37,9 +38,14 @@ export default {
       // alert(`你移动啦模块: ${JSON.stringify(data)}`);
       
       this.poem_target = '日';
-      this.target_class = 'drop_finish';
+      this.target_class = 'drop_finish shake-slow shake-constant';
       this.start_class = 'drag drag_finish';
+      var that = this;
       // alert(`恭喜你拼正确啦古诗`);
+      setTimeout(function(){
+            that.target_class = 'drop_finish';
+
+    }, 500);
 
     },
   }
