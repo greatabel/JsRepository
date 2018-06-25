@@ -1,24 +1,32 @@
 <template>
   <div id="app" class="container">
-    <img src="./assets/logo.png">
-
+    <h2>{{ title }}</h2>
     <add-item-component></add-item-component>
-
+    <items-component :items="items"></items-component>
     <div class="footer">
       <hr/>
       <change-title-component></change-title-component>
     </div>
-    
   </div>
 </template>
 
 <script>
 import AddItemComponent from './components/AddItemComponent'
+import ItemsComponent from './components/ItemsComponent'
+import ChangeTitleComponent from './components/ChangeTitleComponent'
 
 export default {
   // name: 'App',
   components: {
-    AddItemComponent
+      AddItemComponent,
+      ItemsComponent,
+      ChangeTitleComponent
+  },
+  data() {
+    return {
+      items: [{ text: 'Bananas', checked: true }, { text: 'Apples', checked: false }],
+      'title': 'shopping-list'
+    }
   }
 }
 </script>

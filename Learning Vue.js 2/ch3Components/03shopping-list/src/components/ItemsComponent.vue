@@ -1,18 +1,18 @@
 <template>
-<div>
-    <item-component v-for="item in items" :item="item"> </item-component>
-</div>
+  <div>
+    <item-component v-for="item in items" :item="item"></item-component>
+  </div>
 </template>
 
 <script>
- import ItemComponent from './ItemComponent'
+  import ItemComponent from './ItemComponent'
 
- export default {
+  export default {
     components: {
-        ItemComponent
+      ItemComponent
     },
-    propos: ['items']
- }
+    props: ['items']
+  }
 </script>
 
 <style scoped>
