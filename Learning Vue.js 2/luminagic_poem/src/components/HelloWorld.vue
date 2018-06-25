@@ -58,7 +58,9 @@ export default {
 <style scoped>
     .drag,
     .drop {
-      font-family: sans-serif;
+      font-family: STKaiti, Helvetica, "Microsoft YaHei", Arial;
+      font-size: 15pt;
+      font-weight: bold;
       display: inline-block;
       border-radius: 10px;
       background: #ccc;
@@ -69,7 +71,9 @@ export default {
     }
 
     .drop_finish {
-      font-family: sans-serif;
+      font-family: STKaiti, Helvetica, "Microsoft YaHei", Arial;
+      font-size: 15pt;
+      font-weight: bold;
       display: inline-block;
       border-radius: 10px;
       background: pink;
