@@ -3,6 +3,12 @@
     <img src="./assets/logo.png">
 
     <add-item-component></add-item-component>
+
+    <div class="footer">
+      <hr/>
+      <change-title-component></change-title-component>
+    </div>
+    
   </div>
 </template>
 
