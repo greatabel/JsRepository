@@ -1,19 +1,30 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div id="app" class="container">
+    <h2>
+      <span>Pomodoro</span>
+      <controls-component></controls-component>
+    </h2>
+    <state-title-component></state-title-component>
+    <countdown-component></countdown-component>
+    <kittens-component></kittens-component>
   </div>
 </template>
 
 <script>
 // vue init webpack 05pomodoro
 
-import HelloWorld from './components/HelloWorld'
+import ControlsComponent from './components/ControlsComponent'
+import CountdownComponent from './components/CountdownComponent'
+import KittensComponent from './components/KittensComponent'
+import StateTitleComponent from './components/StateTitleComponent'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ControlsComponent,
+    CountdownComponent,
+    KittensComponent,
+    StateTitleComponent
   }
 }
 </script>
