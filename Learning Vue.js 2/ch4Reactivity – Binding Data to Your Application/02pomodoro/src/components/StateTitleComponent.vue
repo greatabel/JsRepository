@@ -1,9 +1,12 @@
 <template>
     <div>
-  <h3>{{ title }}</h3>
+  <h3>
+
+    {{ isworking ? workingtitle: restingtitle }}
+  </h3>
 
         <p>
- {{ Math.pow(5, 3) }}
+ 实验Math.pow(5, 3):&nbsp; {{ Math.pow(5, 3) }}
     </p>
 
     </div>
@@ -16,8 +19,10 @@
 export default {
     data () {
         return {
-            title: 'Learning vue.js!!'
+            workingtitle: 'Work!',
+            restingtitle: 'Rest!'
         }
-    }
+    },
+    props: ['isworking']
 }
 </script>

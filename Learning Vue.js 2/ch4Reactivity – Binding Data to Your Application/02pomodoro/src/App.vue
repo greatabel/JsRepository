@@ -4,7 +4,7 @@
       <span>Pomodoro</span>
       <controls-component></controls-component>
     </h2>
-    <state-title-component></state-title-component>
+    <state-title-component v-bind:isworking="isworking"></state-title-component>
     <countdown-component></countdown-component>
     <kittens-component></kittens-component>
   </div>
@@ -18,6 +18,10 @@ import CountdownComponent from './components/CountdownComponent'
 import KittensComponent from './components/KittensComponent'
 import StateTitleComponent from './components/StateTitleComponent'
 
+window.data = { kittens:   true,
+                isworking: true
+              }
+
 export default {
   name: 'App',
   components: {
@@ -25,6 +29,9 @@ export default {
     CountdownComponent,
     KittensComponent,
     StateTitleComponent
+  },
+  data () {
+    return window.data
   }
 }
 </script>
