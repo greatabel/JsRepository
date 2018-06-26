@@ -1,6 +1,6 @@
 <template>
   <div class="well">
-    <img :src="catImgSrc" />
+    <!-- <img :src="catImgSrc" /> -->
   </div>
 </template>
 
