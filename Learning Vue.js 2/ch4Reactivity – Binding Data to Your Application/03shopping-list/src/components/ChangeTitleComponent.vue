@@ -1,12 +1,20 @@
 <template>
-    <div>
-        change title
-    </div>
+  <div>
+    <em>Change the title of your shopping list here</em>
+    <input v-bind:value="value" v-on:input="onInput"/>
+  </div>
 </template>
 
 <script>
-  
-export default {}
+  export default {
+    props: ['value'],
+    methods: {
+      onInput (event) {
+        this.$emit('input', event.target.value)
+      }
+    }
+  }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

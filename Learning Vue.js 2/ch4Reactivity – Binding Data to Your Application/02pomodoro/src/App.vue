@@ -1,12 +1,15 @@
 <template>
   <div id="app" class="container">
+
     <h2>
       <span>{{ 'Pomodoro' | lowercase | addspace }} # {{ 'Pomodoro' | uppercase | addspace }}</span>
       <controls-component></controls-component>
+      <div v-if="1<5">hello</div>
+
     </h2>
     <state-title-component v-bind:isworking="isworking"></state-title-component>
     <countdown-component></countdown-component>
-    <kittens-component></kittens-component>
+    <kittens-component v-show="!isworking"></kittens-component>
   </div>
 </template>
 
