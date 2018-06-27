@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
     <h2>{{ title }}</h2>
-    <input type="text" v-model="title" >
+    实验: <input type="text" v-model="title" >
     <add-item-component @add="add"></add-item-component>
     <items-component :items="items"></items-component>
     <div class="footer">
