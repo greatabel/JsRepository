@@ -1,5 +1,5 @@
 <template>
-    <input v-model='msg' @keyup='changeMsg'>
+    <input :value='msg' @keyup='changeMsg'>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
 
     computed: {
         msg () {
-            return this.$store.state.msg
+            return this.$store.getters.getMessage
         }
     },
     methods: {

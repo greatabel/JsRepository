@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import getters from './getters'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,5 @@ const mutations = {
 }
 
 export default new Vuex.Store({
-    state: state,
-    mutations: mutations
+  state, mutations, getters
 })
