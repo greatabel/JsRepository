@@ -1,9 +1,9 @@
 <template>
-    <input v-model='msg'>
+    <h1>{{ msg }}</h1>
 </template>
 
 <script>
- export default {
+export default {
     props: ['msg']
- }
+}
 </script>
