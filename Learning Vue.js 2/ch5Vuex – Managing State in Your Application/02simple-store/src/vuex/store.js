@@ -5,7 +5,7 @@ import getters from './getters'
 Vue.use(Vuex)
 
 const state = {
-    msg: 'Hello Vue from store.js !'
+    msg: 'Hello Vue!'
 }
 
 const mutations = {
