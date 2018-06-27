@@ -16,6 +16,9 @@ Vue.filter('leftpad', (value) => {
     return '0' + value
 })
 
+Vue.filter('addspace', (value) => {
+    return value + ' @-@'
+})
 /* eslint-disable no-new */
 new Vue({
   el: 'app',
