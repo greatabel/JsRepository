@@ -10,9 +10,11 @@
 <script>
 import ShowGreetingsComponent from './components/ShowGreetingsComponent.vue' 
 import ChangeGreetingsComponent from './components/ChangeGreetingsComponent.vue' 
+import store from './vuex/store'
 
 export default {
   components: {ShowGreetingsComponent,ChangeGreetingsComponent},
+  store,
   data () {
     return {
       msg: 'Hello Vue from Abel!'

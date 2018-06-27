@@ -4,6 +4,11 @@
 
 <script>
 export default {
-    props: ['msg']
+    // props: ['msg']
+    computed: {
+        msg () {
+            return this.$store.state.msg
+        }
+    }
 }
 </script>
