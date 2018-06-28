@@ -10,7 +10,8 @@ export default {
     computed: mapGetters(['getMessage']),
     methods: {
         changeMsg(ev) {
-            this.$store.commit('changeMessage', ev.target.value)
+            this.$store.commit('changeMessage', ev.target.value);
+            this.$store.commit('incrementCounter')
         }
     }
 }

@@ -1,6 +1,6 @@
 export default {
   getMessage(state) {
-    return (state.msg).trim()
+    return (state.msg).toLowerCase()
   },
   getCounter(state) {
     return (state.counter)

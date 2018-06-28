@@ -1,0 +1,1 @@
+import { CHANGE_MSG, INCREMENT_COUNTER } from './mutation_types'
