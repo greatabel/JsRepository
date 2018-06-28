@@ -4,8 +4,8 @@
     <add-item-component @add="addItem"></add-item-component>
     <items-component :items="items"></items-component>
     <div class="footer">
-        <hr/>####
-        <change-title-component v-on:changeTitle="onChangeTitle"></change-title-component>
+        <hr/> ####
+        <change-title-component :id="id" :title="title"></change-title-component>
     </div>
   </div>
 </template>
