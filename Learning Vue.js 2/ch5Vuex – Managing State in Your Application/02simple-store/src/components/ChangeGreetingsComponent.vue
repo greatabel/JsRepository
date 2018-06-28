@@ -1,6 +1,5 @@
 <template>
-    <input :value="msg" @keyup="changeMessage($event.target.value)"
-    @keyup.enter="incrementCounter">
+    <input :value="msg" @keyup="handleMessageInputChanges">
 </template>
 
 <script>
@@ -10,6 +9,6 @@
     computed: mapGetters({
       msg: 'getMessage'
     }),
-    methods:  mapActions(['changeMessage', 'incrementCounter'])
+    methods:  mapActions(['handleMessageInputChanges'])
   }
 </script>

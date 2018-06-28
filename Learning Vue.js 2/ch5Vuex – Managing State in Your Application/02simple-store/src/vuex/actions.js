@@ -7,11 +7,11 @@ export default {
   incrementCounter ({ commit }) {
     commit(INCREMENT_COUNTER)
   },
-  // handleMessageInputChanges ({ commit }, event) {
-  //   commit(CHANGE_MSG, event.target.value)
-  //   if (event.keyCode === 13) {
-  //     commit(INCREMENT_COUNTER)
-  //   }
-  // }
+  handleMessageInputChanges ({ commit }, event) {
+    commit(CHANGE_MSG, event.target.value)
+    if (event.keyCode === 13) {
+      commit(INCREMENT_COUNTER)
+    }
+  }
   
 }
