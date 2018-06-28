@@ -18,7 +18,7 @@
   .removed {
     color: gray;
   }
-  .removed span {
+  .removed label {
     text-decoration: line-through;
   }
   li {

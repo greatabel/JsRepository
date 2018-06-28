@@ -1,8 +1,8 @@
 <template>
   <div class="input-group">
-    <input type="text" v-on:keyup.enter="addItem" v-model="newItem" placeholder="add shopping list item" class="form-control">
+    <input type="text" @keyup.enter="addItem" v-model="newItem" placeholder="add shopping list item" class="form-control">
     <span class="input-group-btn">
-      <button v-on:click="addItem" class="btn btn-default" type="button">Add!</button>
+      <button @click="addItem" class="btn btn-default" type="button">Add!</button>
     </span>
   </div>
 </template>

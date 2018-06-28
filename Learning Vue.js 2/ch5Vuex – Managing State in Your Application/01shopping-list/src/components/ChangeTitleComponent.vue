@@ -1,6 +1,6 @@
 <template>
   <div>
-    <em>Change the title of your shopping list here@</em>
+    <em>Change the title of your shopping list here</em>
     <input :value="title" @input="onInput({ title: $event.target.value, id: id })"/>
   </div>
 </template>

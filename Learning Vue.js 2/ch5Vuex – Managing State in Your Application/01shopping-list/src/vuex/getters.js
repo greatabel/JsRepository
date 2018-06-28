@@ -1,3 +1,3 @@
 export default {
-    getLists: state => state.shoppinglists
+  getLists: state => state.shoppinglists
 }

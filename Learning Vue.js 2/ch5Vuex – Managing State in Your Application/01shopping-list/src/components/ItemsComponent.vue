@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <ul>
     <item-component v-for="item in items" :item="item"></item-component>
-  </div>
+  </ul>
 </template>
 
 <script>

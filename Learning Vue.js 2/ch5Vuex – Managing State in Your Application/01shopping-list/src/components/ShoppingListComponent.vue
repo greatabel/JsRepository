@@ -4,8 +4,8 @@
     <add-item-component @add="addItem"></add-item-component>
     <items-component :items="items"></items-component>
     <div class="footer">
-        <hr/> ####
-        <change-title-component :id="id" :title="title"></change-title-component>
+      <hr />
+      <change-title-component :title="title" :id="id"></change-title-component>
     </div>
   </div>
 </template>
@@ -28,11 +28,7 @@
           text: text,
           checked: false
         })
-      },
-      onChangeTitle(text){
-        this.$emit('changeTitle', this.id, text)
       }
-
     }
   }
 </script>
