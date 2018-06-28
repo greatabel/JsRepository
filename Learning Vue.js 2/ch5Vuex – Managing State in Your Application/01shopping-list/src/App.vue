@@ -18,8 +18,10 @@
 import _ from 'underscore'
 import ShoppingListComponent from './components/ShoppingListComponent'
 import ShoppingListTitleComponent from './components/ShoppingListTitleComponent'
+import store from './vuex/store'
 
 export default {
+  store,
   components: {
     ShoppingListComponent,
     ShoppingListTitleComponent
