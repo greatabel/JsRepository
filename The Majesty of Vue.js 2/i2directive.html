@@ -1,0 +1,28 @@
+<html> <head>
+<title>Hello Vue</title> </head>
+
+
+<body>
+<div id="app">
+<h1 v-show="!message"> h1 content </h1>
+<textarea v-model="message">
+</textarea>
+
+<button v-show="message">send word to allies for help!</button>
+
+<pre> {{ $data | json }} </pre>
+</div>
+
+</body>
+
+<script src="vue-v2.5.16.js">
+</script> <script>
+
+
+new Vue({
+el: '#app',
+data: {message: 'Our king'}
+})
+
+</script>
+</html>
