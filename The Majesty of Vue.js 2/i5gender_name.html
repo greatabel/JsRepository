@@ -1,0 +1,29 @@
+<html> <head>
+<title>Hello Vue</title> </head>
+
+
+<body>
+<div id="app">
+<h1> Hello, <span v-if="gender == 'female'"> Miss </span>
+            <span v-else>Mr </span>
+{{ name }} @-@</h1>
+
+<input v-model="gender">
+<input v-model="name">
+
+</body>
+
+<script src="vue-v2.5.16.js">
+</script> <script>
+
+
+new Vue({
+el: '#app',
+data: {
+    gender: 'female',
+    name: 'guest'
+      }
+})
+
+</script>
+</html>
