@@ -2,7 +2,7 @@
   <div class="hello">
     <h1 style="color:blue">{{ msg }}</h1>
     <!-- <h2 style="color:green">拼古诗游戏</h2> -->
-     <drag v-bind:class="start_class" :transfer-data="{ draggable }">{{ draggable }}</drag>
+     <drag v-bind:class="start_class" >{{ draggable }}</drag>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -11,15 +11,23 @@
      <drop v-bind:class="target_class" >依</drop>
      <drop v-bind:class="target_class" >山</drop>
      <drop v-bind:class="target_class" >尽</drop>
+
+     <div>
+     <pre style="background: pink"> {{ $data.poems[poems_index] }} | {{ $data.target_index}}
+     {{ $data.poems[poems_index][target_index] }}</pre>
+    </div>
+
   </div>
 
 
+  
 
 </template>
 
 <script>
 import { Drag, Drop } from 'vue-drag-drop';
 import 'csshake';
+
 
 export default {
   components: { Drag, Drop },
@@ -30,7 +38,10 @@ export default {
       poem_target: '?',
       start_class: 'drag',
       target_class: 'drop',
-      draggable: '日'
+      draggable: '日',
+      poems: ['白日依山尽','黄河入海流' ,'欲穷千里目','更上一层楼'],
+      poems_index: 0,
+      target_index: Math.floor(Math.random() * 5)
     }
   },
   methods:{
