@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:style="bg_image_class">
+  <div v-bind:style="bg_image_class" class="hello">
     <h1 style="color:blue">{{ msg }}</h1>
     <!-- <h2 style="color:green">拼古诗游戏</h2> -->
      <drag v-bind:class="start_class" >{{ draggable }}</drag>
@@ -203,6 +203,10 @@ export default {
   background: gray !important; 
   
   }
+   .hello {
+    widht: 100%;
+    height: 520px;
+   }
 
 
 </style>
