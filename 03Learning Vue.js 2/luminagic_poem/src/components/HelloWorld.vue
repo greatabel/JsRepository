@@ -6,15 +6,24 @@
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+     <drop v-bind:class="target_class" @drop="handleDrop(index)" 
+           v-for="(word, index) in poems[which_poem][which_sentence]">
+
+      <span v-if="index == target_index">{{poem_target}}</span>
+      <span v-else>{{ word }}</span>
+    </drop>
+
+<!--      <br/>
      <drop v-bind:class="target_class" >白</drop>
      <drop v-bind:class="target_class" @drop="handleDrop">{{poem_target}}</drop>
      <drop v-bind:class="target_class" >依</drop>
      <drop v-bind:class="target_class" >山</drop>
-     <drop v-bind:class="target_class" >尽</drop>
+     <drop v-bind:class="target_class" >尽</drop> -->
 
      <div>
-     <pre style="background: pink"> {{ $data.poems[poems_index] }} | {{ $data.target_index}}
-     {{ $data.poems[poems_index][target_index] }}</pre>
+     <pre style="background: pink"> {{ poems[which_poem][which_sentence] }} | {{ target_index}}
+     {{ poems[which_poem][which_sentence][target_index] }}</pre>
     </div>
 
   </div>
@@ -38,25 +47,39 @@ export default {
       poem_target: '?',
       start_class: 'drag',
       target_class: 'drop',
-      draggable: '日',
-      poems: ['白日依山尽','黄河入海流' ,'欲穷千里目','更上一层楼'],
-      poems_index: 0,
-      target_index: Math.floor(Math.random() * 5)
+      
+      poems: [['白日依山尽','黄河入海流' ,'欲穷千里目','更上一层楼'],
+              ['空山不见人','但闻人语响','返景入深林','复照青苔上']],
+      which_poem: 0,
+      which_sentence: 0,
+      
+     
+    }
+  },
+  computed: {
+      target_index: function() {
+       return Math.floor(Math.random() * 5)
+
+      },
+     draggable: function() {
+      return this.poems[this.which_poem][this.which_sentence][this.target_index]
     }
   },
   methods:{
-    handleDrop(data, event) {
+    handleDrop(index) {
       // alert(`你移动啦模块: ${JSON.stringify(data)}`);
-      
-      this.poem_target = '日';
-      this.target_class = 'drop_finish shake-slow shake-constant';
-      this.start_class = 'drag drag_finish';
-      var that = this;
-      // alert(`恭喜你拼正确啦古诗`);
-      setTimeout(function(){
-            that.target_class = 'drop_finish';
+      if(index == this.target_index){
+        this.poem_target = '日';
+        this.target_class = 'drop_finish shake-slow shake-constant';
+        this.start_class = 'drag drag_finish';
+        var that = this;
+        // alert(`恭喜你拼正确啦古诗`);
+        setTimeout(function(){
+              that.target_class = 'drop_finish';
 
-    }, 500);
+          }, 500);
+      }
+
 
     },
   }
