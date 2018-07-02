@@ -23,13 +23,12 @@
 
      <div>
      <pre style="background: pink"> {{ poems[which_poem][which_sentence] }} | {{ target_index}}
-     {{ poems[which_poem][which_sentence][target_index] }}</pre>
+     {{ poems[which_poem][which_sentence][target_index] }} </pre>
     </div>
 
-  </div>
+  <div v-bind:class="bg_class"> </div>
+  </div>  
 
-
-  
 
 </template>
 
@@ -47,6 +46,7 @@ export default {
       poem_target: '?',
       start_class: 'drag',
       target_class: 'drop',
+      bg_class: '',
       
       poems: [['白日依山尽','黄河入海流' ,'欲穷千里目','更上一层楼'],
               ['空山不见人','但闻人语响','返景入深林','复照青苔上']],
@@ -69,15 +69,26 @@ export default {
     handleDrop(index) {
       // alert(`你移动啦模块: ${JSON.stringify(data)}`);
       if(index == this.target_index){
-        this.poem_target = '日';
+        this.poem_target = this.draggable;
         this.target_class = 'drop_finish shake-slow shake-constant';
         this.start_class = 'drag drag_finish';
         var that = this;
         // alert(`恭喜你拼正确啦古诗`);
         setTimeout(function(){
               that.target_class = 'drop_finish';
+              that.bg_class = 'fullscreenMask';
 
-          }, 500);
+          }, 1500);
+
+        setTimeout(function(){
+              // 屏幕变黑段时间后恢复显示古诗的下一句
+              that.bg_class = '';
+              that.which_sentence += 1;
+              that.poem_target = "?";
+              that.target_class = "drop";
+              that.start_class = 'drag';
+
+          }, 5000);
       }
 
 
@@ -134,4 +145,31 @@ export default {
       border-top: 2px solid #ccc;
       border-left: 2px solid #ccc;
     }
+
+    .myshadow {
+ /*     position: fixed;
+      top: 50%; left: 50%;
+      margin: -200px;
+      box-shadow: 0 0 0 50vmax  rgba(0,0,0,.8);*/
+/*
+   opacity: 0;
+   overflow:visible;
+   box-sizing:border-box;
+   transition: all 0.4s ease-in-out;*/
+
+    }
+
+    .fullscreenMask {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: black !important; 
+  
+}
 </style>
