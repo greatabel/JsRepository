@@ -6,8 +6,8 @@
 <div class="container">
 <h1>Hello Bootstrap, sit next to Vue.</h1> 
 <ul class="list-group">
-    <li v-for="story in stories" class="list-group-item">
-        {{ story.writer }} said: "{{ story.plot }}"
+    <li v-for="(story, index) in stories" class="list-group-item">
+       {{ index }}# {{ story.writer }} said: "{{ story.plot }}"
     </li>
 </ul>
 
