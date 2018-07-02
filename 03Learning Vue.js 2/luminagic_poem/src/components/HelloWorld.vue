@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div v-bind:style="bg_image_class">
     <h1 style="color:blue">{{ msg }}</h1>
     <!-- <h2 style="color:green">拼古诗游戏</h2> -->
      <drag v-bind:class="start_class" >{{ draggable }}</drag>
@@ -14,17 +14,15 @@
       <span v-else>{{ word }}</span>
     </drop>
 
-<!--      <br/>
-     <drop v-bind:class="target_class" >白</drop>
-     <drop v-bind:class="target_class" @drop="handleDrop">{{poem_target}}</drop>
-     <drop v-bind:class="target_class" >依</drop>
-     <drop v-bind:class="target_class" >山</drop>
-     <drop v-bind:class="target_class" >尽</drop> -->
 
-     <div>
+
+<!--      <div>
      <pre style="background: pink"> {{ poems[which_poem][which_sentence] }} | {{ target_index}}
-     {{ poems[which_poem][which_sentence][target_index] }} </pre>
-    </div>
+     {{ poems[which_poem][which_sentence][target_index] }} 
+     一句诗长度：{{ poems[which_poem][which_sentence].length }}
+     该诗句数: {{ poems[which_poem].length }}
+    </pre>
+    </div> -->
 
   <div v-bind:class="bg_class"> </div>
   </div>  
@@ -57,12 +55,31 @@ export default {
     }
   },
   computed: {
+      bg_image_class() {
+          return {backgroundImage: 'url(' + require('../../static/background'+ this.which_poem + '.png') + ')' }
+          // return { background: 'red' }
+      },
+      sentence_per_peom: function(){
+        return this.poems[this.which_poem].length
+      },
+      poem_sentence_len: function(){
+        if(this.which_sentence <= this.sentence_per_peom) {
+          return this.poems[this.which_poem][this.which_sentence].length
+        } else {
+          return 0;
+        }
+      },
       target_index: function() {
-       return Math.floor(Math.random() * 5)
+       return Math.floor(Math.random() * this.poem_sentence_len)
 
       },
      draggable: function() {
-      return this.poems[this.which_poem][this.which_sentence][this.target_index]
+      if(this.which_sentence <= this.sentence_per_peom) {
+          return this.poems[this.which_poem][this.which_sentence][this.target_index]
+      } else {
+          return null;
+      }
+
     }
   },
   methods:{
@@ -80,15 +97,29 @@ export default {
 
           }, 1500);
 
+
         setTimeout(function(){
               // 屏幕变黑段时间后恢复显示古诗的下一句
               that.bg_class = '';
-              that.which_sentence += 1;
+              if (that.which_sentence < that.sentence_per_peom - 1) {
+                that.which_sentence += 1;
+              } else {
+                //一首诗结束
+                if(that.which_poem < that.poems.length -1){
+                  that.which_poem += 1;
+                  that.which_sentence = 0;
+                }                
+                
+              }
+              
+              // console.log('that.which_sentence', that.which_sentence)
               that.poem_target = "?";
               that.target_class = "drop";
               that.start_class = 'drag';
 
-          }, 5000);
+          }, 4000);
+
+
       }
 
 
@@ -169,7 +200,9 @@ export default {
   bottom: 0;
   right: 0;
   overflow: auto;
-  background: black !important; 
+  background: gray !important; 
   
-}
+  }
+
+
 </style>
