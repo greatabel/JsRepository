@@ -1,0 +1,43 @@
+<html>
+<head>
+<link href="bootstrap.min.4.1.1.css" rel="stylesheet">
+<title>Hello Bootstrap</title> </head>
+<body>
+<div class="container">
+<h1>Hello Bootstrap, sit next to Vue.</h1> 
+<ul class="list-group">
+    <li v-for="story in filteredItems " class="list-group-item">
+        {{ story.writer }} said: "{{ story.plot }}"
+    </li>
+</ul>
+
+<pre>
+    {{ $data }}
+</pre>
+</div> 
+</body>
+
+<script src="vue-v2.5.16.js"></script>
+<script>
+new Vue({
+    el: '.container',
+    data: {
+        stories: [
+        {plot: "I ate an apple", writer: "John"},
+        {plot: "I ate an pearl", writer: "Alex"},
+        {plot: "I ate an banana", writer: "Alex"},
+        ],
+        key: "Alex"
+
+    },
+    computed: {
+        filteredItems() {
+            var self = this
+            return this.stories.filter(function(item) {
+                return item.writer.indexOf(self.key) > -1
+            })
+        }
+    }
+})
+</script>
+</html>
