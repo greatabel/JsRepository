@@ -8,6 +8,10 @@
     <button v-on:click="upvotes++" class="btn btn-primary btn-lg btn-block">
     Upvote! {{upvotes}}
     </button>
+
+    <button v-on:click="upvote" class="btn btn-secondary btn-lg btn-block">
+    Upvote! {{upvotes}}
+    </button>
 </div>
 
 </body>
@@ -20,6 +24,11 @@ new Vue({
         upvotes: 0
 
     },
+    methods: {
+        upvote: function() {
+            this.upvotes++;
+        }
+    }
 
 })
 </script>
