@@ -4,11 +4,14 @@
 <title>Hello Bootstrap</title> </head>
 <body>
 <div class="container">
-    <story></story>
-    <hr/>
-    <story></story>
-    <hr/>
-    <story></story>
+<hr/>
+<template id="story-template">
+
+    <h1>template test</h1>
+
+</template>
+
+<hr/>
 </div>
 
 </body>
@@ -16,7 +19,7 @@
 <script src="vue-v2.5.16.js"></script>
 <script>
 Vue.component('story', {
-    template: '<h1>My horse is amazing!</h1>'
+    template: '#story-template'
 });
 
 new Vue({
