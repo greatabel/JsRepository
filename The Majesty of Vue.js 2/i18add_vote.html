@@ -1,0 +1,75 @@
+<html>
+<head>
+<link href="bootstrap.min.4.1.1.css" rel="stylesheet">
+<title>Hello Vue</title> </head>
+<body>
+<div id="app">
+    <div class="container">
+    <h1>Let's hear some stories!</h1> 
+
+    <ul class="list-group">
+    <story v-for="story in stories" :story="story"></story> 
+    </ul>
+    <pre>{{ $data}}</pre> 
+    </div>
+</div>
+
+<template id="story-template">
+    <li class="list-group-item">
+    {{ story.writer }} said "{{ story.plot }}"
+    #Story upvotes {{ story.upvotes }}.
+    <button v-show="!story.voted" @click="upvote" class="btn btn-primary">
+    Upvote!</button>
+    </li>
+</template>
+
+</body>
+
+<script src="vue-v2.5.16.js"></script>
+
+<script type="text/javascript">
+
+Vue.component('story', {
+        template: "#story-template",
+        props: ['story'],
+        methods: {
+            upvote: function() {
+                this.story.upvotes += 1
+                this.story.voted = true;
+            },
+        }
+});
+
+new Vue({
+el: '#app',
+    data: {
+        stories: [
+            {
+                plot: 'My horse is amazing.',
+                writer: 'Mr. Weebl',
+                upvotes: 28,
+                voted: false
+            }, 
+            {
+                plot: 'Hello.',
+                writer: 'Mr. Weebl',
+                upvotes: 18,
+                voted: false
+            },
+            {plot: 'The dark side of the Force is stronger.',
+                writer: 'Darth Vader',
+                upvotes: 38,
+                voted: false
+            },
+            {
+                plot: 'One does not simply walk into Mordor',
+                writer: 'Boromir',
+                upvotes: 48,
+                voted: false
+            }, 
+            ]
+            } 
+        })
+</script> 
+
+</html>
