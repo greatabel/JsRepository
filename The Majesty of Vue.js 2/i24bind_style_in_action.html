@@ -1,0 +1,55 @@
+<html>
+<head>
+<link href="bootstrap.min.4.1.1.css" rel="stylesheet">
+
+<title>css bind</title>
+</head>
+<body class="container-fluid">
+<div id="app">
+<ul>
+    <li :class="{'completed': task.done}"
+    :style="styleObject"
+    v-for="task in tasks" >
+     {{ task.body }}
+     <button @click="completeTask(task)" class="btn btn-primary"> Do it!</button>
+    </li>
+</ul>
+
+</div>
+
+</body>
+
+<script src="vue-v2.5.16.js"></script>
+
+<script type="text/javascript">
+
+new
+Vue({
+    el: '#app',
+    data: {
+        tasks:[
+            {body: 'feed the horse 0', done: true},
+            {body: 'feed the horse 1', done: true},
+            {body: 'feed the horse 2', done: false},
+            ],
+          
+          styleObject: {
+            color: 'blue',
+            fontSize: '25px'
+          },
+    },
+    methods: {
+        completeTask: function(task) {
+             task.done = !task.done
+
+              }
+            }
+});
+</script>
+
+<style type="text/css">
+.completed {
+    text-decoration: line-through;
+}
+</style>
+</html>
