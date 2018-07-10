@@ -2,19 +2,19 @@
   "stories": [
     {
       "plot": "MERDA0",
-      "upvotes": "100",
+      "upvotes": "102",
       "writer": "abel0",
       "id": 1
     },
     {
       "plot": "MERDA1",
-      "upvotes": "200",
+      "upvotes": "201",
       "writer": "abel1",
       "id": 2
     },
     {
       "plot": "MERDA2",
-      "upvotes": "300",
+      "upvotes": "301",
       "writer": "abel2",
       "id": 3
     }
