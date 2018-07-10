@@ -25,6 +25,7 @@ Vue({
     methods: {
         flipColor: function() {
             this.color = !this.color; 
+            document.querySelector('body').style.backgroundColor = this.color ? 'pink' : 'green';
               }
             }
 });
