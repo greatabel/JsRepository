@@ -72,6 +72,8 @@ Vue.component('story', {
     methods: {
       upvoteStory: function(story){
         story.upvotes++;
+        this.$http.patch('http://localhost:3000/stories/' + story.id,
+          story);
         // $.ajax({
         //   url: 'http://localhost:3000/stories/' + story.id,
         //   type: 'PATCH',
@@ -103,11 +105,11 @@ var vm = new Vue({
     // })
     this.$http({url: 'http://localhost:3000/stories', 
         method: 'GET'}).then(function (response){
-          console.log(response.data);
+          // console.log(response.data);
           // this.$set('stories', response.data);
           this.stories = response.data;
 
-          console.log('###')
+          // console.log('###')
         })
   }
 
