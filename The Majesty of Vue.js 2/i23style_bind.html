@@ -1,0 +1,40 @@
+<html>
+<head>
+<link href="bootstrap.min.4.1.1.css" rel="stylesheet">
+
+<title>css bind</title>
+</head>
+<body>
+<div id="app" class="text-center" >
+
+    <div :style="niceStyle">test0</div>
+    <div :style="{'color': 'red', 'fontSize': '30px'}">test1</div>
+</div>
+
+</body>
+
+<script src="vue-v2.5.16.js"></script>
+
+<script type="text/javascript">
+
+new
+Vue({
+    el: '#app',
+    data: {
+        niceStyle: {
+            color: 'blue',
+            fontSize: '20px'
+          },
+        },
+    methods: {
+        flipColor: function() {
+            
+            }
+        },
+});
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

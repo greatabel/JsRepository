@@ -1,0 +1,38 @@
+<html>
+<head>
+<link href="bootstrap.min.4.1.1.css" rel="stylesheet">
+
+<title>css bind</title>
+</head>
+<body>
+<div id="app" class="text-center" v-bind:class="[ color? 'body-red' : 'body-blue']">
+    <button v-on:click="flipColor" class="btn btn-primary"> Flip color!
+    </button>
+</div>
+
+</body>
+
+<script src="vue-v2.5.16.js"></script>
+
+<script type="text/javascript">
+
+new
+Vue({
+    el: '#app',
+    data: {
+    color: true 
+          },
+    methods: {
+        flipColor: function() {
+            this.color = !this.color; 
+            // document.querySelector('body').style.backgroundColor = this.color ? 'pink' : 'green';
+              }
+            }
+});
+</script>
+
+<style type="text/css">
+.body-red { background-color: #ff0000; }
+.body-blue { background-color: #0000ff  }
+</style>
+</html>
