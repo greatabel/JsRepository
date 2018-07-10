@@ -1,0 +1,95 @@
+<html>
+<head>
+<link href="bootstrap.min.4.1.1.css" rel="stylesheet">
+
+<title>css bind</title>
+</head>
+<body>
+
+<div id="app">
+<table class="table table-striped">
+  <thead>
+  <tr> 
+  <th>#</th>
+  <th>Plot</th>
+  <th>Writer</th>
+  <th>Upvotes</th>
+  <th>Actions</th>
+  </tr>
+</thead>
+
+<tr is="story" v-for="story in stories" :story="story"> </tr>
+
+</table>
+
+<p class="lead">Here's a list of all your stories. </p>
+<pre>{{ $data }}</pre>
+
+</div>
+
+
+
+
+</body>
+
+<template id="template-story-raw">
+  <tr> 
+    <td>{{story.id}} </td>
+    <td> <span>
+    {{story.plot}} </span>
+    </td> <td>
+    <span> {{story.writer}}
+    </span> </td>
+    <td> {{story.upvotes}}</td>
+    <td></td>
+  </tr>
+</template>
+
+<script src="vue-v2.5.16.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+<!--   
+// cd server
+// json-server --watch db.json
+-->
+
+Vue.component('story', {
+    template: "#template-story-raw",
+    props: ['story'],
+});
+
+// Vue.component('story', {
+//     template: "<tr> \
+//                   <td>{{story.id}} </td>\
+//                   <td> <span>\
+//                   {{story.plot}} </span>\
+//                   </td> <td>\
+//                   <span> {{story.writer}}\
+//                   </span> </td>\
+//                   <td> {{story.upvotes}}</td>\
+//                   <td></td>\
+//                 </tr>",
+//     props: ['story'],
+// });
+
+var vm = new Vue({
+  el: '#app',
+  data: {
+    stories: []
+  },
+  mounted: function(){
+    console.log('### @-@ ###');
+    $.get('http://localhost:3000/stories', function(data){
+      console.log(data);
+      vm.stories = data;
+    })
+  }
+
+})
+</script>
+
+<style type="text/css">
+
+</style>
+</html>
