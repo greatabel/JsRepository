@@ -18,7 +18,7 @@
   </tr>
 </thead>
 
-<tr is="story" v-for="story in stories" :story="story"> </tr>
+<tr is="story" v-for="(story,key) in stories" :story="story"> </tr>
 
 </table>
 
@@ -46,6 +46,11 @@
         <button @click="upvoteStory(story)" class="btn btn-primary">
           Upvote
         </button>
+
+        <button @click="deleteStory(story.id)" class="btn btn-danger">
+          Delete
+        </button>
+
       </div>
     </td>
   </tr>
@@ -71,6 +76,10 @@ Vue.component('story', {
           type: 'PATCH',
           data: story,
         });
+      },
+      deleteStory: function(key){
+        Vue.delete(vm.stories, key);
+        // vm.stories.$remove(story)
       }
     }
 });
