@@ -1,0 +1,22 @@
+{
+  "stories": [
+    {
+      "plot": "MERDA0",
+      "upvotes": "100",
+      "writer": "abel0",
+      "id": 1
+    },
+    {
+      "plot": "MERDA1",
+      "upvotes": "200",
+      "writer": "abel1",
+      "id": 2
+    },
+    {
+      "plot": "MERDA2",
+      "upvotes": "300",
+      "writer": "abel2",
+      "id": 3
+    }
+  ]
+}

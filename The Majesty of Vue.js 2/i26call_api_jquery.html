@@ -1,0 +1,59 @@
+<html>
+<head>
+<link href="bootstrap.min.4.1.1.css" rel="stylesheet">
+
+<title>css bind</title>
+</head>
+<body>
+<div id="app">
+  <div class="container">
+  <h1>Let's hear some stories!</h1>
+  <ul class="list-group">
+    <story v-for="story in stories" :story="story">
+    </story>
+  </ul>
+  
+  <pre>{{ $data }}</pre> 
+  </div>
+</div>
+
+<template id="template-story-raw">
+  <li class="list-group-item">
+  {{ story.writer }} said "{{ story.plot }}"
+  <span>{{story.upvotes}}</span>
+  </li>
+</template>
+
+
+</body>
+
+<script src="vue-v2.5.16.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+
+Vue.component('story', {
+    template: "#template-story-raw",
+    props: ['story'],
+});
+
+var vm = new Vue({
+  el: '#app',
+  data: {
+    stories: []
+  },
+  mounted: function(){
+    console.log('### @-@ ###');
+    $.get('http://localhost:3000/stories', function(data){
+      console.log(data);
+      vm.stories = data;
+    })
+  }
+
+})
+</script>
+
+<style type="text/css">
+
+</style>
+</html>
