@@ -9,6 +9,8 @@
 
     <div :style="niceStyle">test0</div>
     <div :style="{'color': 'red', 'fontSize': '30px'}">test1</div>
+    <div :style="{'color': niceStyle.color, 'fontSize': niceStyle.fontSize}">test2</div>
+    <div :style="[niceStyle, boldStyle]">test3</div>
 </div>
 
 </body>
@@ -24,6 +26,9 @@ Vue({
         niceStyle: {
             color: 'blue',
             fontSize: '20px'
+          },
+        boldStyle: {
+            'font-weight': 'bold'
           },
         },
     methods: {
