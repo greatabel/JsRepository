@@ -79,7 +79,11 @@ Vue.component('story', {
       },
       deleteStory: function(key){
         Vue.delete(vm.stories, key);
-        // vm.stories.$remove(story)
+        // $.ajax({
+        //   url: 'http://localhost:3000/stories/' + story.id,
+        //   type: 'DELETE'
+        // });
+        
       }
     }
 });
