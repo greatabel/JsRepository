@@ -13,4 +13,19 @@ new Vue({
         },
     },
 
+    // watch: {
+    //     content:{
+    //         handler(val, oldVar) {
+    //             console.log('new note:', val, 
+    //                         'old note:', oldVar);
+    //         },
+    //     // immediate: true,
+    //     }
+    // }
+    watch: {
+        content(val, oldVar) {
+            console.log('new note:', val, 'old note:', oldVar);
+        },
+    }
+
 })
