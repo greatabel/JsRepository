@@ -120,9 +120,10 @@ Vue.component('story', {
         story.editing = false;
       },
       storeStory: function(story){
-        this.$http.post('http://localhost:3000/stories/', story).then(function() {
+        this.$http.post('http://localhost:3000/stories/', story).then(function(response) {
+          Vue.set(story, 'id', response.data.id);
           story.editing = false;
-          vm.fetchStories();
+          // vm.fetchStories();
         })
       },
     }
