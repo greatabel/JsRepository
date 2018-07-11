@@ -54,11 +54,21 @@
           Delete
         </button>
 
-        <button @click="editStory(story)" class="btn btn-default">
+        <button @click="story.editing=true" class="btn btn-default">
           Edit
         </button>
 
       </div>
+
+      <div v-else class="btn-group">
+        <button @click="editStory(story)" class="btn btn-primary">
+          Upvote Story
+        </button>
+        <button @click="story.editing=false" class="btn btn-default">
+          Cancel
+        </button>
+      </div>
+
     </td>
   </tr>
 </template>
@@ -100,7 +110,8 @@ Vue.component('story', {
       },
       editStory: function(story) {
         console.log('editStory');
-        story.editing = true;
+        this.$http.patch('http://localhost:3000/stories/' + story.id, story);
+        story.editing = false;
       },
     }
 });

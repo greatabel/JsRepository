@@ -2,9 +2,10 @@
   "stories": [
     {
       "plot": "MERDA",
-      "upvotes": 103,
-      "writer": "abel",
-      "id": 0
+      "upvotes": 114,
+      "writer": "abel change",
+      "id": 0,
+      "editing": true
     },
     {
       "plot": "MERDA0",
