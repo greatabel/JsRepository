@@ -6,15 +6,22 @@
 
 <link href="bootstrap.min.4.1.1.css" rel="stylesheet">
 <link href="material_icon.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+
 <!-- Include the library in the page -->
 <script src="vue-v2.5.16.js"></script>
 <script src="marked.js"></script>
 
 <!-- Some HTML -->
 <div id="notebook">
+
   <section class="main">
     <textarea v-model="content"></textarea>
   </section>
+
+  <aside class="preview" v-html="notePreview">
+
+  </aside>
 </div>
 
 <!-- Some JavaScript -->
