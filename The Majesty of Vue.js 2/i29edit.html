@@ -2,7 +2,7 @@
 <head>
 <link href="bootstrap.min.4.1.1.css" rel="stylesheet">
 
-<title>css bind</title>
+<title>css new</title>
 </head>
 <body>
 
@@ -23,6 +23,9 @@
 </table>
 
 <p class="lead">Here's a list of all your stories. </p>
+<button @click="createStory()" class="btn btn-primary">
+  Add a new one?
+</button>
 <pre>{{ $data }}</pre>
 
 </div>
@@ -63,6 +66,9 @@
       <div v-else class="btn-group">
         <button @click="editStory(story)" class="btn btn-primary">
           Upvote Story
+        </button>
+        <button @click="storeStory(story)" class="btn btn-success">
+          Save New Story
         </button>
         <button @click="story.editing=false" class="btn btn-default">
           Cancel
@@ -113,6 +119,11 @@ Vue.component('story', {
         this.$http.patch('http://localhost:3000/stories/' + story.id, story);
         story.editing = false;
       },
+      storeStory: function(story){
+        this.$http.post('http://localhost:3000/stories/', story).then(function() {
+          story.editing = false;
+        })
+      },
     }
 });
 
@@ -140,6 +151,17 @@ var vm = new Vue({
 
           // console.log('###')
         })
+  },
+  methods: {
+    createStory: function(){
+      var newStory = {
+        "plot":  "",
+        "upvotes": 0,
+        "editing": true
+      };
+      this.stories.push(newStory);
+    },
+
   }
 
 })

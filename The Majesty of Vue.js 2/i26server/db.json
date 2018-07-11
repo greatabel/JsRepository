@@ -24,6 +24,13 @@
       "upvotes": 48,
       "writer": "abel2",
       "id": 3
+    },
+    {
+      "plot": "plot0",
+      "upvotes": 1,
+      "editing": false,
+      "writer": "abeln0",
+      "id": 4
     }
   ]
 }
