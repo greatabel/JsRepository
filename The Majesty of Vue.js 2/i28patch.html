@@ -47,7 +47,7 @@
           Upvote
         </button>
 
-        <button @click="deleteStory(story.id)" class="btn btn-danger">
+        <button @click="deleteStory(story)" class="btn btn-danger">
           Delete
         </button>
 
@@ -77,13 +77,13 @@ Vue.component('story', {
           data: story,
         });
       },
-      deleteStory: function(key){
-        Vue.delete(vm.stories, key);
+      deleteStory: function(story){
+        Vue.delete(vm.stories, vm.stories.indexOf(story));
         // $.ajax({
         //   url: 'http://localhost:3000/stories/' + story.id,
         //   type: 'DELETE'
         // });
-        
+
       }
     }
 });

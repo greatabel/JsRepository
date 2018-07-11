@@ -35,20 +35,27 @@
 <template id="template-story-raw">
   <tr> 
     <td>{{story.id}} </td>
-    <td> <span>
-    {{story.plot}} </span>
-    </td> <td>
-    <span> {{story.writer}}
-    </span> </td>
+    <td> 
+      <input v-if="story.editing" v-model="story.plot" class="form-control">
+      <span  v-else> {{story.plot}} </span>
+    </td> 
+  <td>
+    <input v-if="story.editing" v-model="story.writer" class="form-control">
+    <span  v-else> {{story.writer}} </span> 
+  </td>
     <td> {{story.upvotes}}</td>
     <td>
-      <div class="btn-group">
+      <div v-if="!story.editing" class="btn-group">
         <button @click="upvoteStory(story)" class="btn btn-primary">
           Upvote
         </button>
 
         <button @click="deleteStory(story)" class="btn btn-danger">
           Delete
+        </button>
+
+        <button @click="editStory(story)" class="btn btn-default">
+          Edit
         </button>
 
       </div>
@@ -90,7 +97,11 @@ Vue.component('story', {
         //   type: 'DELETE'
         // });
         
-      }
+      },
+      editStory: function(story) {
+        console.log('editStory');
+        story.editing = true;
+      },
     }
 });
 
@@ -101,7 +112,7 @@ var vm = new Vue({
     stories: []
   },
   mounted: function(){
-    console.log('### @-@ ###');
+    console.log('### @-@ mounted ###');
     // $.get('http://localhost:3000/stories', function(data){
     //   console.log(data);
     //   vm.stories = data;
@@ -110,7 +121,11 @@ var vm = new Vue({
         method: 'GET'}).then(function (response){
           // console.log(response.data);
           // this.$set('stories', response.data);
-          this.stories = response.data;
+          var storiesReady = response.data.map(function(story){
+            story.editing = false;
+            return story
+          })
+          this.stories = storiesReady;
 
           // console.log('###')
         })
