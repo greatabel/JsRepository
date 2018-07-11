@@ -25,6 +25,7 @@ new Vue({
     watch: {
         content(val, oldVar) {
             console.log('new note:', val, 'old note:', oldVar);
+            localStorage.setItem('content', val)
         },
     }
 
