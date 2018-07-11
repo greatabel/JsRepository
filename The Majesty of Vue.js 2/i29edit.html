@@ -64,10 +64,10 @@
       </div>
 
       <div v-else class="btn-group">
-        <button @click="editStory(story)" class="btn btn-primary">
+        <button v-if="story.id" @click="editStory(story)" class="btn btn-primary">
           Upvote Story
         </button>
-        <button @click="storeStory(story)" class="btn btn-success">
+        <button v-else @click="storeStory(story)" class="btn btn-success">
           Save New Story
         </button>
         <button @click="story.editing=false" class="btn btn-default">
@@ -105,7 +105,7 @@ Vue.component('story', {
       },
       deleteStory: function(story){
         Vue.delete(vm.stories, vm.stories.indexOf(story));
-        // this.$http('http://localhost:3000/stories/' + story.id)
+        this.$http.delete('http://localhost:3000/stories/' + story.id)
         
         // Vue.delete(vm.stories, key);
         // $.ajax({
@@ -122,6 +122,7 @@ Vue.component('story', {
       storeStory: function(story){
         this.$http.post('http://localhost:3000/stories/', story).then(function() {
           story.editing = false;
+          vm.fetchStories();
         })
       },
     }
@@ -139,18 +140,7 @@ var vm = new Vue({
     //   console.log(data);
     //   vm.stories = data;
     // })
-    this.$http({url: 'http://localhost:3000/stories', 
-        method: 'GET'}).then(function (response){
-          // console.log(response.data);
-          // this.$set('stories', response.data);
-          var storiesReady = response.data.map(function(story){
-            story.editing = false;
-            return story
-          })
-          this.stories = storiesReady;
-
-          // console.log('###')
-        })
+    this.fetchStories()
   },
   methods: {
     createStory: function(){
@@ -161,8 +151,18 @@ var vm = new Vue({
       };
       this.stories.push(newStory);
     },
+    fetchStories: function(){
+      this.$http.get('http://localhost:3000/stories')
+        .then(function(response){
+          var storiesReady = response.data.map(function(story){
+            story.editing = false;
+            return story
+        });
+          this.stories = storiesReady;
+    })
+      },
 
-  }
+  },
 
 })
 </script>
