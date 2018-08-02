@@ -3,7 +3,8 @@ new Vue({
     data () {
         return {
             // content: 'This is a **note** !'
-            content: localStorage.getItem('content') || 'You can write in **markdown** !'
+            content: localStorage.getItem('content') || 'You can write in **markdown** !',
+            notes: [],
         }
     },
 
@@ -35,6 +36,22 @@ new Vue({
     },
 
     methods: {
+        addNote () {
+            const time = Date.now()
+            const note = {
+                id: String(time),
+                title: '新纪录 ' + (this.notes.length + 1),
+                content: '**Hi!** This notebook is using [markdown]\
+                            (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting!',
+                created: time,
+                favorite: false,
+       
+            }
+            this.notes.push(note)
+            console.log("notes.length=", this.notes.length)
+
+        },
+
         saveNote () {
             console.log('saving note:', this.content);
             localStorage.setItem('content', this.content);
