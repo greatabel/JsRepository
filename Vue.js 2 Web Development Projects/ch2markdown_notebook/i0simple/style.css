@@ -1,17 +1,28 @@
-body {
-  font-family: sans-serif;
-  font-size: 16px;
-  height: 100%;
-  margin: 0;
-  box-sizing: border-box;
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
 }
 
 .material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
   font-size: 24px;
   line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
   vertical-align: middle;
   margin: -3px;
   padding-bottom: 1px;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }
 
 #notebook > * {
@@ -66,6 +77,8 @@ button {
   display: inline-block;
   padding: 8px 12px;
   cursor: pointer;
+
+
 }
 
 button:hover {
@@ -88,7 +101,7 @@ input:focus {
 
 button,
 input {
-  height: 34px;
+  height: 54px;
 }
 
 .main, .preview {
@@ -101,8 +114,16 @@ input {
 }
 
 .status-bar {
-  color: #999;
-  font-style: italic;
+  color: #777;
+}
+
+.status-bar > span {
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.status-bar .label {
+  color: #bbb;
 }
 
 textarea {

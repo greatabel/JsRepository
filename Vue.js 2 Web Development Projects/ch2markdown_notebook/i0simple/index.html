@@ -5,8 +5,8 @@
 <body>
 
 <link href="bootstrap.min.4.1.1.css" rel="stylesheet">
-<link href="material_icon.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
+<link href="style.css" rel="stylesheet">
+
 
 <!-- Include the library in the page -->
 <script src="vue-v2.5.16.js"></script>
@@ -18,9 +18,16 @@
     <!-- sidebar -->
     <aside class="side-bar">
         <!-- 笔记列表 -->
+        <div class="toolbar">
         <button @click="addNote" :title="addButtonTitle"> 
             <i class="material-icons">add</i> 添加笔记
         </button>
+        </div>
+
+        <div class="notes">
+            <div class="note" v-for="note in notes"> {{ note.title }} </div>
+        </div>
+
     </aside>
 
   <section class="main">
