@@ -25,7 +25,8 @@
         </div>
 
         <div class="notes">
-            <div class="note" v-for="note in notes" @click="selectNote(note)"> {{ note.title }} </div>
+            <div class="note" v-for="note in notes" :class="{selected: note === selectedNote}"
+             @click="selectNote(note)"> {{ note.title }} </div>
         </div>
 
     </aside>
