@@ -18,7 +18,9 @@
     <!-- sidebar -->
     <aside class="side-bar">
         <!-- 笔记列表 -->
-        <button @click="addNote" > <i class="material-icons">add</i> 添加笔记</button>
+        <button @click="addNote" :title="addButtonTitle"> 
+            <i class="material-icons">add</i> 添加笔记
+        </button>
     </aside>
 
   <section class="main">

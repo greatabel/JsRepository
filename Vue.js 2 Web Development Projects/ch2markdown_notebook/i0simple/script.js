@@ -12,6 +12,9 @@ new Vue({
         notePreview () {
             return marked(this.content)
         },
+        addButtonTitle () {
+            return this.notes.length + ' 纪录已经被添加！'
+        }
     },
 
     // created() {
