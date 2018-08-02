@@ -5,6 +5,7 @@ new Vue({
             // content: 'This is a **note** !'
             content: localStorage.getItem('content') || 'You can write in **markdown** !',
             notes: [],
+            selected: null,
         }
     },
 
@@ -55,6 +56,10 @@ new Vue({
 
         },
 
+        selectNote (note) {
+          // This will update the 'selectedNote' computed property
+          this.selectedId = note.id
+        },
         saveNote () {
             console.log('saving note:', this.content);
             localStorage.setItem('content', this.content);
