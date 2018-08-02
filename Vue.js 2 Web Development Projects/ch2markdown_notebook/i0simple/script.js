@@ -2,7 +2,8 @@ new Vue({
     el: '#notebook',
     data () {
         return {
-            content: 'This is a **note** !'
+            // content: 'This is a **note** !'
+            content: localStorage.getItem('content') || 'You can write in **markdown** !'
         }
     },
 
@@ -12,9 +13,10 @@ new Vue({
         },
     },
 
-    created() {
-        this.content = localStorage.getItem('content') || 'You can write in **markdown** !'
-    },
+    // created() {
+    //     this.content = localStorage.getItem('content') || 'You can write in **markdown** !'
+    // },
+
     // watch: {
     //     content:{
     //         handler(val, oldVar) {
