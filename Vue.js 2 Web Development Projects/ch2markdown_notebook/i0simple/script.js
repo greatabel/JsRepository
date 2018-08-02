@@ -4,14 +4,18 @@ new Vue({
         return {
             // content: 'This is a **note** !'
             content: localStorage.getItem('content') || 'You can write in **markdown** !',
-            notes: [],
+            notes: [''],
             selected: null,
         }
     },
 
     computed: {
+        selectedNote () {
+          // We return the matching note with selectedId
+          return this.notes.find(note => note.id === this.selectedId)
+        },
         notePreview () {
-            return marked(this.content)
+            return this.selectedNote ? marked(this.selectedNote.content) : ''
         },
         addButtonTitle () {
             return this.notes.length + ' 纪录已经被添加！'
