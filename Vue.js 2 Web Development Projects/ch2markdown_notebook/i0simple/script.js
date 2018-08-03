@@ -4,7 +4,8 @@ new Vue({
         return {
             // content: 'This is a **note** !'
             content: localStorage.getItem('content') || 'You can write in **markdown** !',
-            notes: [{id: 0, content: ''}],
+            notes: [],
+            // notes: [{id: 0, content: ''}],
             selectedId: 0,
         }
     },
