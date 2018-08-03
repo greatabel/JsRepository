@@ -4,7 +4,7 @@ new Vue({
         return {
             // content: 'This is a **note** !'
             content: localStorage.getItem('content') || 'You can write in **markdown** !',
-            notes: [],
+            notes: JSON.parse(localStorage.getItem('notes')) || [],
             // notes: [{id: 0, content: ''}],
             selectedId: 0,
         }
@@ -41,7 +41,8 @@ new Vue({
         //     console.log('new note:', val, 'old note:', oldVar);
         //     localStorage.setItem('content', val)
         // },
-        content: 'saveNote',
+        // content: 'saveNote',
+        notes: 'saveNotes',
     },
 
     methods: {
@@ -69,6 +70,10 @@ new Vue({
             console.log('saving note:', this.content);
             localStorage.setItem('content', this.content);
             this.reportOperation('saving');
+        },
+        saveNotes (){
+            localStorage.setItem('notes', JSON.stringify(this.notes))
+            console.log('### Notes saved!', new Date())
         },
         reportOperation (opName){
             console.log('The', opName, 'operation was completed!')
