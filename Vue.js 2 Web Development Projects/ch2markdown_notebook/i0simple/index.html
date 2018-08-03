@@ -32,6 +32,11 @@
     </aside>
 
   <section class="main" v-if="selectedNote">
+
+    <div class="toolbar">
+      <input v-model="selectedNote.title" placeholder="笔记标题">
+    </div>
+
     <textarea v-model="selectedNote.content"></textarea>
   </section>
 
