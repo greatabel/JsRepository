@@ -42,7 +42,11 @@ new Vue({
         //     localStorage.setItem('content', val)
         // },
         // content: 'saveNote',
-        notes: 'saveNotes',
+        notes: {
+            handler: 'saveNotes',
+            deep: true,
+               },
+
     },
 
     methods: {
