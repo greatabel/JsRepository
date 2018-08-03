@@ -83,18 +83,23 @@ new Vue({
           // This will update the 'selectedNote' computed property
           this.selectedId = note.id
         },
-        saveNote () {
-            console.log('saving note:', this.content);
-            localStorage.setItem('content', this.content);
-            this.reportOperation('saving');
-        },
+        // saveNote () {
+        //     console.log('saving note:', this.content);
+        //     localStorage.setItem('content', this.content);
+        //     this.reportOperation('saving');
+        // },
         saveNotes (){
             localStorage.setItem('notes', JSON.stringify(this.notes))
             console.log('### Notes saved!', new Date())
         },
-        reportOperation (opName){
-            console.log('The', opName, 'operation was completed!')
-        }
+        // reportOperation (opName){
+        //     console.log('The', opName, 'operation was completed!')
+        // }
+        favoriteNote () {
+          // this.selectedNote.favorite = !this.selectedNote.favorite
+          // this.selectedNote.favorite = this.selectedNote.favorite ^ true
+          this.selectedNote.favorite ^= true
+        },
     }
 
 })
