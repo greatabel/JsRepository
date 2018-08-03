@@ -35,6 +35,9 @@
 
     <div class="toolbar">
       <input v-model="selectedNote.title" placeholder="笔记标题">
+
+       <button @click="removeNote" title="Remove note"><i class="material-icons">删除</i></button>
+
     </div>
 
     <textarea v-model="selectedNote.content"></textarea>

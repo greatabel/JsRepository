@@ -70,6 +70,15 @@ new Vue({
 
         },
 
+        removeNote () {
+            if(this.selectNote && window.confirm('是否删除该条记录?')) {
+                const index = this.notes.indexOf(this.selectedNote)
+                if (index != -1){
+                    this.notes.splice(index, 1)
+                }
+            }
+        },
+
         selectNote (note) {
           // This will update the 'selectedNote' computed property
           this.selectedId = note.id
