@@ -20,7 +20,12 @@ new Vue({
         },
         addButtonTitle () {
             return this.notes.length + ' 纪录已经被添加！'
-        }
+        },
+        
+        sortedNotes () {
+          return this.notes.slice().sort((a, b) => a.created - b.created)
+          .sort((a, b) => (a.favorite === b.favorite)? 0 : a.favorite? -1 : 1)
+        },
     },
 
     // created() {
