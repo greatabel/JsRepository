@@ -1,3 +1,5 @@
+Vue.filter('date', time => moment(time).format('YYYY-MM-DD, HH:mm'))
+
 new Vue({
     el: '#notebook',
     data () {

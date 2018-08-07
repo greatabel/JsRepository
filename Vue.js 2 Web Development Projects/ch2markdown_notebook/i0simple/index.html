@@ -11,6 +11,7 @@
 <!-- Include the library in the page -->
 <script src="vue-v2.5.16.js"></script>
 <script src="marked.js"></script>
+<script src="moment.js"></script>
 
 <!-- Some HTML -->
 <div id="notebook">
@@ -46,6 +47,13 @@
     </div>
 
     <textarea v-model="selectedNote.content"></textarea>
+    <div class="toolbar status-bar">
+      <span class="date">
+           <span class="label">创建时间</span>
+           <span class="value">{{ selectedNote.created | date }}</span>
+      </span>
+    </div>
+
   </section>
 
   <aside class="preview" v-if="selectedNote" v-html="notePreview">
