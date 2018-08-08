@@ -45,6 +45,11 @@ new Vue({
                 // Return the number of spaces
                 return s.split(' ').length
             }
+        },
+        charactersCount () {
+          if (this.selectedNote) {
+            return this.selectedNote.content.split('').length
+            }
         }
 
     },
