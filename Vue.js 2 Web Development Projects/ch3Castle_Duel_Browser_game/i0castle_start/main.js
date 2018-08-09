@@ -2,5 +2,13 @@ new Vue({
     name: 'game',
     el: '#app',
 
-    template: '<div id="#pp">Hello world!</div>'
+    data: state,
+    template: '<div id="#pp">{{ worldRatio }} \
+    </div>',
+
+})
+
+
+window.addEventListener('resize', () => {
+    state.worldRatio = getWorldRatio()
 })
