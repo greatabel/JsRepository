@@ -10,4 +10,15 @@ var state = {
   // World
   worldRatio: getWorldRatio(),
   // TODO Other things
+  turn: 1,
+  players: [
+    {
+        name: '刘邦',
+    },
+    {
+        name: '项羽',
+    }
+
+    ],
+    currentPlayerIndex: Math.round(Math.random()),
 }
