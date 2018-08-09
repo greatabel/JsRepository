@@ -2,7 +2,7 @@ let cards = [
   {
     id: 'pikemen',
     type: 'attack',
-    title: 'Pikemen',
+    title: '长矛兵',
     description: 'Spend 1 <b>Food</b><br>Deal 1 <b>Damage</b>',
     note: 'Send your disposable men to a certain death.',
     play (player, opponent) {
@@ -13,7 +13,7 @@ let cards = [
   {
     id: 'catapult',
     type: 'attack',
-    title: 'Catapult',
+    title: '投石机',
     description: 'Spend 2 <b>Food</b><br>Deal 2 <b>Damage</b>',
     play (player, opponent) {
       player.food -= 2
@@ -23,7 +23,7 @@ let cards = [
   {
     id: 'trebuchet',
     type: 'attack',
-    title: 'Trebuchet',
+    title: '重型投石机',
     description: 'Spend 3 <b>Food</b><br>Take 1 <b>Damage</b><br>Deal 4 <b>Damage</b>',
     note: ' &#171;The finest machine Man ever created!&#187;',
     play (player, opponent) {
@@ -35,7 +35,7 @@ let cards = [
   {
     id: 'archers',
     type: 'attack',
-    title: 'Archers',
+    title: '弓箭手',
     description: 'Spend 3 <b>Food</b><br>Deal 3 <b>Damage</b>',
     note: '&#171;Ready your bows! Nock! Mark! Draw! Loose!&#187;',
     play (player, opponent) {
@@ -46,7 +46,7 @@ let cards = [
   {
     id: 'knighthood',
     type: 'attack',
-    title: 'Knighthood',
+    title: '骑士',
     description: 'Spend 7 <b>Food</b><br>Deal 5 <b>Damage</b>',
     note: 'Knights may be even more expansive than their mount.',
     play (player, opponent) {
@@ -57,7 +57,7 @@ let cards = [
   {
     id: 'repair',
     type: 'support',
-    title: 'Repair',
+    title: '护理',
     description: 'Repair 5 <b>Damage</b><br>Skip your next turn',
     play (player, opponent) {
       player.skipTurn = true
@@ -67,7 +67,7 @@ let cards = [
   {
     id: 'quick-repair',
     type: 'support',
-    title: 'Quick Repair',
+    title: '快速修复',
     description: 'Spend 3 <b>Food</b><br>Repair 3 <b>Damage</b>',
     note: 'This is not without consequences on the moral and energy!',
     play (player, opponent) {
@@ -78,7 +78,7 @@ let cards = [
   {
     id: 'farm',
     type: 'support',
-    title: 'Farm',
+    title: '农场',
     description: 'Gather 5 <b>Food</b><br>Skip your next turn',
     note: '&#171;One should be patient to grow crops.&#187;',
     play (player, opponent) {
@@ -89,7 +89,7 @@ let cards = [
   {
     id: 'granary',
     type: 'support',
-    title: 'Granary',
+    title: '粮仓',
     description: 'Gather 2 <b>Food</b>',
     play (player, opponent) {
       player.food += 2
@@ -98,7 +98,7 @@ let cards = [
   {
     id: 'poison',
     type: 'special',
-    title: 'Poison',
+    title: '放毒',
     description: 'Spend 1 <b>Food</b><br>Your opponent lose 3 <b>Food</b>',
     note: 'Send someone you trust poison the enemy granary.',
     play (player, opponent) {
@@ -109,7 +109,7 @@ let cards = [
   {
     id: 'fireball',
     type: 'special',
-    title: 'Fireball',
+    title: '火球🔥',
     description: 'Take 3 <b>Damage</b><br>Deal 5 <b>Damage</b><br>Skip your turn',
     note: '&#171;Magic isn\'t for kids. You fool.&#187;',
     play (player, opponent) {
@@ -121,7 +121,7 @@ let cards = [
   {
     id: 'chapel',
     type: 'special',
-    title: 'Chapel',
+    title: '礼堂',
     description: 'Do nothing',
     note: 'Pray in the chapel, and hope someone will listen.',
     play (player, opponent) {
@@ -131,7 +131,7 @@ let cards = [
   {
     id: 'curse',
     type: 'special',
-    title: 'Curse',
+    title: '诅咒',
     description: 'Everyone:<br>Lose 3 <b>Food</b><br>Take 3 <b>Damage</b>',
     play (player, opponent) {
       player.food -= 3
@@ -143,7 +143,7 @@ let cards = [
   {
     id: 'miracle',
     type: 'special',
-    title: 'Miracle',
+    title: '奇迹',
     description: 'Everyone:<br>Gather 3 <b>Food</b><br>Repair 3 <b>Damage</b>',
     play (player, opponent) {
       player.food += 3
