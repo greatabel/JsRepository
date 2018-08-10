@@ -37,7 +37,7 @@ let cards = [
     type: 'attack',
     title: '弓箭手',
     description: '耗费 3 <b>食物🍜</b><br>交换 3 <b>伤害😢</b>',
-    note: '&#171;Ready your bows! Nock! Mark! Draw! Loose!&#187;',
+    note: '&#171;准备好你的弓和箭! Nock! Mark! Draw! Loose!&#187;',
     play (player, opponent) {
       player.food -= 3
       opponent.health -= 3
