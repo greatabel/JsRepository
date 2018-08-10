@@ -2,7 +2,7 @@ let cards = [
   {
     id: 'pikemen',
     type: 'attack',
-    title: '长矛兵',
+    title: '长矛兵丨',
     description: '耗费 1 <b>食物🍜</b><br>交换 1 <b>伤害😢</b>',
     note: 'Send your disposable men to a certain death.',
     play (player, opponent) {
@@ -13,7 +13,7 @@ let cards = [
   {
     id: 'catapult',
     type: 'attack',
-    title: '投石机',
+    title: '投石机✊',
     description: '耗费 2 <b>食物🍜</b><br>交换 2 <b>伤害😢</b>',
     play (player, opponent) {
       player.food -= 2
@@ -23,7 +23,7 @@ let cards = [
   {
     id: 'trebuchet',
     type: 'attack',
-    title: '重型投石机',
+    title: '重型投石机✊✊',
     description: '耗费 3 <b>食物🍜</b><br>拿自己 1 <b>伤害😢</b><br>交换 4 <b>伤害😢</b>',
     note: ' &#171;The finest machine Man ever created!&#187;',
     play (player, opponent) {
@@ -35,7 +35,7 @@ let cards = [
   {
     id: 'archers',
     type: 'attack',
-    title: '弓箭手',
+    title: '弓箭手🏹️',
     description: '耗费 3 <b>食物🍜</b><br>交换 3 <b>伤害😢</b>',
     note: '&#171;准备好你的弓和箭! Nock! Mark! Draw! Loose!&#187;',
     play (player, opponent) {
@@ -57,7 +57,7 @@ let cards = [
   {
     id: 'repair',
     type: 'support',
-    title: '护理',
+    title: '护理🚑',
     description: '修复 5 <b>伤害😢</b><br>跳过下一轮',
     play (player, opponent) {
       player.skipTurn = true
@@ -78,7 +78,7 @@ let cards = [
   {
     id: 'farm',
     type: 'support',
-    title: '农场',
+    title: '农场🐂',
     description: '收获 5 <b>食物🍜</b><br>跳过下一轮',
     note: '&#171;One should be patient to grow crops.&#187;',
     play (player, opponent) {
@@ -89,7 +89,7 @@ let cards = [
   {
     id: 'granary',
     type: 'support',
-    title: '粮仓',
+    title: '粮仓🍜',
     description: '收获 2 <b>食物🍜</b>',
     play (player, opponent) {
       player.food += 2
@@ -98,7 +98,7 @@ let cards = [
   {
     id: 'poison',
     type: 'special',
-    title: '放毒',
+    title: '放毒🚬',
     description: '耗费 1 <b>食物🍜</b><br>对手失去 3 <b>食物🍜</b>',
     note: 'Send someone you trust poison the enemy granary.',
     play (player, opponent) {
@@ -121,7 +121,7 @@ let cards = [
   {
     id: 'chapel',
     type: 'special',
-    title: '礼堂',
+    title: '教堂⛪️',
     description: '闲坐',
     note: 'Pray in the chapel, and hope someone will listen.',
     play (player, opponent) {
