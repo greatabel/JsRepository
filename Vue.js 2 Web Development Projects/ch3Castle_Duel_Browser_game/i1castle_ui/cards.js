@@ -24,7 +24,7 @@ let cards = [
     id: 'trebuchet',
     type: 'attack',
     title: '重型投石机',
-    description: '耗费 3 <b>食物🍜</b><br>Take 1 <b>伤害😢</b><br>交换 4 <b>伤害😢</b>',
+    description: '耗费 3 <b>食物🍜</b><br>拿自己 1 <b>伤害😢</b><br>交换 4 <b>伤害😢</b>',
     note: ' &#171;The finest machine Man ever created!&#187;',
     play (player, opponent) {
       player.food -= 3
@@ -58,7 +58,7 @@ let cards = [
     id: 'repair',
     type: 'support',
     title: '护理',
-    description: 'Repair 5 <b>伤害😢</b><br>Skip your next turn',
+    description: '修复 5 <b>伤害😢</b><br>跳过下一轮',
     play (player, opponent) {
       player.skipTurn = true
       player.health += 5
@@ -68,7 +68,7 @@ let cards = [
     id: 'quick-repair',
     type: 'support',
     title: '快速修复',
-    description: '耗费 3 <b>食物🍜</b><br>Repair 3 <b>伤害😢</b>',
+    description: '耗费 3 <b>食物🍜</b><br>修复 3 <b>伤害😢</b>',
     note: 'This is not without consequences on the moral and energy!',
     play (player, opponent) {
       player.food -= 3
@@ -79,7 +79,7 @@ let cards = [
     id: 'farm',
     type: 'support',
     title: '农场',
-    description: 'Gather 5 <b>食物🍜</b><br>Skip your next turn',
+    description: '收获 5 <b>食物🍜</b><br>跳过下一轮',
     note: '&#171;One should be patient to grow crops.&#187;',
     play (player, opponent) {
       player.skipTurn = true
@@ -90,7 +90,7 @@ let cards = [
     id: 'granary',
     type: 'support',
     title: '粮仓',
-    description: 'Gather 2 <b>食物🍜</b>',
+    description: '收获 2 <b>食物🍜</b>',
     play (player, opponent) {
       player.food += 2
     }
@@ -99,7 +99,7 @@ let cards = [
     id: 'poison',
     type: 'special',
     title: '放毒',
-    description: '耗费 1 <b>食物🍜</b><br>Your opponent lose 3 <b>食物🍜</b>',
+    description: '耗费 1 <b>食物🍜</b><br>对手失去 3 <b>食物🍜</b>',
     note: 'Send someone you trust poison the enemy granary.',
     play (player, opponent) {
       player.food -= 1
@@ -110,7 +110,7 @@ let cards = [
     id: 'fireball',
     type: 'special',
     title: '火球🔥',
-    description: 'Take 3 <b>伤害😢</b><br>交换 5 <b>伤害😢</b><br>Skip your turn',
+    description: '接受 3 <b>伤害😢</b><br>交换 5 <b>伤害😢</b><br>跳过本轮',
     note: '&#171;Magic isn\'t for kids. You fool.&#187;',
     play (player, opponent) {
       player.health -= 3
@@ -122,7 +122,7 @@ let cards = [
     id: 'chapel',
     type: 'special',
     title: '礼堂',
-    description: 'Do nothing',
+    description: '闲坐',
     note: 'Pray in the chapel, and hope someone will listen.',
     play (player, opponent) {
       // Nothing happens...
@@ -132,7 +132,7 @@ let cards = [
     id: 'curse',
     type: 'special',
     title: '诅咒',
-    description: 'Everyone:<br>Lose 3 <b>食物🍜</b><br>Take 3 <b>伤害😢</b>',
+    description: '所有人:<br>失去 3 <b>食物🍜</b><br>接受 3 <b>伤害😢</b>',
     play (player, opponent) {
       player.food -= 3
       player.health -= 3
@@ -144,7 +144,7 @@ let cards = [
     id: 'miracle',
     type: 'special',
     title: '奇迹',
-    description: 'Everyone:<br>Gather 3 <b>食物🍜</b><br>Repair 3 <b>伤害😢</b>',
+    description: '所有人:<br>收集 3 <b>食物🍜</b><br>修复 3 <b>伤害😢</b>',
     play (player, opponent) {
       player.food += 3
       player.health += 3
