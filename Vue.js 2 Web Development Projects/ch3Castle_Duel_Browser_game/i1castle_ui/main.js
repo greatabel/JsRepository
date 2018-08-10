@@ -6,13 +6,18 @@ new Vue({
     template: `<div id="#pp">
                 <top-bar :turn="turn" :current-player-index="currentPlayerIndex"
                          :players="players"/>
-                <card :def="testCard"  />
+                <card :def="testCard" @play="handlePlay" />
                </div>`,
 
     computed: {
         testCard () {
             return cards.archers
         },
+    },
+    methods: {
+        handlePlay () {
+            console.log('You played a card!')
+        }
     }
 
 })
