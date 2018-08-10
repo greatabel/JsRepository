@@ -1,5 +1,5 @@
 Vue.component('top-bar', {
-    template: `<div class="top-bar">
+    template: `<div class="top-bar" :class="'player-' + currentPlayerIndex">
                 <div class="player p0"> {{ players[0].name }} </div>
 
                 <div class="turn-counter">
