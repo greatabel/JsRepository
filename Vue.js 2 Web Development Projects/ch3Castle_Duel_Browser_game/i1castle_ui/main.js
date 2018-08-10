@@ -6,7 +6,14 @@ new Vue({
     template: `<div id="#pp">
                 <top-bar :turn="turn" :current-player-index="currentPlayerIndex"
                          :players="players"/>
+                <card :def="testCard" />
                </div>`,
+
+    computed: {
+        testCard () {
+            return cards.archers
+        },
+    }
 
 })
 

@@ -3,7 +3,7 @@ let cards = [
     id: 'pikemen',
     type: 'attack',
     title: '长矛兵',
-    description: 'Spend 1 <b>Food</b><br>Deal 1 <b>Damage</b>',
+    description: '耗费 1 <b>食物🍜</b><br>交换 1 <b>伤害😢</b>',
     note: 'Send your disposable men to a certain death.',
     play (player, opponent) {
       player.food -= 1
@@ -14,7 +14,7 @@ let cards = [
     id: 'catapult',
     type: 'attack',
     title: '投石机',
-    description: 'Spend 2 <b>Food</b><br>Deal 2 <b>Damage</b>',
+    description: '耗费 2 <b>食物🍜</b><br>交换 2 <b>伤害😢</b>',
     play (player, opponent) {
       player.food -= 2
       opponent.health -= 2
@@ -24,7 +24,7 @@ let cards = [
     id: 'trebuchet',
     type: 'attack',
     title: '重型投石机',
-    description: 'Spend 3 <b>Food</b><br>Take 1 <b>Damage</b><br>Deal 4 <b>Damage</b>',
+    description: '耗费 3 <b>食物🍜</b><br>Take 1 <b>伤害😢</b><br>交换 4 <b>伤害😢</b>',
     note: ' &#171;The finest machine Man ever created!&#187;',
     play (player, opponent) {
       player.food -= 3
@@ -36,7 +36,7 @@ let cards = [
     id: 'archers',
     type: 'attack',
     title: '弓箭手',
-    description: 'Spend 3 <b>Food</b><br>Deal 3 <b>Damage</b>',
+    description: '耗费 3 <b>食物🍜</b><br>交换 3 <b>伤害😢</b>',
     note: '&#171;Ready your bows! Nock! Mark! Draw! Loose!&#187;',
     play (player, opponent) {
       player.food -= 3
@@ -47,7 +47,7 @@ let cards = [
     id: 'knighthood',
     type: 'attack',
     title: '骑士',
-    description: 'Spend 7 <b>Food</b><br>Deal 5 <b>Damage</b>',
+    description: '耗费 7 <b>食物🍜</b><br>交换 5 <b>伤害😢</b>',
     note: 'Knights may be even more expansive than their mount.',
     play (player, opponent) {
       player.food -= 7
@@ -58,7 +58,7 @@ let cards = [
     id: 'repair',
     type: 'support',
     title: '护理',
-    description: 'Repair 5 <b>Damage</b><br>Skip your next turn',
+    description: 'Repair 5 <b>伤害😢</b><br>Skip your next turn',
     play (player, opponent) {
       player.skipTurn = true
       player.health += 5
@@ -68,7 +68,7 @@ let cards = [
     id: 'quick-repair',
     type: 'support',
     title: '快速修复',
-    description: 'Spend 3 <b>Food</b><br>Repair 3 <b>Damage</b>',
+    description: '耗费 3 <b>食物🍜</b><br>Repair 3 <b>伤害😢</b>',
     note: 'This is not without consequences on the moral and energy!',
     play (player, opponent) {
       player.food -= 3
@@ -79,7 +79,7 @@ let cards = [
     id: 'farm',
     type: 'support',
     title: '农场',
-    description: 'Gather 5 <b>Food</b><br>Skip your next turn',
+    description: 'Gather 5 <b>食物🍜</b><br>Skip your next turn',
     note: '&#171;One should be patient to grow crops.&#187;',
     play (player, opponent) {
       player.skipTurn = true
@@ -90,7 +90,7 @@ let cards = [
     id: 'granary',
     type: 'support',
     title: '粮仓',
-    description: 'Gather 2 <b>Food</b>',
+    description: 'Gather 2 <b>食物🍜</b>',
     play (player, opponent) {
       player.food += 2
     }
@@ -99,7 +99,7 @@ let cards = [
     id: 'poison',
     type: 'special',
     title: '放毒',
-    description: 'Spend 1 <b>Food</b><br>Your opponent lose 3 <b>Food</b>',
+    description: '耗费 1 <b>食物🍜</b><br>Your opponent lose 3 <b>食物🍜</b>',
     note: 'Send someone you trust poison the enemy granary.',
     play (player, opponent) {
       player.food -= 1
@@ -110,7 +110,7 @@ let cards = [
     id: 'fireball',
     type: 'special',
     title: '火球🔥',
-    description: 'Take 3 <b>Damage</b><br>Deal 5 <b>Damage</b><br>Skip your turn',
+    description: 'Take 3 <b>伤害😢</b><br>交换 5 <b>伤害😢</b><br>Skip your turn',
     note: '&#171;Magic isn\'t for kids. You fool.&#187;',
     play (player, opponent) {
       player.health -= 3
@@ -132,7 +132,7 @@ let cards = [
     id: 'curse',
     type: 'special',
     title: '诅咒',
-    description: 'Everyone:<br>Lose 3 <b>Food</b><br>Take 3 <b>Damage</b>',
+    description: 'Everyone:<br>Lose 3 <b>食物🍜</b><br>Take 3 <b>伤害😢</b>',
     play (player, opponent) {
       player.food -= 3
       player.health -= 3
@@ -144,7 +144,7 @@ let cards = [
     id: 'miracle',
     type: 'special',
     title: '奇迹',
-    description: 'Everyone:<br>Gather 3 <b>Food</b><br>Repair 3 <b>Damage</b>',
+    description: 'Everyone:<br>Gather 3 <b>食物🍜</b><br>Repair 3 <b>伤害😢</b>',
     play (player, opponent) {
       player.food += 3
       player.health += 3
@@ -157,7 +157,20 @@ let cards = [
 cards = cards.reduce((map, card) => {
   card.description = card.description.replace(/\d+\s+<b>.*?<\/b>/gi, '<span class="effect">$&</span>')
   card.description = card.description.replace(/<b>(.*?)<\/b>/gi, (match, p1) => {
-    const id = p1.toLowerCase()
+    // console.log('p1=>', p1)
+    var id = p1.toLowerCase()
+
+    switch ( id ) {
+      case '食物🍜':
+        id = 'food';
+        break;
+      case '伤害😢':
+        id = 'Damage';
+        break;
+      default:
+        break;
+    }
+
     return `<b class="keyword ${id}">${p1} <img src="svg/${id}.svg"/></b>`
   })
   map[card.id] = card

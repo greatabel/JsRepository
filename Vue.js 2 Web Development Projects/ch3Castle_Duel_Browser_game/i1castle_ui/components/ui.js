@@ -16,3 +16,14 @@ Vue.component('top-bar', {
     }
 
 })
+
+Vue.component('card', {
+    template: `<div class="card" :class="'type-' + def.type">
+
+                <div class="title"> {{ def.title }} </div>
+                <img class="seperator" src="svg/card-separator.svg" />
+                <div class="description"><div v-html="def.description"></div></div>
+                <div class="note" v-if="def.note"><div v-html="def.note"></div></div>
+               </div>`,
+    props: ['def']
+})
