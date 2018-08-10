@@ -4,7 +4,8 @@ new Vue({
 
     data: state,
     template: '<div id="#pp">\
-                <top-bar/> \
+                <top-bar :turn="turn" :current-player-index="currentPlayerIndex"\
+                         :players="players"/> \
                </div>',
 
 })
