@@ -40,7 +40,7 @@ Vue.component('card', {
 Vue.component('hand',{
     template:  `<div class="hand">
                 <div class="wrapper">
-                    <card v-for="card of cards" :def="card.def" />
+                    <card v-for="card in cards" :def="card.def" :key="card.uid" />
                 </div>
                 </div>`,
     props: ['cards'],
