@@ -3,8 +3,9 @@ new Vue({
     el: '#app',
 
     data: state,
-    template: '<div id="#pp">{{ worldRatio }} \
-    </div>',
+    template: '<div id="#pp">\
+                <top-bar/> \
+               </div>',
 
 })
 
