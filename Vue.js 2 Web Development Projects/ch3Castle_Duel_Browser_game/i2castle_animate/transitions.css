@@ -1,0 +1,8 @@
+.hand.v-enter-active,
+.hand.v-leave-active {
+    transition: opacity 1s;
+}
+
+.hand.v-enter, .hand.v-leave-to {
+    opacity: 0; 
+}

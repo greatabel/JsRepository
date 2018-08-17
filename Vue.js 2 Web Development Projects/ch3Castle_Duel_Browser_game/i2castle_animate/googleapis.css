@@ -1,0 +1,18 @@
+/* latin-ext */
+/* https://stackoverflow.com/questions/42342133/showing-on-console-slow-network-is-detected-fallback-font-will-be-used-while-l */
+
+@font-face {
+  font-family: 'Signika Negative';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Signika Negative SemiBold'), local('SignikaNegative-SemiBold'), url(E217_cfngu7HiRpPX3ZpNE4kY5zKaiqFupjJ6h3hTApXCQ.woff2) format('woff2');
+
+}
+/* latin */
+@font-face {
+  font-family: 'Signika Negative';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Signika Negative SemiBold'), local('SignikaNegative-SemiBold'), url(E217_cfngu7HiRpPX3ZpNE4kY5zKaiqFupbJ6h3hTAo.woff2) format('woff2');
+
+}
