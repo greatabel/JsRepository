@@ -6,7 +6,7 @@ new Vue({
     template: `<div id="#pp">
                 <top-bar :turn="turn" :current-player-index="currentPlayerIndex"
                          :players="players"/>
-                <transition>
+                <transition name="fade">
                 <hand :cards="testHand" v-if="!activeOverlay" />
                 </transition>
                </div>`,
