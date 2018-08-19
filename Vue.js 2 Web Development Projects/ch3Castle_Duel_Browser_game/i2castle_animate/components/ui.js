@@ -37,8 +37,17 @@ Vue.component('card', {
     }
 })
 
+// Vue.component('hand',{
+//     template:  `<div class="hand">
+//                 <div class="wrapper">
+//                     <card v-for="card in cards" :def="card.def" :key="card.uid" />
+//                 </div>
+//                 </div>`,
+//     props: ['cards'],
+// })
+
 Vue.component('hand',{
-    template:  `<div class="hand">
+    template:  `<div class="">
                 <div class="wrapper">
                     <card v-for="card in cards" :def="card.def" :key="card.uid" />
                 </div>
