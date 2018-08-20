@@ -55,3 +55,36 @@
     bottom:0;left:0;right:0;
     position:absolute;
 }
+
+
+
+/* Card */
+
+.card {
+  /* Used for enter, move and mouse over animations */
+  transition: all .3s;
+}
+
+.card-enter {
+  opacity: 0;
+  /* Slide from the right */
+  transform: scale(.8) translateX(100px);
+}
+
+.card-leave-active {
+  /* We need different timings for the leave transition */
+  transition: all 1s, opacity .5s .5s;
+  /* Keep it in the same horizontal position */
+  position: absolute !important;
+  /* Make it painted over the other cards */
+  z-index: 10;
+  /* Unclickable during the transition */
+  pointer-events: none;
+}
+
+.card-leave-to {
+  opacity: 0;
+  /* Zoom the card upwards */
+  transform: translateX(-106px) translateY(-300px) scale(1.5);
+}
+
