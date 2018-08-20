@@ -14,13 +14,39 @@ var state = {
   players: [
     {
         name: '刘邦',
+        ood: 10,
+        health: 10,
+        // Is skipping is next turn 
+        skipTurn: false,
+        // Skiped turn last time skippedTurn: false, 
+        hand: [], 
+        //临时的
+        lastPlayedCardId: 'catapult', 
+        dead: false,
     },
     {
         name: '项羽',
+        ood: 10,
+        health: 10,
+        // Is skipping is next turn 
+        skipTurn: false,
+        // Skiped turn last time skippedTurn: false, 
+        hand: [], 
+        lastPlayedCardId: 'catapult', 
+        dead: false,
     }
 
     ],
     currentPlayerIndex: Math.round(Math.random()),
+      get currentPlayer () {
+    return state.players[state.currentPlayerIndex]
+      },
+      get currentOpponentId () {
+        return state.currentPlayerIndex === 0 ? 1 : 0
+      },
+      get currentOpponent () {
+        return state.players[state.currentOpponentId]
+      },
     testHand: [],
     // UI
     activeOverlay: null,
