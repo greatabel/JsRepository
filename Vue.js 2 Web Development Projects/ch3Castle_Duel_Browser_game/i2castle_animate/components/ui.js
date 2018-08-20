@@ -47,10 +47,16 @@ Vue.component('card', {
 // })
 
 Vue.component('hand',{
-    template:  `<div class="">
+    template:  `<div class="myhand">
                 <div class="wrapper">
-                    <card v-for="card in cards" :def="card.def" :key="card.uid" />
+                    <card v-for="card in cards" :def="card.def" :key="card.uid" @play="handlePlay(card)"/>
                 </div>
                 </div>`,
     props: ['cards'],
+    methods: {
+        handlePlay (card) {
+            console.log('### handlePlay')
+            this.$emit('card-play', card);
+        }
+    }
 })

@@ -7,7 +7,7 @@ new Vue({
                 <top-bar :turn="turn" :current-player-index="currentPlayerIndex"
                          :players="players"/>
                 <transition name="hand">
-                <hand :cards="testHand" v-if="!activeOverlay" />
+                <hand :cards="testHand" v-if="!activeOverlay"  @card-play="testPlayCard" />
                 </transition>
                </div>`,
 
@@ -17,8 +17,11 @@ new Vue({
         },
     },
     methods: {
-        handlePlay () {
-            console.log('You played a card!')
+
+        testPlayCard (card) {
+            console.log('testPlayCard in main.js')
+            const index = this.testHand.indexOf(card)
+            this.testHand.splice(index, 1)
         },
 
         testDrawCard() {
