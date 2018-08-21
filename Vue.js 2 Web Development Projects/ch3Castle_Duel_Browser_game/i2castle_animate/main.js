@@ -8,7 +8,7 @@ new Vue({
                          :players="players"/>
                 <div class="world">
                 <castle v-for="(player, index) in players" :player="player"
-                            :index="index" />
+                            :index="index" :key="index" />
                            <div class="land" />
                 </div>
 
