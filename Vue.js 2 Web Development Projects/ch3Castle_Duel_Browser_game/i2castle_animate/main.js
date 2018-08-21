@@ -9,7 +9,12 @@ new Vue({
                 <div class="world">
                 <castle v-for="(player, index) in players" :player="player"
                             :index="index" :key="index" />
-                           <div class="land" />
+                <div class="land" />
+
+                <div class="clouds">
+                <cloud v-for="index in 10" :type="(index - 1) % 5 + 1"  :key="index" />
+                </div>
+
                 </div>
 
                 <transition name="hand">
