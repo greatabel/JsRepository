@@ -14,7 +14,7 @@ var state = {
   players: [
     {
         name: '刘邦',
-        ood: 10,
+        food: 10,
         health: 10,
         // Is skipping is next turn 
         skipTurn: false,
@@ -26,7 +26,7 @@ var state = {
     },
     {
         name: '项羽',
-        ood: 10,
+        food: 10,
         health: 10,
         // Is skipping is next turn 
         skipTurn: false,

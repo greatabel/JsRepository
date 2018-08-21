@@ -1,3 +1,14 @@
+.zoom-enter-active,
+.zoom-leave-active {
+  transition: opacity .3s, transform .3s;
+}
+
+.zoom-enter,
+.zoom-leave-to {
+  opacity: 0;
+  transform: scale(.7);
+}
+
 /*
 .hand.v-enter-active,
 .hand.v-leave-active {
@@ -54,6 +65,9 @@
 .myhand {
     bottom:0;left:0;right:0;
     position:absolute;
+    z-index:1000;
+
+
 }
 
 
