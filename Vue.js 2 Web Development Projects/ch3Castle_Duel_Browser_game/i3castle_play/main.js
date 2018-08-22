@@ -27,7 +27,7 @@ new Vue({
                 </transition>
 
                 <transition name="zoom">
-                <overlay v-if="activeOverlay" :key="activeOverlay"> 
+                <overlay v-if="activeOverlay" :key="activeOverlay" @close="handleOverlayClose">
                     <component :is="'overlay-content-' + activeOverlay"
                                :player="currentPlayer" :opponent="currentOpponent"
                                :players="players" />
@@ -56,6 +56,9 @@ new Vue({
         handlePlayCard (card) {
           console.log('handlePlayCard')
           playCard(card)
+        },
+        handleOverlayClose () {
+          overlayCloseHandlers[this.activeOverlay]()
         },
 
         handleCardLeaveEnd () {
@@ -100,6 +103,24 @@ new Vue({
     },
 
 })
+
+var overlayCloseHandlers = {
+  'player-turn' () {
+    if (state.turn > 1) {
+      state.activeOverlay = 'last-play'
+    } else {
+      newTurn()
+    }
+  },
+
+  'last-play' () {
+    newTurn()
+  },
+
+  'game-over' () {
+    document.location.reload()
+  },
+}
 
 
 window.addEventListener('resize', () => {
