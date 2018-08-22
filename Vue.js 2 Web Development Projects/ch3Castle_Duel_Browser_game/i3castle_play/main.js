@@ -3,7 +3,7 @@ new Vue({
     el: '#app',
 
     data: state,
-    template: `<div id="#app">
+    template: `<div id="#app" :class="cssClass">
                 <top-bar :turn="turn" :current-player-index="currentPlayerIndex"
                          :players="players"/>
                 <div class="world">
@@ -18,7 +18,8 @@ new Vue({
                 </div>
 
                 <transition name="hand">
-                <hand :cards="currentHand" v-if="!activeOverlay"  @card-play="testPlayCard" />
+                <hand :cards="currentHand" v-if="!activeOverlay"  @card-play="handlePlayCard" 
+                  @card-leave-end="handleCardLeaveEnd"/>
                 </transition>
 
                 <transition name="fade">
@@ -39,13 +40,26 @@ new Vue({
         testCard () {
             return cards.archers
         },
-    },
+        cssClass () {
+                 return {
+                   'can-play': this.canPlay,
+                 }
+              },
+            },
     methods: {
 
-        testPlayCard (card) {
-            console.log('testPlayCard in main.js')
-            const index = this.testHand.indexOf(card)
-            this.testHand.splice(index, 1)
+        // testPlayCard (card) {
+        //     console.log('testPlayCard in main.js')
+        //     const index = this.testHand.indexOf(card)
+        //     this.testHand.splice(index, 1)
+        // },
+        handlePlayCard (card) {
+          console.log('handlePlayCard')
+          playCard(card)
+        },
+
+        handleCardLeaveEnd () {
+          console.log('card leave end')
         },
 
         testDrawCard() {
@@ -107,3 +121,17 @@ function beginGame () {
   state.players.forEach(drawInitialHand)
 }
 
+function playCard (card) {
+  if (state.canPlay) {
+    state.canPlay = false
+    currentPlayingCard = card
+
+    // Remove the card from player hand
+    const index = state.currentPlayer.hand.indexOf(card)
+    state.currentPlayer.hand.splice(index, 1)
+
+    // Add the card to the discard pile
+    addCardToPile(state.discardPile, card.id)
+    console.log('playCard###')
+  }
+}

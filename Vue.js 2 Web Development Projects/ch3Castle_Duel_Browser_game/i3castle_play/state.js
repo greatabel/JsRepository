@@ -51,11 +51,12 @@ var state = {
       get currentHand () {
       return state.currentPlayer.hand
       },
-      
+
     testHand: [],
     // UI
     activeOverlay: null,
     
     drawPile: pile,
     discardPile: {},
+    canPlay: true,
 }

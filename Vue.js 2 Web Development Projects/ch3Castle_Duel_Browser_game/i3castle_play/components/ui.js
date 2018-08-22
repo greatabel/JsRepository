@@ -49,7 +49,7 @@ Vue.component('card', {
 Vue.component('hand',{
     template:  `<div class="myhand">
                 <div class="wrapper">
-                <transition-group name="card" tag="div" class="cards">
+                <transition-group name="card" tag="div" class="cards" @after-leave="handleLeaveTransitionEnd">
                     <card v-for="card in cards" :def="card.def" :key="card.uid" @play="handlePlay(card)"/>
                 </transition-group>
                 </div>
@@ -59,7 +59,11 @@ Vue.component('hand',{
         handlePlay (card) {
             console.log('### handlePlay')
             this.$emit('card-play', card);
-        }
+        },
+        handleLeaveTransitionEnd () {
+          console.log('#handleLeaveTransitionEnd')
+          this.$emit('card-leave-end')
+        },
     }
 })
 
