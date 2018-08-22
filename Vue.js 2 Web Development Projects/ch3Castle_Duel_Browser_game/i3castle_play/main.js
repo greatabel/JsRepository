@@ -60,6 +60,7 @@ new Vue({
 
         handleCardLeaveEnd () {
           console.log('card leave end')
+          applyCard()
         },
 
         testDrawCard() {
@@ -135,3 +136,32 @@ function playCard (card) {
     console.log('playCard###')
   }
 }
+
+function applyCard () {
+  const card = currentPlayingCard
+
+  applyCardEffect(card)
+
+  // Wait a bit for the player to see what's going on
+  setTimeout(() => {
+    // Check if the players are dead
+    state.players.forEach(checkPlayerLost)
+
+    if (isOnePlayerDead()) {
+      endGame()
+    } else {
+      nextTurn()
+    }
+  }, 700)
+}
+
+function nextTurn () {
+  state.turn ++
+  state.currentPlayerIndex = state.currentOpponentId
+  state.activeOverlay = 'player-turn'
+}
+
+function endGame () {
+  state.activeOverlay = 'game-over'
+}
+
