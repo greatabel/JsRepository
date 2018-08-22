@@ -161,6 +161,34 @@ function nextTurn () {
   state.activeOverlay = 'player-turn'
 }
 
+function newTurn () {
+  state.activeOverlay = null
+  if (state.currentPlayer.skipTurn) {
+    skipTurn()
+  } else {
+    startTurn()
+  }
+}
+
+function skipTurn () {
+  state.currentPlayer.skippedTurn = true
+  state.currentPlayer.skipTurn = false
+  nextTurn()
+}
+
+function startTurn () {
+  state.currentPlayer.skippedTurn = false
+  if (state.turn > 2) {
+    // Draw new card
+    setTimeout(() => {
+      state.currentPlayer.hand.push(drawCard())
+      state.canPlay = true
+    }, 800)
+  } else {
+    state.canPlay = true
+  }
+}
+
 function endGame () {
   state.activeOverlay = 'game-over'
 }
