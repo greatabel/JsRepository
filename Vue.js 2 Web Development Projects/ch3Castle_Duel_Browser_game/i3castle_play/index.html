@@ -1,0 +1,34 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>城堡⚔️决斗</title>
+  <!-- Icons & Stylesheets -->
+  <link href="googleapis.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="transitions.css" />
+</head>
+<body>
+  <!-- Include the library in the page -->
+  <script src="vue-v2.5.16.js"></script>
+  <!-- This library will be useful for animations -->
+  <script src="Tween.js"></script>
+
+  <!-- Game app -->
+  <div id="app"></div>
+
+  <script type="text/x-template" id="banner">
+    <svg viewBox="0 0 20 260">
+      <path :d="`m 0,0 20,0 0,${height} -10,-10 -10,10 z`" :style="`fill:${color};stroke:none;`" />
+    </svg>
+  </script>
+
+  <!-- Scripts -->
+  <script src="utils.js"></script>
+  <script src="cards.js"></script>
+  <script src="state.js"></script>
+  <script src="components/ui.js"></script>
+  <script src="components/world.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

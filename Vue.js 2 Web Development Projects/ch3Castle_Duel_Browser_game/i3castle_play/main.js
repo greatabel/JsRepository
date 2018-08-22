@@ -18,7 +18,7 @@ new Vue({
                 </div>
 
                 <transition name="hand">
-                <hand :cards="testHand" v-if="!activeOverlay"  @card-play="testPlayCard" />
+                <hand :cards="currentHand" v-if="!activeOverlay"  @card-play="testPlayCard" />
                 </transition>
 
                 <transition name="fade">
@@ -61,16 +61,16 @@ new Vue({
                      def: cards[randomId],
                    }
         },
-        createTestHand (){
-            // console.log('creatTestHand:', cards)
-            const cards = []
-            // const ids = Object.keys(cards)
-            // console.log('ids=', ids)
-            for (let i=0; i < 5; i++){
-                cards.push(this.testDrawCard())
-            }
-            return cards
-        },
+        // createTestHand (){
+        //     // console.log('creatTestHand:', cards)
+        //     const cards = []
+        //     // const ids = Object.keys(cards)
+        //     // console.log('ids=', ids)
+        //     for (let i=0; i < 5; i++){
+        //         cards.push(this.testDrawCard())
+        //     }
+        //     return cards
+        // },
 
     },
 
@@ -79,7 +79,8 @@ new Vue({
     },
     
     created () {
-        this.testHand = this.createTestHand()
+        // this.testHand = this.createTestHand()
+
         // console.log('testHand=>', this.testHand)
     },
 
