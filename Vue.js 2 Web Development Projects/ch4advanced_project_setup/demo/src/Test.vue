@@ -1,18 +1,25 @@
-<template>
+<!-- <template>
     <div>
         <p> {{ message }} </p>
         <input v-model="message" />
-  <!--   </div>
-
-    <div> -->
+ 
         <ul class="movies">
        <li v-for="movie of movies" class="movie">
          {{ movie.title }}
         </li> 
         </ul>
+
+
     </div>
 
 </template>
+ -->
+
+ <template lang="pug">
+     ul.movies
+        li.movie Star Wars
+        li.movie Blade Runner
+ </template>
 
 <script>
 export default {
