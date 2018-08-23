@@ -1,6 +1,6 @@
 <template>
 <li class="movie">
- {{ movie.title }}
+ ### {{ movie.title }}
 </li>
 </template>
 
@@ -10,8 +10,10 @@ export default {
 } 
 </script>
 
-<style scoped> .movie:not(:last-child) {
+<style scoped> 
+.movie:not(:last-child) {
      padding-bottom: 6px;
      margin-bottom: 6px;
      border-bottom: solid 1px rgba(0, 0, 0, .1);
-} </style>
+}
+</style>

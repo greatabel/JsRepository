@@ -1,8 +1,8 @@
 <template>
 <ul class="movies">
-     <Movie v-for="movie of movies" 
-        :key="movie.id"
-        :movie="movie"/>
+    <Movie v-for="movie of movies" 
+    :key="movie.id"
+    :movie="movie"/>
       
 </ul>
 </template>
@@ -14,7 +14,7 @@ export default {
     components: {
         Movie,
     },
-  data () {
+    data () {
          return {
            movies: [
              { id: 0, title: 'Star Wars II' },
