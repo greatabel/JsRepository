@@ -3,7 +3,7 @@
      <h1>经常被问的问题</h1>
 
      <div class="error" v-if="error">
-        加载问题失败
+        加载问题列表失败
      </div>
 
      <section class="list">
@@ -24,18 +24,17 @@ export default {
         error: null,
     }
   },
-  created () {
-    fetch('http://localhost:3000/questions').then(response => {
-        if(response.ok) {
-            return response.json()
-        } else {
-            return Promise.reject('error')
+  async created () {
+    try {
+            const response = await fetch('http://localhost:3000/questions')
+            if (response.ok) {
+                this.questions = await response.json()
+            } else {
+                throw new Error('error')
+            }
+        } catch (e) {
+            this.error = e
         }
-    }).then(result => {
-        this.questions = result
-    }).catch(e => {
-        this.error = e
-    })
 
   },
 }
