@@ -18,3 +18,12 @@ render (h) {
     }, 
 }
 </script>
+
+<style> 
+.movies {
+     list-style: none;
+     padding: 12px;
+     background: rgba(0, 0, 0, .1);
+     border-radius: 3px;
+} 
+</style>
