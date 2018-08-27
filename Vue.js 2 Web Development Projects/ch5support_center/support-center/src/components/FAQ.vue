@@ -30,12 +30,14 @@ export default {
   async created () {
     this.loading = true
     try {
-            const response = await fetch('http://localhost:3000/questions')
-            if (response.ok) {
-                this.questions = await response.json()
-            } else {
-                throw new Error('error')
-            }
+            // const response = await fetch('http://localhost:3000/questions')
+            // if (response.ok) {
+            //     this.questions = await response.json()
+            // } else {
+            //     throw new Error('error')
+            // }
+        this.questions = await this.$fetch('questions')
+
         } catch (e) {
             this.error = e
         }
