@@ -23,7 +23,8 @@ import RemoteData from '../mixins/RemoteData'
 
 export default {
   mixins: [
-    RemoteData,
+    RemoteData({questionList: 'questions',})
+
   ],
 
   data () {
