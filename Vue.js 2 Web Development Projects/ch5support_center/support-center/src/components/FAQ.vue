@@ -19,14 +19,22 @@
 </template>
 
 <script>
+import RemoteData from '../mixins/RemoteData'
+
 export default {
+  mixins: [
+    RemoteData,
+  ],
+
   data () {
     return {
         questions: [],
         error: null,
         loading: false,
+        // remoteDataLoading: 42,
     }
   },
+
   async created () {
     this.loading = true
     try {
