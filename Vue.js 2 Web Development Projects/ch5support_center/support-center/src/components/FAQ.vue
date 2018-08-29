@@ -2,7 +2,7 @@
    <main class="faq">
      <h1>经常被问的问题</h1>
 
-     <Loading v-if="loading" />
+     <Loading v-if="remoteDataBusy" />
 
      <div class="error" v-if="error">
         加载问题列表失败
