@@ -46,6 +46,7 @@ export default function (resources){
                 let url = resources[key]
                 this.fetchResource(key, url)
             }
+            console.log('this.$state=', this.$state);
         }
 
 
