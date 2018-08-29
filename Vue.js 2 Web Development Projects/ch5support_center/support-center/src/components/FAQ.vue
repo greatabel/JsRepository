@@ -4,7 +4,7 @@
 
      <Loading v-if="remoteDataBusy" />
 
-     <div class="error" v-if="error">
+     <div class="error" v-if="hasRemoteErrors">
         加载问题列表失败
      </div>
 
