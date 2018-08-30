@@ -5,6 +5,7 @@
          :class="inputClass"
          :name="name"
          :type="type"
+         @input="update"
          :value.prop="value"
          :placeholder="placeholder"/> 
      </div>
@@ -21,7 +22,7 @@ export default {
       type: String,
       default: 'text',
     },
-    text: {
+    value: {
       required: true,
     },
     placeholder: {
@@ -38,6 +39,11 @@ export default {
       return {
         'invalid': this.invalid,
       }
+    },
+  },
+  methods: {
+    update (event) {
+      console.log('update=>', event.currentTarget.value)
     },
   },
 
