@@ -8,7 +8,7 @@
                 v-model="title"
                 placeholder="Short description (max 100 chars)" maxlength="100"
                 required/> 
-                
+
                <FormInput
                 type="textarea"
                 name="description"
@@ -16,6 +16,21 @@
                 placeholder="Describe your problem in details"
                 required
                 rows="4"/>
+
+               <template slot="actions">
+                <router-link
+                  tag="button"
+                  :to="{name: 'tickets'}"
+                  class="secondary">
+                  Go back
+                </router-link>
+                <button
+                  type="submit"
+                  :disabled="!valid">
+                  Send ticket
+                </button>
+              </template>
+
             </SmartForm>
 
            </div>
@@ -35,9 +50,17 @@ export default{
         },
     },
     methods: {
-        async operation(){
-
-        },
+    async operation () {
+      const result = await this.$fetch('tickets/new', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: this.title,
+          description: this.description,
+        }),
+      })
+      this.title = this.description = ''
+      this.$router.push({ name: 'ticket', params: { id: result._id } })
     },
+  },
 }
 </script>
