@@ -4,7 +4,7 @@
     <form>
         <FormInput 
           name="username"
-          :value="username"
+          v-model="username"
           placeholder="用户名" />
     </form>
 </main>    
