@@ -9,7 +9,7 @@ import VueFetch, { $fetch } from './plugins/fetch'
 import './global-components'
 
 import VueState from './plugins/state'
-
+import * as filters from './filters'
 
 Vue.use(VueFetch, {
     baseUrl: 'http://localhost:3000/',
@@ -17,7 +17,9 @@ Vue.use(VueFetch, {
 
 Vue.use(VueState, state)
 
-
+for (const key in filters) {
+     Vue.filter(key, filters[key])
+   }
 
 async function main () {
     try {

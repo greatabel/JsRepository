@@ -2,7 +2,7 @@
   <main class="tickets-layout">
     <h1>你的支持请求</h1>
 
-    <!-- <Tickets /> -->
+    <Tickets />
 
     <div class="actions">
       <router-link v-if="$route.name !== 'tickets'" tag="button" class="secondary" :to="{name: 'tickets'}">See all tickets</router-link>
@@ -13,7 +13,7 @@
   </main>
 </template>
 
-<!-- <script>
+<script>
 import Tickets from './Tickets.vue'
 
 export default {
@@ -21,7 +21,7 @@ export default {
     Tickets,
   }
 }
-</script> -->
+</script>
 
 <style lang="stylus" scoped>
 .actions {
