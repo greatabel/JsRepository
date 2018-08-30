@@ -3,8 +3,11 @@ import 'babel-polyfill'
 import AppLayout from './components/AppLayout.vue'
 import router from './router'
 import state from './state'
+
+import VueFetch, { $fetch } from './plugins/fetch'
+
 import './global-components'
-import VueFetch from './plugins/fetch'
+
 import VueState from './plugins/state'
 
 
@@ -14,9 +17,21 @@ Vue.use(VueFetch, {
 
 Vue.use(VueState, state)
 
-new Vue({
-  el: '#app',
-  data: state,
-  render: h => h(AppLayout),
-  router
-})
+
+
+async function main () {
+    try {
+        state.user = await $fetch('user')
+    } catch (e) {
+        console.warn(e)
+    }
+
+    new Vue({
+      el: '#app',
+      data: state,
+      render: h => h(AppLayout),
+      router
+    })
+}
+
+main()
