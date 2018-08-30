@@ -32,6 +32,39 @@
             placeholder="邮箱" />
         </template>
 
+      <template slot="actions">
+
+        <template v-if="mode === 'login'">
+          <button
+            type="button"
+            class="secondary"
+            @click="mode = 'signup'">
+            注册
+          </button>
+          <button
+            type="submit"
+            :disabled="!valid">
+            登陆
+          </button>
+        </template>
+
+        <template v-else-if="mode === 'signup'">
+          <button
+            type="button"
+            class="secondary"
+            @click="mode = 'login'">
+            返回 登陆
+          </button>
+          <button
+            type="submit"
+            :disabled="!valid">
+            创建 新账户
+          </button>
+        </template>
+
+      </template>
+
+
     </SmartForm>
 
 </main>    
