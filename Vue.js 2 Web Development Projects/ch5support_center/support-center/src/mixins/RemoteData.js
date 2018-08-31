@@ -41,13 +41,23 @@ export default function (resources){
             this.$data.remoteDataLoading--
           },
         },
+        
         created () {
-            for (const key in resources) {
-                let url = resources[key]
-                this.fetchResource(key, url)
+          for (const key in resources) {
+            let url = resources[key]
+            // If the value is a function
+            // We watch its result
+            if (typeof url === 'function') {
+              this.$watch(url, (val) => {
+                this.fetchResource(key, val)
+              }, {
+                immediate: true,
+              })
+            } else {
+              this.fetchResource(key, url)
             }
-            console.log('this.$state=', this.$state);
-        }
+          }
+        },
 
 
 
