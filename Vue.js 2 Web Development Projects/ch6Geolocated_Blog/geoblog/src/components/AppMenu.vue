@@ -15,7 +15,7 @@
        <a @click="centerOnUser"><i class="material-icons">my_location</i>
      </a>
      <a @click="logout"><i class="material-
-     icons">power_settings_new</i>
+     icons">logout</i>
      </a>
     </div>
     </div>
@@ -36,6 +36,16 @@ export default {
 
         },
         logout () {
+            if(!this.user) {
+                const userData = {
+                    profile: {
+                        displayName: 'Mr test',
+                    },
+                }
+                this.$store.commit('user', userData)
+            } else {
+                this.$store.commit('user', null)
+            }
 
         },
     }
