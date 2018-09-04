@@ -10,8 +10,14 @@
 </template>
    
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     methods: { 
+        ...mapActions([ 
+            'login',
+            ]),
+
         openGoogleSignin () {
             // TODO 
             const url = 'http://localhost:3000/auth/google'
@@ -28,5 +34,11 @@ export default {
             }
         },
     }, 
+    mounted () {
+        window.addEventListener('message', this.handleMessage)
+    },
+    beforeDestroy () {
+        window.removeEventListener('message', this.handleMessage)
+    },
 }
 </script>
