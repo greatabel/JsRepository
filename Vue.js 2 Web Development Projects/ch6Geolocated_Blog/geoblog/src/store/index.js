@@ -1,31 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { $fetch } from '../plugins/fetch'
+import router from '../router'
+
 import maps from './maps'
 import posts from './posts'
-
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  modules: {
-    maps,
-    posts,
-  },
-  // strict: true,
+  strict: process.env.NODE_ENV !== 'production',
+
   state () {
     return {
       user: null,
     }
   },
-  mutations: {
-    user: (state, user) => {
 
-        state.user = user
-    },
-  },
   getters: {
     user: state => state.user,
+
     userPicture: (state, getters) => {
       const user = getters.user
       if (user) {
@@ -36,18 +30,18 @@ const store = new Vuex.Store({
       }
     },
   },
-actions: {
-    async init( {dispatch}) {
+
+  mutations: {
+    user: (state, user) => {
+      state.user = user
+    },
+  },
+
+  actions: {
+    async init ({ dispatch }) {
       await dispatch('login')
     },
-    // login ({ commit }) {
-    //    const userData = {
-    //     profile: {
-    //        displayName: 'Mr Cat',
-    //      },
-    //      }
-    //    commit('user', userData)
-    //  },
+
     async login ({ commit, dispatch }) {
       try {
         const user = await $fetch('user')
@@ -65,27 +59,25 @@ actions: {
       }
     },
 
-    // logout ({ commit }) { 
-    //   commit('user', null)
-    //       }, 
-      logout ({ commit, dispatch }) {
-        commit('user', null)
+    logout ({ commit, dispatch }) {
+      commit('user', null)
 
-        $fetch('logout')
+      $fetch('logout')
 
-        // If the route is private
-        // We go to the login screen
-        if (router.currentRoute.matched.some(r => r.meta.private)) {
-          router.replace({ name: 'login', params: {
-            wantedRoute: router.currentRoute.fullPath,
-          }})
-        }
-      },
-          
+      // If the route is private
+      // We go to the login screen
+      if (router.currentRoute.matched.some(r => r.meta.private)) {
+        router.replace({ name: 'login', params: {
+          wantedRoute: router.currentRoute.fullPath,
+        }})
       }
+    },
+  },
 
-
-
+  modules: {
+    maps,
+    posts,
+  },
 })
 
 export default store

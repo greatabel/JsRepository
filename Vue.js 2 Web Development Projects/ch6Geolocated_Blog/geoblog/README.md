@@ -1,6 +1,6 @@
-# geoblog
+# demo
 
-> A Vue.js project
+> Trying out Vue.js!
 
 ## Build Setup
 

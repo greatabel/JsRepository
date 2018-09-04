@@ -1,31 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from './store'
+
 import Login from './components/Login.vue'
 import GeoBlog from './components/GeoBlog.vue'
 import NotFound from './components/NotFound.vue'
-import store from './store'
 
 Vue.use(VueRouter)
+
 const routes = [
-{ path: '/', name: 'home', component: GeoBlog,
-       meta: { private: true } },
-     { path: '/login', name: 'login', component: Login },
-     { path: '*', component: NotFound },
+  { path: '/', name: 'home', component: GeoBlog, meta: { private: true } },
+  { path: '/login', name: 'login', component: Login },
+  { path: '*', component: NotFound },
 ]
 
-const router = new VueRouter({ routes,
-    mode: 'history',
-    scrollBehavior (to, from, savedPosition) {
+const router = new VueRouter({
+  routes,
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
-     return savedPosition
+      return savedPosition
     }
     if (to.hash) {
-     return { selector: to.hash }
+      return { selector: to.hash }
     }
     return { x: 0, y: 0 }
-    },
+  },
 })
-
 
 router.beforeEach((to, from, next) => {
   console.log('to', to.name)
