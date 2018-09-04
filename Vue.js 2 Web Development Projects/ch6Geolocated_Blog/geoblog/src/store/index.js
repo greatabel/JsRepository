@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  // strict: true,
   state () {
     return {
       user: null,
@@ -11,6 +12,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     user: (state, user) => {
+
         state.user = user
     },
   },

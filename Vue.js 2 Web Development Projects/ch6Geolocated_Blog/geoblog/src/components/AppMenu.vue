@@ -43,8 +43,10 @@ export default {
                     },
                 }
                 this.$store.commit('user', userData)
+                // this.$store.state.user = userData
             } else {
                 this.$store.commit('user', null)
+                // this.$store.user = null
             }
 
         },
