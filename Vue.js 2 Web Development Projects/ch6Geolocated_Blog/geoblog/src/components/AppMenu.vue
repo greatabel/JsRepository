@@ -25,29 +25,31 @@
 export default {
     computed: {
         user () {
-            return this.$store.state.user
+            // return this.$store.state.user
+            return this.$store.getters.user
         },
         userPicture () {
-            return null
+            return this.$store.getters.userPicture
         },
     },
     methods: {
         centerOnUser (){
-
+            this.$store.dispatch('login')
         },
         logout () {
-            if(!this.user) {
-                const userData = {
-                    profile: {
-                        displayName: 'Mr test',
-                    },
-                }
-                this.$store.commit('user', userData)
-                // this.$store.state.user = userData
-            } else {
-                this.$store.commit('user', null)
-                // this.$store.user = null
-            }
+            // if(!this.user) {
+            //     const userData = {
+            //         profile: {
+            //             displayName: 'Mr test',
+            //         },
+            //     }
+            //     this.$store.commit('user', userData)
+            //     // this.$store.state.user = userData
+            // } else {
+            //     this.$store.commit('user', null)
+            //     // this.$store.user = null
+            // }
+            this.$store.dispatch('logout')
 
         },
     }
