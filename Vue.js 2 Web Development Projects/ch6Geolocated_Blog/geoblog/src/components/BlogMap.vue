@@ -11,7 +11,7 @@
       <googlemaps-user-position
         @update:position="setUserPosition"
       />
-      
+
 </googlemaps-map>
      </div>
 </template>
@@ -47,7 +47,9 @@ data () {
  },
  methods: mapActions([
     'setCenter',
-    'setZoom',])
+    'setZoom',
+    'setUserPosition'
+    ])
 
 }
 

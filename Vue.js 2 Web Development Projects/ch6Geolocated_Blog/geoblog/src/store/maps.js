@@ -37,5 +37,13 @@ export default {
         setUserPosition ({ commit }, value) { 
             commit('userPosition', value)
         },
+        async centerOnUser ({ dispatch, getters }) {
+          const position = getters.userPosition
+          if (position) {
+            dispatch('setCenter', position)
+          }
+        },
+
+        
     },
 }
