@@ -22,36 +22,47 @@
 </template>
 
 <script>
-export default {
-    computed: {
-        user () {
-            // return this.$store.state.user
-            return this.$store.getters.user
-        },
-        userPicture () {
-            return this.$store.getters.userPicture
-        },
-    },
-    methods: {
-        centerOnUser (){
-            this.$store.dispatch('login')
-        },
-        logout () {
-            // if(!this.user) {
-            //     const userData = {
-            //         profile: {
-            //             displayName: 'Mr test',
-            //         },
-            //     }
-            //     this.$store.commit('user', userData)
-            //     // this.$store.state.user = userData
-            // } else {
-            //     this.$store.commit('user', null)
-            //     // this.$store.user = null
-            // }
-            this.$store.dispatch('logout')
+import {mapGetters, mapActions } from 'vuex'
 
-        },
-    }
+export default {
+    // computed: {
+    //     user () {
+    //         // return this.$store.state.user
+    //         return this.$store.getters.user
+    //     },
+    //     userPicture () {
+    //         return this.$store.getters.userPicture
+    //     },
+    // },
+    computed: mapGetters([
+        'user',
+        'userPicture',
+    ]),
+    methods: mapActions({
+        centerOnUser: 'login',
+        logout: 'logout',
+    }),
+
+    // methods: {
+    //     centerOnUser (){
+    //         this.$store.dispatch('login')
+    //     },
+    //     logout () {
+    //         // if(!this.user) {
+    //         //     const userData = {
+    //         //         profile: {
+    //         //             displayName: 'Mr test',
+    //         //         },
+    //         //     }
+    //         //     this.$store.commit('user', userData)
+    //         //     // this.$store.state.user = userData
+    //         // } else {
+    //         //     this.$store.commit('user', null)
+    //         //     // this.$store.user = null
+    //         // }
+    //         this.$store.dispatch('logout')
+
+    //     },
+    // }
 }
 </script>
