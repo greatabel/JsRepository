@@ -5,7 +5,15 @@
     :zoom="zoom" 
     :options="mapOptions" 
     @update:center="setCenter" 
-    @update:zoom="setZoom"/> </div>
+    @update:zoom="setZoom">
+
+      <!-- User Position -->
+      <googlemaps-user-position
+        @update:position="setUserPosition"
+      />
+      
+</googlemaps-map>
+     </div>
 </template>
 
 <script>
