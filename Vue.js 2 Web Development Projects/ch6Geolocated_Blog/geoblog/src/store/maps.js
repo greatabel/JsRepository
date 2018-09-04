@@ -14,6 +14,7 @@ export default {
     getters: {
         center: state => state.center,
         zoom: state => state.zoom,
+        userPosition: state => state.userPosition,
     },
     mutations: {
         center (state, value){
@@ -22,6 +23,9 @@ export default {
         zoom (state, value){
             state.zoom = value
         },
+        userPosition (state, value) { 
+            state.userPosition = value
+        },
     },
     actions: {
         setCenter({ commit }, value) {
@@ -29,6 +33,9 @@ export default {
         },
         setZoom({ commmit }, value) {
             commmit('zoom', value)
+        },
+        setUserPosition ({ commit }, value) { 
+            commit('userPosition', value)
         },
     },
 }
