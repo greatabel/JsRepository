@@ -34,8 +34,13 @@ export default {
         setZoom({ commmit }, value) {
             commmit('zoom', value)
         },
-        setUserPosition ({ commit }, value) { 
-            commit('userPosition', value)
+        setUserPosition ({ dispatch, commit, getters }, value) {
+          const position = getters.userPosition
+          commit('userPosition', value)
+          // Initial center on user position
+          if (!position) {
+            dispatch('centerOnUser')
+          }
         },
         async centerOnUser ({ dispatch, getters }) {
           const position = getters.userPosition
