@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { $fetch } from '../plugins/fetch'
+import maps from './maps'
+
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  modules: {
+    maps
+  },
   // strict: true,
   state () {
     return {
