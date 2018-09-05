@@ -54,7 +54,7 @@ export default {
   actions: {
     async fetchStoreItemDetails ({ commit }, { id }) {
       commit('itemId', id)
-      commit('error', null);
+      commit('error', null)
       commit('commentsLoading', true)
       commit('detailsLoading', true)
 
