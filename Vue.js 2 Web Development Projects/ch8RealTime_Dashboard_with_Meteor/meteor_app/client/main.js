@@ -5,6 +5,8 @@ import router from './router'
 
 import VueMeteorTracker from 'vue-meteor-tracker'
 import 'vue-progress-path/dist/vue-progress-path.css'
+import VueProgress from 'vue-progress-path'
+
 
 Vue.use(VueMeteorTracker)
 
