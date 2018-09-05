@@ -1,4 +1,4 @@
-# e-shop
+# chapter7-part1
 
 > A Vue.js project
 

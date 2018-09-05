@@ -31,6 +31,11 @@ export default {
     StoreItem,
   },
 
+  // SSR
+  asyncData ({ store }) {
+    return store.dispatch('items/fetchItems')
+  },
+
   computed: {
     ...mapGetters('items', [
       'items',
@@ -45,7 +50,9 @@ export default {
   },
 
   mounted () {
-    this.fetchItems()
+    if (!this.items.length) {
+      this.fetchItems()
+    }
   },
 }
 </script>
