@@ -17,6 +17,17 @@
     </section>
 
 
+    <section class="list">
+      <div
+        v-for="item of measures"
+        :key="item._id"
+      >
+        <div class="date">{{ item.date.toLocaleString() }}</div>
+        <div class="error">{{ item.error ? 'Error' : '' }}</div>
+        <div class="value">{{ item.value }}</div>
+      </div>
+    </section>
+
   </div>
 </template>
 
