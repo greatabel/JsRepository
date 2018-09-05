@@ -15,3 +15,7 @@ The book is (https://book.douban.com/subject/26962962)
 04The Majesty of Vue.js 2
 ===============================
 The book is (https://book.douban.com/subject/27155609)
+
+05Vue.js 2 Web Development Projects
+===============================
+The book is (https://book.douban.com/subject/30175960)
