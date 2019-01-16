@@ -22,11 +22,37 @@
 </div>
 <script type="text/javascript">
 
+var APP_LOG_LIFECYCLE_EVENTS = true
+
 var webstore = new Vue({
   el: '#app', // <=== Don’t forget this comma!
   data: { //#C
     sitename: 'Vue.js 宠物仓库'  //#D
-  }   //#C
+  },   //#C
+  
+  beforeCreate: function () { //#B
+    if (APP_LOG_LIFECYCLE_EVENTS) { //#B
+      console.log("beforeCreate");  //#B
+    } //#B
+  },  //#B
+  created: function () {  //#C
+    if (APP_LOG_LIFECYCLE_EVENTS) { //#C
+      console.log("created"); //#C
+    } //#C
+  },  //#C
+  beforeMount: function () {  //#D
+    if (APP_LOG_LIFECYCLE_EVENTS) { //#D
+      console.log(" beforeMount");  //#D
+    } //#D
+  },  //#D
+  mounted: function () {  //#E
+    if (APP_LOG_LIFECYCLE_EVENTS) { //#E
+      console.log(" mounted");  //#E
+    }   //#E
+  },  //#E
+
+
+
 });
 
 </script>
