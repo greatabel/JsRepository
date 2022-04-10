@@ -98,6 +98,9 @@ if __name__ == "__main__":
         # if is_warning == 1:
         plt.clf()
         plt.plot(new_dt)
+
+        plt.xlabel('time_span')
+        plt.ylabel('monitor_value')
         plt.savefig("{}.png".format(id1 + "_" + type1))
 
         slope = float("%.3g" % slope)

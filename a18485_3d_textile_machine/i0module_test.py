@@ -109,8 +109,12 @@ if __name__ == "__main__":
 
     plt.figure(1)
     plt.plot(new_dt)
+    plt.xlabel('time_span')
+    plt.ylabel('monitor_value')
     plt.savefig("1.png")
     plt.figure(2)
     plt.plot(A)
+    plt.xlabel('time_span')
+    plt.ylabel('monitor_value')
     plt.savefig("2.png")
     # plt.show()
