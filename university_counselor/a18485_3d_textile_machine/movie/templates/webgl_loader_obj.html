@@ -6,9 +6,32 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="/static/main.css">
 
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<style>
+	
+	.ui-dialog
+	{
+		top: 50px !important;
+		left: 50px !important;
+
+	}
+</style>
 	</head>
 
 	<body>
+
+		<div id="dialog" title="数值监测区">
+  <p>
+  	传感器传回实时读数为:
+  	 <span id='myspan' style="color:red">0</span>
+  </p>
+</div>
+
+
 		<div id="info">
 		<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - OBJLoader test
 		</div>
@@ -26,6 +49,34 @@
 		</script>
 
 		<script type="module">
+
+// https://jqueryui.com/dialog/
+// https://stackoverflow.com/questions/744554/jquery-ui-dialog-positioning
+$( function() {
+    $( "#dialog" ).dialog();
+
+function myrefresh() { 
+	var span = document.getElementById("myspan");
+	span.textContent = Math.floor(Math.random() * 100);
+	// alert('myrefresh');
+}
+
+// setTimeout('myrefresh',1000);
+
+function f() {
+  console.log(2);
+}
+
+// setTimeout(f, 1000);
+
+setInterval(myrefresh,1000);//1秒1c
+
+  });
+
+
+
+// end of dialog
+
 
 			import * as THREE from 'three';
 
