@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">  
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->  
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>  
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->  
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> 
+  <title>gobang-game</title>
+</head>
+<body style="height: 100%; margin: 0; background: yellow">
+<style>
+.message {-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0;padding: 0;color: rgba(0,0,0,.85);font-size: 14px;font-variant: tabular-nums;line-height: 1.5715;list-style: none;-webkit-font-feature-settings: "tnum";font-feature-settings: "tnum";position: fixed;top: 8px;left: 0;z-index: 1010;width: 100%;pointer-events: none;text-align: center;}
+.message > div {padding: 6px;}
+.message > div > div {display: inline-block;padding: 12px 18px;background: #fff;border-radius: 2px;-webkit-box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);pointer-events: all;}
+</style>
+<div id="message" class="message"></div>
+<svg id="svg" viewBox="-76,-76,152,152" style="height: 100%; width: 100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="black">
+      <stop offset="0%" style="stop-color:#808080" />
+      <stop offset="100%" style="stop-color:#111" />
+    </radialGradient>
+    <radialGradient id="white">
+      <stop offset="0%" style="stop-color:#fff" />
+      <stop offset="100%" style="stop-color:#ddd" />
+    </radialGradient>
+    <rect id="mark" x="-1" y="-1" width="2" height="2"/>
+    <circle id="piece" r="4.2"/>
+  </defs>
+  <path stroke="brown" stroke-width="0.5" fill="none" d="m-70,-70h140v140h-140zm10,0v140m10,0v-140m10,0v140m10,0v-140m10,0v140m10,0v-140m10,0v140m10,0v-140m10,0v140m10,0v-140m10,0v140m10,0v-140m10,0v140m10,-10h-140m0,-10h140m0,-10h-140m0,-10h140m0,-10h-140m0,-10h140m0,-10h-140m0,-10h140m0,-10h-140m0,-10h140m0,-10h-140m0,-10h140m0,-10h-140"/>
+  <use xlink:href="#mark"/>
+  <use xlink:href="#mark" x="40" y="40"/>
+  <use xlink:href="#mark" x="40" y="-40"/>
+  <use xlink:href="#mark" x="-40" y="40"/>
+  <use xlink:href="#mark" x="-40" y="-40"/>
+</svg>
+<div style="position: fixed; top: 0; left: 0;">
+  <button id="offline" type="button" class="btn btn-warning"  onclick="game.online ? setOffline() : changeRoom(window.prompt('Please enter the room number to start the online battle. The first person to enter the room is black, the second person to enter the room is white!'))">转为离线模式</button>
+</div>
+<script>
+  const svg = document.getElementById('svg');
+  const pieces = [];
+  for (let x = 0; x < 15; x++) {
+    pieces.push([]);
+    for (let y = 0; y < 15; y++) {
+      const _x = x;
+      const _y = y;
+      const piece = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      pieces[x].push(piece);
+      piece.setAttribute('x', (x * 10 - 70).toString());
+      piece.setAttribute('y', (y * 10 - 70).toString());
+      piece.setAttribute('fill-opacity', '0');
+      piece.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#piece');
+      piece.addEventListener('mouseenter', () => {
+        if (game.waiting || piece.getAttribute('fill-opacity') === '1') return;
+        piece.setAttribute('fill', game.black ? 'url(#black)' : 'url(#white)');
+        piece.setAttribute('fill-opacity', '0.2');
+      });
+      piece.addEventListener('mouseleave', () => {
+        if (game.waiting || piece.getAttribute('fill-opacity') === '1') return;
+        piece.setAttribute('fill-opacity', '0');
+      });
+      piece.addEventListener('click', () => {
+        if (game.waiting || piece.getAttribute('fill-opacity') === '1') return;
+        piece.setAttribute('fill', game.black ? 'url(#black)' : 'url(#white)');
+        piece.setAttribute('fill-opacity', '1');
+        dropPiece(_x, _y);
+        if (game.online) {
+          game.waiting = true;
+          ws.send(JSON.stringify({type: 'DropPiece', x: _x, y: _y}));
+        } else {
+          game.black = !game.black;
+        }
+      });
+      svg.appendChild(piece);
+    }
+  }
+  const mark = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+  mark.setAttribute('fill', 'blue');
+  mark.setAttribute('width', '2');
+  mark.setAttribute('height', '2');
+  mark.setAttribute('opacity', '0');
+  svg.appendChild(mark);
+  const dropPiece = (x, y) => {
+    mark.setAttribute('x', (x * 10 - 71).toString());
+    mark.setAttribute('y', (y * 10 - 71).toString());
+    mark.setAttribute('opacity', '0.7');
+    game.winner = checkWinner(x, y);
+    if (game.winner) {
+      game.waiting = true;
+      if (game.visiting || !game.online) {
+        Message(`Game Over!，${game.winner === 'black' ? 'black' : 'white'} won!`);
+      } else {
+        if ((game.winner === 'black' && game.black) || (game.winner === 'white' && !game.black)) {
+          Message('You win!');
+        } else {
+          Message('You failed！');
+        }
+      }
+    }
+  };
+  const checkWinner = (x, y) => {
+    const color = pieces[x][y].getAttribute('fill');
+    const potentialWinner = color === 'url(#black)' ? 'black' : 'white';
+    const list = [4, 3, 2, 1];
+    if (x >= 4) {
+      if (!list.some(i => pieces[x - i][y].getAttribute('fill-opacity') !== '1' || pieces[x - i][y].getAttribute('fill') !== color)) {
+        return potentialWinner;
+      }
+      if (y >= 4 && !list.some(i => pieces[x - i][y - i].getAttribute('fill-opacity') !== '1' || pieces[x - i][y - i].getAttribute('fill') !== color)) {
+        return potentialWinner;
+      }
+      if (y <= 10 && !list.some(i => pieces[x - i][y + i].getAttribute('fill-opacity') !== '1' || pieces[x - i][y + i].getAttribute('fill') !== color)) {
+        return potentialWinner;
+      }
+    }
+    if (x <= 10) {
+      if (!list.some(i => pieces[x + i][y].getAttribute('fill-opacity') !== '1' || pieces[x + i][y].getAttribute('fill') !== color)) {
+        return potentialWinner;
+      }
+      if (y >= 4 && !list.some(i => pieces[x + i][y - i].getAttribute('fill-opacity') !== '1' || pieces[x + i][y - i].getAttribute('fill') !== color)) {
+        return potentialWinner;
+      }
+      if (y <= 10 && !list.some(i => pieces[x + i][y + i].getAttribute('fill-opacity') !== '1' || pieces[x + i][y + i].getAttribute('fill') !== color)) {
+        return potentialWinner;
+      }
+    }
+    if (y >= 4) {
+      if (!list.some(i => pieces[x][y - i].getAttribute('fill-opacity') !== '1' || pieces[x][y - i].getAttribute('fill') !== color)) {
+         return potentialWinner;
+      }
+    }
+    if (y <= 10) {
+       if (!list.some(i => pieces[x][y + i].getAttribute('fill-opacity') !== '1' || pieces[x][y + i].getAttribute('fill') !== color)) {
+         return potentialWinner;
+      }
+    }
+    return null;
+  };
+  const messageDiv = document.getElementById('message');
+  const Message = (content) => {
+    const div = document.createElement('div');
+    div.innerHTML = `<div>${content}</div>`;
+    messageDiv.appendChild(div);
+    setTimeout(() => messageDiv.removeChild(div), 3000);
+  };
+  const user = {};
+  const initializeUser = () => {
+    const localUserId = window.localStorage.getItem('user.id');
+    if (!localUserId) {
+      const newUserId = Math.random().toString().substr(2,8);
+      window.localStorage.setItem('user.id', newUserId);
+      user.id = newUserId;
+    } else {
+      user.id = localUserId;
+    }
+    user.name = window.localStorage.getItem('user.name') || '';
+  };
+  initializeUser();
+  const game = {};
+  let ws = null;
+  const initializeGame = (room, preserve = false) => {
+    game.room = room;
+    game.online = game.room !== '';
+    if (game.online || !preserve) {
+      for (const row of pieces) {
+          for (const piece of row) {
+            piece.setAttribute('fill-opacity', '0');
+          }
+        }
+    }
+    if (!preserve) {
+      mark.setAttribute('opacity', '0');
+    }
+    if (game.online) {
+      document.getElementById('offline').innerText = 'change to offline mode';
+      game.black = true;
+      game.waiting = true;
+      game.winner = null;
+      ws = new WebSocket(`ws://${window.location.host}`);
+      ws.onopen = () => {
+        ws.send(JSON.stringify({type: 'EnterRoom', id: user.id, name: user.name, room: game.room}));
+      };
+      ws.onerror = (_ => {
+        console.error('error');
+      });
+      ws.onclose = (event => {
+        if (event.code !== 1000) {
+          if (event.code === 4000) {
+            alert('change to Standalone mode');
+          } else {
+            alert('lost,Standalone mode');
+          }
+          setOffline();
+        }
+      });
+      ws.onmessage = (ev => {
+        const data = JSON.parse(ev.data);
+        const { type } = data;
+        if (type === 'InitializeRoomState') {
+          game.black = data.black;
+          game.visiting = data.visiting;
+          game.ready = data.ready;
+          const droppedPieces = data.pieces;
+          let black = true;
+          for (const [x, y] of droppedPieces) {
+            pieces[x][y].setAttribute('fill', black ? 'url(#black)' : 'url(#white)');
+            pieces[x][y].setAttribute('fill-opacity', '1');
+            black = !black;
+          }
+          if (droppedPieces.length) {
+            dropPiece(...droppedPieces[droppedPieces.length - 1]);
+          }
+          if (!game.winner) {
+            if (!game.visiting && data.ready) {
+              if (game.black === black) {
+                if (droppedPieces.length) {
+                  if (!game.winner) Message('time to go');
+                } else {
+                  Message('You are playing black。');
+                }
+                game.waiting = false;
+              } else {
+                Message(`wait for another player`);
+              }
+            } else if (!droppedPieces.length && !data.ready) {
+              Message(`Welcome。`);
+            }
+          }
+        } else if (type === 'AddPlayer') {
+          if (!game.visiting && data.ready && game.black === true) {
+            game.ready = true;
+            Message('You will play black');
+            game.waiting = false;
+          }
+        } else if (type === 'DropPiece') {
+          const { x, y } = data;
+          const piece = pieces[x][y];
+          piece.setAttribute('fill', game.black ? 'url(#white)' : 'url(#black)');
+          piece.setAttribute('fill-opacity', '1');
+          dropPiece(x, y);
+          if (game.visiting) game.black = !game.black;
+          if (!game.visiting && !game.winner) {
+            game.waiting = false;
+            Message('Please start');
+          }
+        }
+      });
+    } else {
+      document.getElementById('offline').innerText = 'Let us start an online battle';
+      if (!preserve) {
+        game.black = true;
+        game.waiting = false;
+        game.winner = null;
+      } else {
+        if (!game.winner) {
+          game.black = !game.ready || (game.black ? !game.waiting : game.waiting);
+          game.waiting = false;
+        }
+      }
+      if (ws) {
+        ws.close();
+        ws = null;
+      }
+    }
+  };
+  initializeGame(window.location.pathname.substr(1));
+  window.onpopstate = (event) => {
+    initializeGame(event.target.location.pathname.substr(1));
+  };
+  const setOffline = () => {
+    window.history.pushState({preserve: true}, null, '/');
+    initializeGame('', true);
+    Message('chagne to offline。')
+  };
+  const changeRoom = (room) => {
+    room = room.replace(/ /g, '');
+    if (!room) {
+      alert('Please enter the room number, spaces will be ignored, the room number cannot be empty');
+    } else {
+      window.history.pushState(null, null, `/${room}`);
+      initializeGame(room);
+    }
+  };
+</script>
+</body>
+</html>

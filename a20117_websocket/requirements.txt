@@ -1,0 +1,4 @@
+pytest==7.1.2
+pyopenssl>=16.0.0
+hyperlink>=21.0.0
+daphne==3.0.2
