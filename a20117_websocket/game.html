@@ -10,6 +10,12 @@
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>  
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->  
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> 
+
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
   <title>gobang-game</title>
 </head>
 <body style="height: 100%; margin: 0; background: yellow">
@@ -42,7 +48,54 @@
 <div style="position: fixed; top: 0; left: 0;">
   <button id="offline" type="button" class="btn btn-warning"  onclick="game.online ? setOffline() : changeRoom(window.prompt('Please enter the room number to start the online battle. The first person to enter the room is black, the second person to enter the room is white!'))">转为离线模式</button>
 </div>
+
+<div style="position: fixed; top: 0; right: 5px;">
+  <span id="userDiv"></span>
+
+</div>
+
+<!-- <div style="position: fixed; top: 0; right: 0;">
+  <div id="register"><p><a href="register.html">Register</a></p></div>
+
+</div>
+
+<div style="position: fixed; top: 0; right: 50px;">
+
+  <div id="login"><p style="margin-right:50px;"><a href="login.html">Login</a></p></div>
+</div> -->
+
+<div id="dialog" title="Game Over">
+  <p>The game is finished!</p>
+</div>
+
 <script>
+
+  var isChromium = window.chrome;
+var winNav = window.navigator;
+var vendorName = winNav.vendor;
+var isOpera = typeof window.opr !== "undefined";
+var isIEedge = winNav.userAgent.indexOf("Edg") > -1;
+var isIOSChrome = winNav.userAgent.match("CriOS");
+
+if (isIOSChrome) {
+   // is Google Chrome on IOS
+} else if(
+  isChromium !== null &&
+  typeof isChromium !== "undefined" &&
+  vendorName === "Google Inc." &&
+  isOpera === false &&
+  isIEedge === false
+) {
+   // is Google Chrome
+   $('#userDiv').text("test0");
+
+} else { 
+   // not Google Chrome 
+   $('#userDiv').text("test1");
+}
+
+// -----
+
   const svg = document.getElementById('svg');
   const pieces = [];
   for (let x = 0; x < 15; x++) {
@@ -95,6 +148,9 @@
       game.waiting = true;
       if (game.visiting || !game.online) {
         Message(`Game Over!，${game.winner === 'black' ? 'black' : 'white'} won!`);
+
+        $( "#dialog" ).dialog();
+        
       } else {
         if ((game.winner === 'black' && game.black) || (game.winner === 'white' && !game.black)) {
           Message('You win!');
@@ -287,6 +343,9 @@
       initializeGame(room);
     }
   };
+
+
+
 </script>
 </body>
 </html>
