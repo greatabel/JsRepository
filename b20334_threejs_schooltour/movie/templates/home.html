@@ -189,9 +189,9 @@ div[class*="release_year"] {
           {% for r in listing %}
       <div class="row">
         <div class="col-md-8">
-        <span>{{ r.title|safe }}</span> 
+        <span>{{ r.name|safe }}</span> 
         <br/>
-        <a href="/blogs/{{r.id}}">{{ r.text[:500]|safe  }} ... </a>
+        <a href="/blogs/{{r.id}}">{{ r.line[:500]|safe  }}  </a>
 
             <div name="title"> </div>  
             <br/>

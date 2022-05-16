@@ -63,49 +63,40 @@ class User(db.Model):
 class Blog(db.Model):
     """
     ppt数据模型
+    example:
+            "name": "弘远楼B区",        
+            "line": "共五层，39间教室，39间在用",      
+            "f1": "教室（共7间教室）",  
+            "f2": "教学办公区（共9间教室）",   
+            "f3": "教学办公区（共9间教室）",   
+            "f4": "教学办公区（共8间教室）",   
+            "f5": "教室（共6间教室）",  
     """
 
     # 主键ID
     id = db.Column(db.Integer, primary_key=True)
     # ppt标题
-    title = db.Column(db.String(100))
-    # ppt正文
-    text = db.Column(db.Text)
+    name = db.Column(db.String(100))
+    line = db.Column(db.String(100))
+    f1 = db.Column(db.String(100))
+    f2 = db.Column(db.String(100))
+    f3 = db.Column(db.String(100))
+    f4 = db.Column(db.String(100))
+    f5 = db.Column(db.String(100))
 
-    def __init__(self, title, text):
+
+    def __init__(self, name, line, f1, f2, f3, f4, f5):
         """
         初始化方法
         """
-        self.title = title
-        self.text = text
+        self.name = name
+        self.line = line
+        self.f1 = f1
+        self.f2 = f2
+        self.f3 = f3
+        self.f4 = f4
+        self.f5 = f5
 
-
-# class TeacherWork(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String(80), unique=True)
-#     detail = db.Column(db.String(500))
-#     answer = db.Column(db.String(5000))
-#     course_id = db.Column(db.Integer)
-
-#     def __init__(self, title, detail, answer, course_id):
-#         self.title = title
-#         self.detail = detail
-#         self.answer = answer
-#         self.course_id = course_id
-
-
-# class StudentWork(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     userid = db.Column(db.Integer)
-#     answer = db.Column(db.String(5000))
-#     score = db.Column(db.DECIMAL(10, 2))
-#     course_id = db.Column(db.Integer)
-
-#     def __init__(self, userid, answer, score, course_id):
-#         self.userid = userid
-#         self.answer = answer
-#         self.score = score
-#         self.course_id = course_id
 
 
 ### -------------start of home
@@ -166,18 +157,24 @@ def home(pagenum=1):
 @app.route("/blogs/create", methods=["GET", "POST"])
 def create_blog():
     """
-    创建ppt文章
+    创建大楼信息文章
     """
     if request.method == "GET":
         # 如果是GET请求，则渲染创建页面
         return rt("create_blog.html")
     else:
         # 从表单请求体中获取请求数据
-        title = request.form["title"]
-        text = request.form["text"]
+        name = request.form["name"]
+        line = request.form["line"]
+        f1 = request.form["f1"]
+        f2 = request.form["f2"]
+        f3 = request.form["f3"]
+        f4 = request.form["f4"]
+        f5 = request.form["f5"]
 
         # 创建一个ppt对象
-        blog = Blog(title=title, text=text)
+        blog = Blog(name=name, line=line,f1=f1, f2=f2,
+                f3=f3,f4=f4,f5=f5)
         db.session.add(blog)
         # 必须提交才能生效
         db.session.commit()
@@ -188,7 +185,7 @@ def create_blog():
 @app.route("/blogs", methods=["GET"])
 def list_notes():
     """
-    查询ppt列表
+    查询大楼信息列表
     """
     blogs = Blog.query.all()
     # 渲染ppt列表页面目标文件，传入blogs参数
@@ -198,7 +195,7 @@ def list_notes():
 @app.route("/blogs/update/<id>", methods=["GET", "POST"])
 def update_note(id):
     """
-    更新ppt
+    更新大楼信息
     """
     if request.method == "GET":
         # 根据ID查询ppt详情
@@ -221,7 +218,7 @@ def update_note(id):
 @app.route("/blogs/<id>", methods=["GET", "DELETE"])
 def query_note(id):
     """
-    查询ppt详情、删除ppt
+    查询大楼信息详情、删除ppt
     """
     if request.method == "GET":
         # 到数据库查询ppt详情
@@ -338,15 +335,33 @@ user_pass = {}
 #     i0bash_caller.open_client("")
 #     return {}, 200
 
-
+# {
+#             "name": "汇文楼",      
+#             "line": "共五层，106间教室，其中102间在用",      
+#             "f1": "后勤办公区（共16间教室）",  
+#             "f2": "实验室（共20间教室）",    
+#             "f3": "教学办公区（共24间教室）",  
+#             "f4": "教学办公区（共24间教室）",  
+#             "f5": "办公区（共21间教室）",    
+#         }
 @app.route("/statistics", methods=["GET"])
 def relationship():
     # static/data/test_data.json
-    filename = os.path.join(app.static_folder, "data.json")
-    with open(filename) as test_file:
-        d = json.load(test_file)
-    print(type(d), "#" * 10, d)
-    return jsonify(d)
+    blogs = Blog.query.all()
+    mylist = []
+    for blog in blogs:
+        item = {
+            "name": blog.name,      
+            "line": blog.line,      
+            "f1": blog.f1,  
+            "f2": blog.f2,    
+            "f3": blog.f3,  
+            "f4": blog.f4,  
+            "f5": blog.f5,
+        }
+        mylist.append(item)
+    print('mylist=>', mylist)
+    return jsonify(mylist)
 
 
 # @app.route("/index_a/")

@@ -1,9 +1,6 @@
-# numpy
-# matplotlib
 click
 coverage
 Flask
-html-similarity
 itsdangerous
 pandas
 pytest
@@ -14,8 +11,3 @@ flask-cors
 Flask-Login
 flask_sqlalchemy
 requests
-
-scrapy==2.6.1
-
-#termcolor
-#pdfreader

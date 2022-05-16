@@ -7,7 +7,7 @@
 <hr/>
 {% if blogs %}
     {% for blog in blogs%}
-        <h3><a href="/blogs/{{blog.id}}">{{blog.title}}</a></h3>
+        <h3><a href="/blogs/{{blog.id}}">{{blog.name}} &nbsp;&nbsp;| {{ blog.line}}</a></h3>
     {% endfor %}
 {% else %}
     <p>no doc, let's create doc~</p>
