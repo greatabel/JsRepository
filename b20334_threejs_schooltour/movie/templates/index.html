@@ -19,7 +19,7 @@
 	.frame{
          position: absolute;
         /*right: 20px;*/
-        background: url("textures/bag.png");
+        background: url("static/textures/bag.png");
         background-size: 100% 100%;
         font-size: 14px;
         color: #FFFFFF;
@@ -109,14 +109,14 @@
 <body>
 
 <!--切换白天黑夜-->
-<a href="javascript:call(0)"><div id="one" style="position: absolute; width:147px; height:49px;top:20px;left: 30px; background-image: url(textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">晴天</div></a>
+<a href="javascript:call(0)"><div id="one" style="position: absolute; width:147px; height:49px;top:20px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">晴天</div></a>
 
-<a href="javascript:call(1)"><div id="one" style="position: absolute; width:147px; height:49px;top:70px;left: 30px; background-image: url(textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">夜晚</div></a>
+<a href="javascript:call(1)"><div id="one" style="position: absolute; width:147px; height:49px;top:70px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">夜晚</div></a>
 
 <!--视角漫游按钮-->
-<a href="javascript:call1(0)"><div id="one" style="position: absolute; width:147px; height:49px;top:150px;left: 30px; background-image: url(textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">上帝视角</div></a>
+<a href="javascript:call1(0)"><div id="one" style="position: absolute; width:147px; height:49px;top:150px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">上帝视角</div></a>
 
-<a href="javascript:call1(1)"><div id="one" style="position: absolute; width:147px; height:49px;top:200px;left: 30px; background-image: url(textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">漫游行走</div></a>
+<a href="javascript:call1(1)"><div id="one" style="position: absolute; width:147px; height:49px;top:200px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">漫游行走</div></a>
 
 
 <!--点击建筑弹出的弹窗样式div-->
@@ -164,13 +164,13 @@
 
 	
 <!--引用的threejs插件-->
-<script src="js/jquery-3.3.1.min.js"></script>                      
-<script src="js/three.min.js"></script>
-<script src="js/FirstPersonControls5.js"></script>
-<script src="js/OrbitControls.js"></script>
-<script src="js/RGBELoader.js"></script>
-<script src="js/DRACOLoader.js"></script>
-<script src="js/GLTFLoader.js"></script>
+<script src="/static/js/jquery-3.3.1.min.js"></script>                      
+<script src="/static/js/three.min.js"></script>
+<script src="/static/js/FirstPersonControls5.js"></script>
+<script src="/static/js/OrbitControls.js"></script>
+<script src="/static/js/RGBELoader.js"></script>
+<script src="/static/js/DRACOLoader.js"></script>
+<script src="/static/js/GLTFLoader.js"></script>
 
 
 
@@ -394,7 +394,7 @@ var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.4 );
 
 //模型反射贴图
 var	textureCube = new THREE.RGBELoader().setDataType( THREE.UnsignedByteType );
-    textureCube.load( 'textures/2.hdr', function ( texture ) {	
+    textureCube.load( 'static/textures/2.hdr', function ( texture ) {	
 		var pmremGenerator = new THREE.PMREMGenerator( renderer );
 			pmremGenerator.compileEquirectangularShader();
 		var cubeRenderTarget = pmremGenerator.fromEquirectangular( texture );
@@ -413,8 +413,8 @@ function onWindowResize( event ) {
 
 
 //白天夜晚环境球
-var	textureCube1 = new THREE.TextureLoader().load( 'textures/pattern1.jpg' );	//白天贴图
-var	textureCube2 = new THREE.TextureLoader().load( 'textures/tiankong.jpg' );	//夜晚贴图
+var	textureCube1 = new THREE.TextureLoader().load( 'static/textures/pattern1.jpg' );	//白天贴图
+var	textureCube2 = new THREE.TextureLoader().load( 'static/textures/tiankong.jpg' );	//夜晚贴图
 var skyGeometry = new THREE.SphereBufferGeometry( 5000, 60, 60 );		
 var skyMaterial = new THREE.MeshBasicMaterial({map:textureCube1,side: THREE.BackSide,color:0xffffff });
 var skyMesh = new THREE.Mesh( skyGeometry, skyMaterial );
@@ -578,9 +578,9 @@ var poster11 = [];
 var GLTFLoader = new THREE.GLTFLoader();
 var thismodel,mains = [];
 var dracoLoader = new THREE.DRACOLoader();
-	dracoLoader.setDecoderPath( 'js/gltf/' );
+	dracoLoader.setDecoderPath( '/static/js/gltf/' );
     GLTFLoader.setDRACOLoader( dracoLoader );
-	GLTFLoader.load( "models/xiaoyuan.gltf", function ( gltf ) {
+	GLTFLoader.load( "/static/models/xiaoyuan.gltf", function ( gltf ) {
         thismodel = gltf.scene;                  
         thismodel.scale.set(1,1,1);			//校园模型大小	
         thismodel.position.set(0,0,0);		//校园模型位置 xyz	

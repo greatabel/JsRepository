@@ -204,11 +204,16 @@ def update_note(id):
         return rt("update_blog.html", blog=blog)
     else:
         # 获取请求的ppt标题和正文
-        title = request.form["title"]
-        text = request.form["text"]
-
+        name = request.form["name"]
+        line = request.form["line"]
+        f1 = request.form["f1"]
+        f2 = request.form["f2"]
+        f3 = request.form["f3"]
+        f4 = request.form["f4"]
+        f5 = request.form["f5"]
         # 更新ppt
-        blog = Blog.query.filter_by(id=id).update({"title": title, "text": text})
+        blog = Blog.query.filter_by(id=id).update({"name": name, "line": line,
+            "f1":f1, "f2":f2, "f3": f3, "f4":f4, "f5":f5})
         # 提交才能生效
         db.session.commit()
         # 修改完成之后重定向到ppt详情页面
