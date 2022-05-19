@@ -309,6 +309,7 @@ const api_url =
       "http://localhost:8000/statistics";
   
 // Defining async function
+// async function getapi(url) {
 async function getapi(url) {
     
     // Storing response
@@ -322,6 +323,12 @@ async function getapi(url) {
     }
 
 
+
+
+
+
+
+}
 
 //弹窗关闭
 $(".close").click(function () {
@@ -692,6 +699,7 @@ function onDocumentMouseMove(event) {
 
 //三维场景循环渲染
 render();  
+
 function render() {
 	requestAnimationFrame( render );
     pointLight.position.copy ( camera.position );       
@@ -708,10 +716,6 @@ function render() {
 
 	renderer.clear();	
     renderer.render( scene, camera );
-}
-
-
-
 }
 // Calling that async function
 getapi(api_url);
