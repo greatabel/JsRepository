@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">	
+
+<title></title>
+
+<style>
+	canvas { width: 100%; height: 100% }
+
+	body{ 
+		border: none; 
+		overflow: hidden; 
+		margin: 0px; 
+		background-size: cover;
+		background-size: 100% 100%;
+	}
+	.frame{
+         position: absolute;
+        /*right: 20px;*/
+        background: url("static/textures/bag.png");
+        background-size: 100% 100%;
+        font-size: 14px;
+        color: #FFFFFF;
+    }
+    .frame1{
+         left: 1%;
+        bottom: 2%;
+       display: none;
+    }
+    .frame2{
+          left: 1%;
+        bottom: 40%;
+      	display: none;
+    }
+    .close{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: #3bdbf5;
+        cursor: pointer;
+    }  
+	table {
+	    border-collapse: collapse;
+	}
+	
+	table, td, th {
+	    border: 1px solid black;
+	}
+	th
+	{
+		background-color:green;
+		color:white;
+		
+	}  
+	tr{
+		height: 80px;
+		font-size: 16px;
+	}
+	table
+	{
+		width:500px;
+		background-color: #007e91;
+		text-align: center;
+	}
+	#class1{
+		width: 100%;
+		height:100px;
+		background-color: #007e91;
+		text-align: center;
+		margin: auto 0;
+		line-height: 100px;
+		font-size: 32px;
+	}	
+	#class2{
+		width: 100%;
+		height:60px;
+		background-color: #bfdf1f;
+		text-align: center;
+		margin: auto 0;
+		line-height: 60px;
+		font-size: 16px;
+		color: #000000;
+	}
+	#class3{
+		width: 100%;
+		height:100px;
+		background-color: #007e91;
+		text-align: center;
+		margin: auto 0;
+		line-height: 100px;
+		font-size: 32px;
+	}	
+	#class4{
+		width: 100%;
+		height:60px;
+		background-color: #bfdf1f;
+		text-align: center;
+		margin: auto 0;
+		line-height: 60px;
+		font-size: 16px;
+		color: #000000;
+	}	  		  
+</style>
+
+</head>
+
+<body>
+
+<!--切换白天黑夜-->
+<a href="javascript:call(0)"><div id="one" style="position: absolute; width:147px; height:49px;top:20px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">晴天</div></a>
+
+<a href="javascript:call(1)"><div id="one" style="position: absolute; width:147px; height:49px;top:70px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">夜晚</div></a>
+
+<!--视角漫游按钮-->
+<a href="javascript:call1(0)"><div id="one" style="position: absolute; width:147px; height:49px;top:150px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">上帝视角</div></a>
+
+<a href="javascript:call1(1)"><div id="one" style="position: absolute; width:147px; height:49px;top:200px;left: 30px; background-image: url(static/textures/button_03.png); font-family: '微软雅黑';font-size: 16px; text-align: center;color: #ffffff; line-height: 49px;letter-spacing:5px;display: block;">漫游行走</div></a>
+
+
+<!--点击建筑弹出的弹窗样式div-->
+<div class="frame frame1">
+    <div class="close">关闭</div>
+	<table>
+		<div id="class1"></div>
+		<div id="class2"></div>
+		  <tr>
+		    <td style="width: 120px;font-weight: bold;">1F</td>
+		    <td id="1F"></td>
+		  </tr>
+		  <tr>
+		    <td style="width: 120px;font-weight: bold;">2F</td>
+		    <td id="2F"></td>
+		  </tr>
+		  <tr>
+		    <td style="width: 120px;font-weight: bold;">3F</td>
+		    <td id="3F"></td>
+		  </tr>
+		  <tr>
+		    <td style="width: 120px;font-weight: bold;">4F</td>
+		    <td id="4F"></td>
+		  </tr>
+		  <tr>
+		    <td style="width: 120px;font-weight: bold;">5F</td>
+		    <td id="5F"></td>
+		  </tr>
+	</table>
+</div>
+
+
+<div class="frame frame2">
+    <div class="close">关闭</div>
+	<table>
+		<div id="class3"></div>
+		<div id="class4"></div>
+	    <tr>
+	    	<td style="width: 120px;font-weight: bold;">宿舍状态</td>
+	    	<td id="sushe"></td>
+	    </tr>
+	</table>
+</div>
+
+
+	
+<!--引用的threejs插件-->
+<script src="/static/js/jquery-3.3.1.min.js"></script>                      
+<script src="/static/js/three.min.js"></script>
+<script src="/static/js/FirstPersonControls5.js"></script>
+<script src="/static/js/OrbitControls.js"></script>
+<script src="/static/js/RGBELoader.js"></script>
+<script src="/static/js/DRACOLoader.js"></script>
+<script src="/static/js/GLTFLoader.js"></script>
+
+
+
+<script>
+	//模拟的信息框api接口数据 json格式
+
+// d3.json("http://localhost:5000/statistics",function(error,root){
+
+// })
+
+	// var data1 = [
+	// 	{
+	// 		"name":	"汇文楼",		
+	// 		"line":	"共五层，106间教室，其中102间在用",		
+	// 		"f1": "后勤办公区（共16间教室）",	
+	// 		"f2": "实验室（共20间教室）",	
+	// 		"f3": "教学办公区（共24间教室）",	
+	// 		"f4": "教学办公区（共24间教室）",	
+	// 		"f5": "办公区（共21间教室）",	
+	// 	},{
+	// 		"name":	"弘远楼A区",		
+	// 		"line":	"共五层，43间教室，43间在用",		
+	// 		"f1": "教学办公区（共10间教室）",	
+	// 		"f2": "教学办公区（共12间教室）",	
+	// 		"f3": "教学办公区（共12间教室）",	
+	// 		"f4": "教学办公区（共8间教室）",	
+	// 		"f5": "教室（共7间教室）",	
+	// 	},{
+	// 		"name":	"弘远楼B区",		
+	// 		"line":	"共五层，39间教室，39间在用",		
+	// 		"f1": "教室（共7间教室）",	
+	// 		"f2": "教学办公区（共9间教室）",	
+	// 		"f3": "教学办公区（共9间教室）",	
+	// 		"f4": "教学办公区（共8间教室）",	
+	// 		"f5": "教室（共6间教室）",	
+	// 	},{
+	// 		"name":	"弘远楼C区",		
+	// 		"line":	"共五层，14间教室，14间在用",		
+	// 		"f1": "教室（共3间教室）",	
+	// 		"f2": "教室（共3间教室）",	
+	// 		"f3": "教室（共3间教室）",	
+	// 		"f4": "教室（共3间教室）",	
+	// 		"f5": "教室（共2间教室）",	
+	// 	},{
+	// 		"name":	"弘远楼D区",		
+	// 		"line":	"共五层，68间教室，68间在用",		
+	// 		"f1": "教学办公区（共14间教室）",	
+	// 		"f2": "教学办公区（共14间教室）",	
+	// 		"f3": "教学办公区（共14间教室）",	
+	// 		"f4": "教学办公区（共11间教室）",	
+	// 		"f5": "教学办公区（共15间教室）",	
+	// 	},{
+	// 		"name":	"崇文楼",		
+	// 		"line":	"共五层，共75间教室，75间在用",		
+	// 		"f1": "化学实验室（共15间教室）",	
+	// 		"f2": "制图教室（共15间教室）",	
+	// 		"f3": "党校办公室（共15间教室）",	
+	// 		"f4": "物理实验绘图（共15间教室）",	
+	// 		"f5": "物理实验中心（共15间教室）",	
+	// 	},{
+	// 		"name":	"百味坊",		
+	// 		"line":	"共五层",		
+	// 		"f1": "电梯",	
+	// 		"f2": "食堂",	
+	// 		"f3": "食堂",	
+	// 		"f4": "储物间",	
+	// 		"f5": "后勤办公区",	
+	// 	},{
+	// 		"name":	"宿舍楼1栋",		
+	// 		"line":	"共21层，每层20间宿舍",		
+	// 		"f1": "2层无人，其余住满",	
+	// 		"f2": "",	
+	// 		"f3": "",	
+	// 		"f4": "",	
+	// 		"f5": "",	
+	// 	},{
+	// 		"name":	"宿舍楼2栋",		
+	// 		"line":	"共21层，每层20间宿舍",		
+	// 		"f1": "2层无人，其余住满",	
+	// 		"f2": "",	
+	// 		"f3": "",	
+	// 		"f4": "",	
+	// 		"f5": "",	
+	// 	},{
+	// 		"name":	"宿舍楼3栋",		
+	// 		"line":	"共21层，每层20间宿舍",		
+	// 		"f1": "2层无人，其余住满",	
+	// 		"f2": "",	
+	// 		"f3": "",	
+	// 		"f4": "",	
+	// 		"f5": "",	
+	// 	},{
+	// 		"name":	"宿舍楼4栋",		
+	// 		"line":	"共21层，每层20间宿舍",		
+	// 		"f1": "2层无人，其余住满",	
+	// 		"f2": "",	
+	// 		"f3": "",	
+	// 		"f4": "",	
+	// 		"f5": "",	
+	// 	},{
+	// 		"name":	"宿舍楼5栋",		
+	// 		"line":	"共21层，每层20间宿舍",		
+	// 		"f1": "2，18-21层无人，其余住满",	
+	// 		"f2": "",	
+	// 		"f3": "",	
+	// 		"f4": "",	
+	// 		"f5": "",	
+	// 	},{
+	// 		"name":	"宿舍楼6栋",		
+	// 		"line":	"共21层，每层20间宿舍",		
+	// 		"f1": "2，9-21层无人，其余住满",	
+	// 		"f2": "",	
+	// 		"f3": "",	
+	// 		"f4": "",	
+	// 		"f5": "",	
+	// 	},{
+	// 		"name":	"宿舍楼7栋",		
+	// 		"line":	"共21层，每层20间宿舍",		
+	// 		"f1": "2层无人，其余住满",	
+	// 		"f2": "",	
+	// 		"f3": "",	
+	// 		"f4": "",	
+	// 		"f5": "",	
+	// 	},
+	// ]
+	
+	
+</script>
+
+
+<script>
+
+var data1 = [];
+
+const api_url = 
+      "http://localhost:8000/statistics";
+  
+// Defining async function
+// async function getapi(url) {
+async function getapi(url) {
+    
+    // Storing response
+    const response = await fetch(url);
+    
+    // Storing data in form of JSON
+     data1 = await response.json();
+    console.log('in it,data1.length=' + data1.length);
+    if (response) {
+       console.log('loading data')
+    }
+
+
+
+
+
+
+
+}
+
+//弹窗关闭
+$(".close").click(function () {
+        $(this).parent().hide();
+        for (var i = 0; i < poster.length; i++) {
+			poster[i].visible = false;		//建筑颜色隐藏
+        }
+        swtrue = false;
+});
+
+//切换白天黑夜
+function call(num){
+	if( num == 0 ){				//白天
+		skyMaterial.map = textureCube1;
+	    pointLight.visible = true;
+	    ambientLight.intensity = 0.4;		//环境光亮度
+	}else{			//黑夜
+		skyMaterial.map = textureCube2
+	    pointLight.visible = false;
+	    ambientLight.intensity = 0;	//环境光亮度
+	}
+}
+
+
+var controlSW = false;	
+function call1(num){
+	if( num == 0 ){
+	    controlSW = true;			//打开
+	    controls1.enabled = true;	//可以旋转
+		controls1.target.set(20,0,150);	//中心点位置
+	    camera.position.set(-400, 441.07724474060706, 1500.7184); 	//相机位置   
+	}else{
+        controlSW = false; //关闭
+		controls1.target.set(0,0,0);	//中心点位置
+        controls1.enabled = false;	//禁止旋转
+        camera.position.set( 151, 10, 650);   //相机位置                                                 
+	}
+}
+
+//创建canvas容器
+var	container = document.createElement( 'div' );
+	document.body.appendChild( container );
+	
+//创建广角相机
+var	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 5, 10000 );
+	camera.position.set(-488.7934096148153,  10, 890.8706085647998);		//相机位置 人的位置
+	
+//创建场景
+var	scene = new THREE.Scene();
+
+ //创建渲染器
+var	renderer = new THREE.WebGLRenderer( { antialias: true, alpha:true } );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	container.appendChild( renderer.domElement );
+	renderer.inputEncoding=true;
+	renderer.outputEncoding = THREE.sRGBEncoding;
+
+//创建点光源
+var pointLight = new THREE.PointLight(0xFFFFFF, 0.3);	//点光源亮度
+    scene.add(pointLight);
+
+//太阳光
+var sunLight = new THREE.DirectionalLight(0xffffff, 0.5);
+sunLight.position.set(500, 175.87, 308.47);
+scene.add(sunLight);
+
+//环境光
+var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.4 );   
+	scene.add( ambientLight );
+
+//模型反射贴图
+var	textureCube = new THREE.RGBELoader().setDataType( THREE.UnsignedByteType );
+    textureCube.load( 'static/textures/2.hdr', function ( texture ) {	
+		var pmremGenerator = new THREE.PMREMGenerator( renderer );
+			pmremGenerator.compileEquirectangularShader();
+		var cubeRenderTarget = pmremGenerator.fromEquirectangular( texture );
+		textureCube = cubeRenderTarget.texture;
+		texture.dispose();			
+	});		
+
+
+//浏览器窗口自适应监听
+window.addEventListener( 'resize', onWindowResize, false );
+function onWindowResize( event ) {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+
+//白天夜晚环境球
+var	textureCube1 = new THREE.TextureLoader().load( 'static/textures/pattern1.jpg' );	//白天贴图
+var	textureCube2 = new THREE.TextureLoader().load( 'static/textures/tiankong.jpg' );	//夜晚贴图
+var skyGeometry = new THREE.SphereBufferGeometry( 5000, 60, 60 );		
+var skyMaterial = new THREE.MeshBasicMaterial({map:textureCube1,side: THREE.BackSide,color:0xffffff });
+var skyMesh = new THREE.Mesh( skyGeometry, skyMaterial );
+    skyMesh.position.set( 0,-100,0 ); 
+	scene.add( skyMesh );
+
+
+/////////////////////////点击模型的包围盒方块////////////////////////
+var material1,poster=[],poster1=[];				
+    material1 = new THREE.MeshLambertMaterial( { color: 0xffe400,depthText:false,depthWrite:false,transparent:true,opacity:0.5 } ); //设置包围盒颜色及透明度
+
+
+
+
+//食堂包围盒
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(220,40,100), material1  );  	//包围盒长宽高大小        
+    cube.position.set(100, 20, 418);               //包围盒位置，与模型对应                                      
+	cube.rotation.set(0,-0.2,0);    			//包围盒旋转度
+	cube.name = "百味坊";
+    scene.add(cube);  
+    cube.visible = false;						//包围盒隐藏
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//崇文楼包围盒
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(170,60,100), material1  );    	//包围盒长宽高大小              
+    cube.position.set(-107, 30, 565);            //包围盒位置，与模型对应                                         
+	cube.rotation.set(0,-0.1,0);                           
+	cube.name = "崇文楼";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+    
+//汇文楼包围盒
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(170,60,130), material1  );     	//包围盒长宽高大小             
+    cube.position.set(85, 30, 566);               //包围盒位置，与模型对应                                      
+	cube.rotation.set(0,-0.1,0);                           
+	cube.name = "汇文楼";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);  
+    
+//弘远楼A包围盒
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(140,60,60), material1  );     	//包围盒长宽高大小             
+    cube.position.set(-92, 30, 660);                //包围盒位置，与模型对应                                     
+	cube.rotation.set(0,-0.1,0);                           
+	cube.name = "弘远楼A区";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+    
+//弘远楼B包围盒
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(140,60,60), material1  );   	//包围盒长宽高大小               
+    cube.position.set(58, 30, 675 );              //包围盒位置，与模型对应                                       
+	cube.rotation.set(0,-0.1,0);                           
+	cube.name = "弘远楼B区";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+    
+//弘远楼C包围盒
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(110,60,40), material1  );     	//包围盒长宽高大小             
+    cube.position.set(55, 30, 759);               //包围盒位置，与模型对应                                      
+	cube.rotation.set(0,-0.1,0);                           
+    scene.add(cube); 
+	cube.name = "弘远楼C区";
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+    
+//弘远楼D包围盒
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(180,60,50), material1  );  	//包围盒长宽高大小                
+    cube.position.set( -71, 30, 750);                //包围盒位置，与模型对应                                     
+	cube.rotation.set(0,-0.1,0);                           
+	cube.name = "弘远楼D区";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//宿舍楼1栋   
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );    	//包围盒长宽高大小              
+    cube.position.set( 391, 100, 571);             //包围盒位置，与模型对应                                        
+	cube.rotation.set(0,0,0);                           
+	cube.name = "宿舍楼1栋";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//宿舍楼2 
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );  	//包围盒长宽高大小                
+    cube.position.set(444, 100, 477);                //包围盒位置，与模型对应                                     
+	cube.rotation.set(0,0,0);                           
+	cube.name = "宿舍楼2栋";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//宿舍楼3 
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );     	//包围盒长宽高大小             
+    cube.position.set(520, 100, 581);              //包围盒位置，与模型对应                                       
+	cube.rotation.set(0,0,0);                           
+	cube.name = "宿舍楼3栋";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//宿舍楼4 
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );   	//包围盒长宽高大小               
+    cube.position.set(454, 100, 392);             //包围盒位置，与模型对应                                        
+	cube.rotation.set(0,0,0);                           
+	cube.name = "宿舍楼4栋";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//宿舍楼5 
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );   	//包围盒长宽高大小               
+    cube.position.set(617, 100, 485 );             //包围盒位置，与模型对应                                        
+	cube.rotation.set(0,0,0);                           
+	cube.name = "宿舍楼5栋";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//宿舍楼6 
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );  	//包围盒长宽高大小                
+    cube.position.set(614, 100, 389);           //包围盒位置，与模型对应                                          
+	cube.rotation.set(0,0,0);                           
+	cube.name = "宿舍楼6栋";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+//宿舍楼7 
+var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );      	//包围盒长宽高大小            
+    cube.position.set( 636, 100, 595 );          //包围盒位置，与模型对应                 
+	cube.rotation.set(0,0,0);                           
+	cube.name = "宿舍楼7栋";
+    scene.add(cube);  
+    cube.visible = false;
+    cube.renderOrder = 10;
+    poster.push(cube);
+
+ 
+
+//////////////////////////////////////////////////
+
+
+//加载校园模型
+var swtrue = false;
+var lists = 0;
+var poster11 = [];
+var GLTFLoader = new THREE.GLTFLoader();
+var thismodel,mains = [];
+var dracoLoader = new THREE.DRACOLoader();
+	dracoLoader.setDecoderPath( '/static/js/gltf/' );
+    GLTFLoader.setDRACOLoader( dracoLoader );
+	GLTFLoader.load( "/static/models/xiaoyuan.gltf", function ( gltf ) {
+        thismodel = gltf.scene;                  
+        thismodel.scale.set(1,1,1);			//校园模型大小	
+        thismodel.position.set(0,0,0);		//校园模型位置 xyz	
+		thismodel.traverse( function ( child ) {
+			if ( child.isMesh ) {
+				child.material = child.material.clone()
+                child.material.lightMap = child.material.aoMap;
+                child.material.envMap = textureCube;	
+		        child.material.aoMapIntensity = 0;
+		        child.material.lightMapIntensity = 0;
+		        child.material.envMapIntensity = 0.3;
+		        mains.push(child)
+			}
+		});    
+		scene.add( thismodel );	//模型加入场景
+		call1(0);
+	});  
+
+//创建第一人称控制器
+var controls, clock = new THREE.Clock();
+	controls = new THREE.FirstPersonControls( camera ); 
+	controls.movementSpeed = 30;		//人行走的速度
+	controls.lookSpeed = 0.1;			//鼠标的转向速度
+	 //人的面向方向
+    controls.initialX = -Math.PI/2;   
+
+
+//第三人称控制器
+var controls1 = new THREE.OrbitControls( camera );
+    controls1.autoRotate = false;    
+//	controls1.maxPolarAngle = Math.PI * 0.435;	//限定上下视角，不超过地面
+	controls1.target.set(20,0,150);				//中心点位置
+    controls1.enabled = false;
+	
+
+
+document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+document.addEventListener( 'mousemove', onDocumentMouseMove, false );  
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+
+//鼠标移入事件
+function onDocumentMouseMove(event) { 
+    event.preventDefault();
+	mouse.x = ( event.clientX / renderer.domElement.width) * 2 - 1;
+	mouse.y = - ( event.clientY / renderer.domElement.height ) * 2 + 1;
+	raycaster.setFromCamera( mouse, camera );
+	var intersects1 = raycaster.intersectObjects( poster ); 
+	if(swtrue == false){
+		if ( intersects1.length > 0 ) {   
+			document.body.style.cursor = 'pointer';    //鼠标移入建筑变为手指
+			document.body.title='';				
+		}else{
+			document.body.style.cursor = 'auto';    
+			document.body.title='';
+		}
+	}
+} 
+
+//鼠标点击事件
+   function onDocumentMouseUp(event) {	
+	event.preventDefault();
+	mouse.x = ( event.clientX / renderer.domElement.width ) * 2 - 1;
+	mouse.y = - ( event.clientY / renderer.domElement.height ) * 2 + 1;
+	raycaster.setFromCamera( mouse, camera );
+
+    var intersects1 = raycaster.intersectObjects( poster );  	 
+    var intersects2 = raycaster.intersectObjects( mains );  	 
+ 
+	if(swtrue == false){
+		if ( intersects1.length > 0 ) {
+			for (var i = 0; i < poster.length; i++) {
+				if( poster[i] == intersects1[0].object ){	
+					for (var j = 0; j < data1.length; j++) {
+						if( poster[i].name == data1[j].name ){		//点击楼栋名字和 数据数组里的名字 对应
+							swtrue = true;
+							poster[i].visible = true;		//包围盒显示
+							//判断是否是宿舍，否则信息框样式不一样
+							if( poster[i].name.substring(0, 2) == "宿舍" ){
+								document.getElementsByClassName("frame2")[0].style.display = "block";		//弹窗显示
+								//获取数据数组信息
+								document.getElementById("class3").innerHTML = data1[j].name;
+								document.getElementById("class4").innerHTML = data1[j].line;
+								document.getElementById("sushe").innerHTML = data1[j].f1 ;	
+							}else{
+								document.getElementsByClassName("frame1")[0].style.display = "block";		//弹窗显示
+								//获取数据数组信息
+								document.getElementById("class1").innerHTML = data1[j].name;
+								document.getElementById("class2").innerHTML = data1[j].line;
+								document.getElementById("1F").innerHTML = data1[j].f1 ;	
+								document.getElementById("2F").innerHTML = data1[j].f2;	
+								document.getElementById("3F").innerHTML = data1[j].f3;	
+								document.getElementById("4F").innerHTML = data1[j].f4;	
+								document.getElementById("5F").innerHTML = data1[j].f5;	
+							}
+						}
+					}					
+				}
+			}
+		}
+	}
+	
+	     if (intersects2.length > 0) {
+      		console.log("当前：" + toString( intersects2[0].point ) );       
+			function toString(v) { return "[ " + v.x.toFixed(0) + ", " + v.y.toFixed(0) + ", " + v.z.toFixed(0) + " ]"; }
+      	}
+
+}
+
+//三维场景循环渲染
+render();  
+
+function render() {
+	requestAnimationFrame( render );
+    pointLight.position.copy ( camera.position );       
+    pointLight.scale.copy ( camera.scale ); 
+
+	//开关判断控制器选择
+	if( controlSW ){ 
+	   controls1.update();           //控制器更新
+	}else {
+		camera.position.y = 1;			//人的高度
+	   var delta = clock.getDelta();	
+	   controls.update(delta);           
+	}			
+
+	renderer.clear();	
+    renderer.render( scene, camera );
+}
+// Calling that async function
+getapi(api_url);
+
+
+
+</script>
+
+	
+</body>
+</html>

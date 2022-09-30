@@ -317,7 +317,7 @@ async function getapi(url) {
     
     // Storing data in form of JSON
      data1 = await response.json();
-    console.log('in it' + data1);
+    console.log('in it,data1.length=' + data1.length);
     if (response) {
        console.log('loading data')
     }
@@ -432,7 +432,10 @@ var skyMesh = new THREE.Mesh( skyGeometry, skyMaterial );
 /////////////////////////点击模型的包围盒方块////////////////////////
 var material1,poster=[],poster1=[];				
     material1 = new THREE.MeshLambertMaterial( { color: 0xffe400,depthText:false,depthWrite:false,transparent:true,opacity:0.5 } ); //设置包围盒颜色及透明度
-    
+
+
+
+
 //食堂包围盒
 var cube = new THREE.Mesh(  new THREE.BoxGeometry(220,40,100), material1  );  	//包围盒长宽高大小        
     cube.position.set(100, 20, 418);               //包围盒位置，与模型对应                                      
@@ -573,8 +576,8 @@ var cube = new THREE.Mesh(  new THREE.BoxGeometry(100,240,60), material1  );    
     cube.renderOrder = 10;
     poster.push(cube);
 
-    
-    
+ 
+
 //////////////////////////////////////////////////
 
 
