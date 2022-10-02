@@ -34,7 +34,12 @@ http://localhost:8000/
 http://localhost:8000/home
 已经注册好的管理员账号 可以直接登录：
 管理员
-username: greatabel1@126.com 
+
+admin@126.com
+admin
+
+或者
+username: greatabel1@126.com
 password: abel
 你也可以自己注册和登录
 

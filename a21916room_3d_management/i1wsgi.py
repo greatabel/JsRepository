@@ -390,6 +390,7 @@ def login():
     email = request.form.get("email")
     password = request.form.get("password")
     try:
+        print(email, password, '->'*5)
         data = User.query.filter_by(username=email, password=password).first()
         print(data, "@" * 10)
         if data is not None:
