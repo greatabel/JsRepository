@@ -6,10 +6,10 @@ function setup() {
 
 
 
-// twitter 旋转版本 Phenakistoscope
+// twitter 旋转版本 + 3D + 多体 + Phenakistoscope
 var angle = 0;
 var spinning = true;
-var numImages = 5;
+var numImages = 3;
 var imageArray = [];
 var imageIndex = 0;
 
@@ -42,7 +42,7 @@ function draw() {
   fill(0, 0, 255);
   sphere(30);
 
-  rotation += 0.02;
+  rotation += 0.01;
 
   if (spinning) {
     angle += 0.03;
