@@ -1,67 +1,137 @@
-var rotation = 0;
+let x, y;
+let angle = 0;
+let radius = 200;
+let shapeSize = 20;
+let shapeX, shapeY;
 
 function setup() {
-  createCanvas(1000, 1000, WEBGL);
+  createCanvas(1000, 1000);
+  x = width / 2;
+  y = height / 2;
 }
-
-
-
-// twitter 旋转版本 + 3D + 多体 + Phenakistoscope
-var angle = 0;
-var spinning = true;
-var numImages = 3;
-var imageArray = [];
-var imageIndex = 0;
-
-function preload() {
-  for (var i = 0; i < numImages; i++) {
-    imageArray[i] = loadImage( i + ".png");
-  }
-}
-
-// function setup() {
-//   createCanvas(400, 400, WEBGL);
-// }
 
 function draw() {
-  background(200);
-
-
-
-  rotateX(rotation);
-  rotateY(rotation * 1.3);
-  rotateZ(rotation * 0.7);
-
+  background(255);
   noStroke();
-  fill(255, 0, 0);
-  torus(150, 30);
 
-  fill(255, 255, 0);
-  box(50);
 
-  fill(0, 0, 255);
-  sphere(30);
+  for (let i = 0; i < 360; i += 15) {
+    let xpos = x + radius * cos(radians(angle + i));
+    let ypos = y + radius * sin(radians(angle + i));
+    // let r = random(255);
+    // let g = random(255);
+    // let b = random(255);
+    // fill(0, g, b);
+    ellipse(xpos, ypos, 350, 350);
 
-  rotation += 0.01;
-
-  if (spinning) {
-    angle += 0.03;
   }
-  translate(0, 0, -200);
-  rotateY(angle);
-  texture(imageArray[imageIndex]);
-  plane(200, 200);
-  if (frameCount % 10 == 0) {
-    imageIndex++;
-    if (imageIndex >= numImages) {
-      imageIndex = 0;
-    }
+
+  for (let i = 0; i < 360; i += 45) {
+    let xpos = x + radius * cos(radians(angle + i));
+    let ypos = y + radius * sin(radians(angle + i));
+    let size = random(10, 30);
+    let r = random(255);
+    let g = random(255);
+    let b = random(255);
+    fill(r, g, b);
+    ellipse(xpos, ypos, size*5, size*5);
+
+
+  shapeX = x + radius * cos(radians(angle));
+  shapeY = y + radius * sin(radians(angle));
+  shapeX += sin(radians(angle)) * 5;
+  shapeY += cos(radians(angle)) * 5;
+
+  let shapeR = random(255);
+  let shapeG = random(255);
+  let shapeB = random(255);
+  fill(shapeR, shapeG, shapeB);
+
+
   }
+
+  angle += 2;
+
+  // shapeX = x + radius * cos(radians(angle));
+  // shapeY = y + radius * sin(radians(angle));
+  // shapeX += sin(radians(angle)) * 5;
+  // shapeY += cos(radians(angle)) * 5;
+
+  // let shapeR = random(255);
+  // let shapeG = random(255);
+  // let shapeB = random(255);
+  // fill(shapeR, shapeG, shapeB);
+  // rect(shapeX, shapeY, shapeSize*2, shapeSize*2);
+
+  // angle += 2;
 }
 
-function mousePressed() {
-  spinning = !spinning;
-}
+
+// ------------ ------------ ------------------------ 3d version 
+// var rotation = 0;
+
+// function setup() {
+//   createCanvas(1000, 1000, WEBGL);
+// }
+
+
+
+// // twitter 旋转版本 + 3D + 多体 + Phenakistoscope
+// var angle = 0;
+// var spinning = true;
+// var numImages = 3;
+// var imageArray = [];
+// var imageIndex = 0;
+
+// function preload() {
+//   for (var i = 0; i < numImages; i++) {
+//     imageArray[i] = loadImage( i + ".png");
+//   }
+// }
+
+// // function setup() {
+// //   createCanvas(400, 400, WEBGL);
+// // }
+
+// function draw() {
+//   background(200);
+
+
+
+//   rotateX(rotation);
+//   rotateY(rotation * 1.3);
+//   rotateZ(rotation * 0.7);
+
+//   noStroke();
+//   fill(255, 0, 0);
+//   torus(150, 30);
+
+//   fill(255, 255, 0);
+//   box(50);
+
+//   fill(0, 0, 255);
+//   sphere(30);
+
+//   rotation += 0.01;
+
+//   if (spinning) {
+//     angle += 0.03;
+//   }
+//   translate(0, 0, -200);
+//   rotateY(angle);
+//   texture(imageArray[imageIndex]);
+//   plane(200, 200);
+//   if (frameCount % 10 == 0) {
+//     imageIndex++;
+//     if (imageIndex >= numImages) {
+//       imageIndex = 0;
+//     }
+//   }
+// }
+
+// function mousePressed() {
+//   spinning = !spinning;
+// }
 
 
 
