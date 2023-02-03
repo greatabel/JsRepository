@@ -4,67 +4,266 @@ let radius = 200;
 let shapeSize = 20;
 let shapeX, shapeY;
 
+let polygonSides = 5;
+
+let snowflakes = []; // Array to store snowflake objects
+
 function setup() {
   createCanvas(1000, 1000);
   x = width / 2;
   y = height / 2;
+    // Create a random number of snowflakes each time the program starts
+  for (let i = 0; i < random(50, 100); i++) {
+    snowflakes.push(new Snowflake());
+  }
 }
 
 function draw() {
-  background(255);
+  background(255, 255, 255);
   noStroke();
 
-
-  for (let i = 0; i < 360; i += 15) {
+  // Draw butterfly shapes in a rotating pattern
+  for (let i = 0; i < 360; i += 45) {
     let xpos = x + radius * cos(radians(angle + i));
     let ypos = y + radius * sin(radians(angle + i));
-    // let r = random(255);
-    // let g = random(255);
-    // let b = random(255);
-    // fill(0, g, b);
-    ellipse(xpos, ypos, 350, 350);
+    let r = random(100, 200);
+    let g = random(100, 200);
+    let b = random(200, 255);
+    fill(r, g, b, 150);
+    butterfly(xpos, ypos, 150, 150);
+
+
+    let r1 = random(0, 100);
+    let g1 = random(100, 200);
+    let b1 = random(200, 255);
+    let size = random(150, 350);
+    fill(r1, g1, b1, 150);
+    ellipse(xpos, ypos, size, size);
 
   }
 
+  // Draw smaller circles in a rotating pattern
   for (let i = 0; i < 360; i += 45) {
     let xpos = x + radius * cos(radians(angle + i));
     let ypos = y + radius * sin(radians(angle + i));
     let size = random(10, 30);
-    let r = random(255);
-    let g = random(255);
-    let b = random(255);
-    fill(r, g, b);
+    let r2 = random(255);
+    let g2 = random(255);
+    let b2 = random(255);
+    fill(r2, g2, b2);
     ellipse(xpos, ypos, size*5, size*5);
 
+    rect(xpos, ypos, size*2, size*2);
+  }
 
-  shapeX = x + radius * cos(radians(angle));
-  shapeY = y + radius * sin(radians(angle));
-  shapeX += sin(radians(angle)) * 5;
-  shapeY += cos(radians(angle)) * 5;
 
-  let shapeR = random(255);
-  let shapeG = random(255);
-  let shapeB = random(255);
-  fill(shapeR, shapeG, shapeB);
+  // Draw moving flowers
+  for (let i = 0; i < 360; i += 45) {
+    let xpos = x + radius * cos(radians(angle + i));
+    let ypos = y + radius * sin(radians(angle + i));
+    let size = random(50, 120);
+    let r3 = random(255);
+    let g3 = random(255);
+    let b3 = random(255);
+    fill(r3, g3, b3);
+
+    flower(xpos, ypos, size);
+
 
 
   }
 
-  angle += 2;
 
-  // shapeX = x + radius * cos(radians(angle));
-  // shapeY = y + radius * sin(radians(angle));
-  // shapeX += sin(radians(angle)) * 5;
-  // shapeY += cos(radians(angle)) * 5;
+  // Draw raindrops
+  let rainCount = 50;
+  for (let i = 0; i < rainCount; i++) {
+    let xpos = random(0, width);
+    let ypos = random(-height, 0);
+    let length = random(10, 30);
+    stroke(0, 0, 255);
+    strokeWeight(2);
+    line(xpos, ypos, xpos, ypos + length);
+  }
 
-  // let shapeR = random(255);
-  // let shapeG = random(255);
-  // let shapeB = random(255);
-  // fill(shapeR, shapeG, shapeB);
-  // rect(shapeX, shapeY, shapeSize*2, shapeSize*2);
+  
+  // Update angle for rotation
+  angle += 1;
 
-  // angle += 2;
+    // Update and display all the snowflakes
+  for (flake of snowflakes) {
+    flake.update();
+    flake.display();
+  }
+
 }
+
+// Function to draw a butterfly shape
+function butterfly(x, y, w, h) {
+  push();
+  translate(x, y);
+  rotate(radians(angle));
+  rect(-w/2, -h/2, w/2, h/2);
+  rect(0, -h/4, w/2, h/2);
+  pop();
+}
+
+// Function to draw a flower
+function flower(x, y, size) {
+  push();
+  translate(x, y);
+  rotate(radians(angle));
+}
+
+
+
+// Snowflake class
+class Snowflake {
+  constructor() {
+    this.x = random(0, width);
+    this.y = random(-100, 0);
+    this.size = random(2, 10);
+    this.speed = random(1, 3);
+  }
+
+  // Move the snowflake downwards
+  update() {
+    this.y += this.speed;
+    
+    // If the snowflake reaches the bottom, send it back to the top
+    if (this.y > height) {
+      this.y = random(-100, 0);
+      this.x = random(0, width);
+    }
+  }
+
+  // Display the snowflake
+  display() {
+    fill(255, 255, 255);
+    ellipse(this.x, this.y, this.size, this.size);
+  }
+}
+
+// let x, y;
+// let angle = 0;
+// let radius = 200;
+// let shapeSize = 20;
+// let shapeX, shapeY;
+
+// function setup() {
+//   createCanvas(1000, 1000);
+//   x = width / 2;
+//   y = height / 2;
+// }
+
+// function draw() {
+//   background(255, 255, 255);
+//   noStroke();
+
+//   // Draw circles in a rotating pattern
+//   for (let i = 0; i < 360; i += 15) {
+//     let xpos = x + radius * cos(radians(angle + i));
+//     let ypos = y + radius * sin(radians(angle + i));
+//     let size = random(150, 350);
+//     let r = random(0, 100);
+//     let g = random(100, 200);
+//     let b = random(200, 255);
+//     fill(r, g, b, 150);
+//     ellipse(xpos, ypos, size, size);
+//   }
+
+//   // Draw smaller circles in a rotating pattern
+//   for (let i = 0; i < 360; i += 45) {
+//     let xpos = x + radius * cos(radians(angle + i));
+//     let ypos = y + radius * sin(radians(angle + i));
+//     let size = random(10, 30);
+//     let r = random(255);
+//     let g = random(255);
+//     let b = random(255);
+//     fill(r, g, b);
+//     ellipse(xpos, ypos, size*5, size*5);
+//   }
+
+//   // Draw a moving shape
+//   shapeX = x + radius * cos(radians(angle));
+//   shapeY = y + radius * sin(radians(angle));
+//   shapeX += sin(radians(angle)) * 5;
+//   shapeY += cos(radians(angle)) * 5;
+//   let shapeR = random(255);
+//   let shapeG = random(255);
+//   let shapeB = random(255);
+//   fill(shapeR, shapeG, shapeB);
+//   rect(shapeX, shapeY, shapeSize, shapeSize);
+
+//   // Draw a rotated square in the center
+//   push();
+//   translate(x, y);
+//   rotate(radians(angle));
+//   fill(255, 0, 0);
+//   rect(-shapeSize/2, -shapeSize/2, shapeSize*4, shapeSize*4);
+//   pop();
+
+//   // Update angle for rotation
+//   angle += 1;
+// }
+
+
+// ----------------------- my way ---
+// let x, y;
+// let angle = 0;
+// let radius = 200;
+// let shapeSize = 20;
+// let shapeX, shapeY;
+
+// function setup() {
+//   createCanvas(1000, 1000);
+//   x = width / 2;
+//   y = height / 2;
+// }
+
+// function draw() {
+//   background(255);
+//   noStroke();
+
+
+//   for (let i = 0; i < 360; i += 15) {
+//     let xpos = x + radius * cos(radians(angle + i));
+//     let ypos = y + radius * sin(radians(angle + i));
+//     // let r = random(255);
+//     // let g = random(255);
+//     // let b = random(255);
+//     // fill(0, g, b);
+//     ellipse(xpos, ypos, 350, 350);
+
+//   }
+
+//   for (let i = 0; i < 360; i += 45) {
+//     let xpos = x + radius * cos(radians(angle + i));
+//     let ypos = y + radius * sin(radians(angle + i));
+//     let size = random(10, 30);
+//     let r = random(255);
+//     let g = random(255);
+//     let b = random(255);
+//     fill(r, g, b);
+//     ellipse(xpos, ypos, size*5, size*5);
+
+
+//   shapeX = x + radius * cos(radians(angle));
+//   shapeY = y + radius * sin(radians(angle));
+//   shapeX += sin(radians(angle)) * 5;
+//   shapeY += cos(radians(angle)) * 5;
+
+//   let shapeR = random(255);
+//   let shapeG = random(255);
+//   let shapeB = random(255);
+//   fill(shapeR, shapeG, shapeB);
+
+
+//   }
+
+//   angle += 2;
+
+
+// }
 
 
 // ------------ ------------ ------------------------ 3d version 
