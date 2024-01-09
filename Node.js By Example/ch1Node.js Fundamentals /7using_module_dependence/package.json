@@ -1,8 +1,0 @@
-{
-	"name": "abel-another-module",
-	"version": "0.0.1",
-	"bin": "index1.js",
-    "dependencies": {
-        "abel-awesome-nodejs-module": "0.0.1"
-    }
-}
